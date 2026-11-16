@@ -1,0 +1,44 @@
+{
+  "signal_id": "py_qpsk_15db",
+  "num_samples": 4178,
+  "fs_hz": 8000.0,
+  "detection": {
+    "detected": true,
+    "observed_energy": 0.11677174865692717,
+    "threshold": 0.1,
+    "status": "signal_present"
+  },
+  "spectrum": {
+    "bandwidth_99": 5317.8450920654595,
+    "bandwidth_unit": "Hz",
+    "frequency_bounds": [
+      -2741.869220987416,
+      2575.975871078044
+    ],
+    "integrated_power": 0.13546778515242963,
+    "window_method": "periodic_hann",
+    "spectrum_file": "results\\monitor\\py_qpsk_15db_psd.png"
+  },
+  "snr": {
+    "snr_est_db": null,
+    "status": "no_identificable_sin_supuestos",
+    "reason": "falta_referencia_de_piso_de_ruido",
+    "explanation": "La estimación rigurosa de SNR requiere una referencia independiente de ruido en la misma banda y ganancia.",
+    "observed_power": 0.11677174865692717
+  },
+  "classification": {
+    "modulation": "QPSK",
+    "confidence": 0.3755,
+    "confidence_calibrated": true,
+    "model_used": "results\\fase5\\conventional_256.joblib",
+    "scope": "signal_present_closed_set",
+    "window_votes": {
+      "16QAM": 1,
+      "8PSK": 1,
+      "QPSK": 14
+    }
+  },
+  "warnings": [
+    "SNR indeterminada: se requiere referencia externa de ruido estacionario."
+  ]
+}

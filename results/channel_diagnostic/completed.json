@@ -1,0 +1,17 @@
+{
+  "completed": true,
+  "parents": 720,
+  "scenarios": 9,
+  "models_unchanged": true,
+  "observation_hashes": {
+    "beta_025_observations.npz": "5d1f160ea57537d04815e712583de8b1b567568c1412e2e30843c93111d27572",
+    "beta_035_observations.npz": "4ee908386d07343ab66c8387fe70d462e74f50f97b6dc578e57f64091cd39f93",
+    "beta_050_observations.npz": "cabed82558a655fe7d02f8af136f86cfa780f6fdb9c40d9a0193575202f9673f",
+    "beta_065_observations.npz": "98d6fd9e8a8a1f75e29fb3e05ed5b4f03e76429a2b17b8062c9b311769b484d7",
+    "both_shift_observations.npz": "07cc22e7032952e65963e99d8ecec7d0d2283dcafb37d1be56a59288f4b14307",
+    "cfo_shift_observations.npz": "bc3f9e069508d2e9106b738d4ef812fda34c26f882f73f7b87a4545efba93cb1",
+    "cfo_zero_observations.npz": "74cb38e0d81ce19cf708c4233dde814fb5c7b161af65bde079cc0612e7919b86",
+    "id_observations.npz": "b0197f7904da0e1ab2edde6358a8165aba29cf9f02b925e100a3944c6f850485",
+    "multipath_shift_observations.npz": "cf40a1721792abfb29357350bce7b5faa0706fd99af3e845a1f0846e03d4d728"
+  }
+}

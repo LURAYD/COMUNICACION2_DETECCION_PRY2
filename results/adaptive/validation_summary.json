@@ -1,0 +1,44 @@
+[
+  {
+    "policy": "always_svm256",
+    "accuracy": 0.43,
+    "compute_ms": 6.16700625,
+    "acquisition_ms": 32.0,
+    "utility": 0.3536659875
+  },
+  {
+    "policy": "always_svm512",
+    "accuracy": 0.4633333333333333,
+    "compute_ms": 8.376633333333334,
+    "acquisition_ms": 64.0,
+    "utility": 0.31858006666666666
+  },
+  {
+    "policy": "always_cnn",
+    "accuracy": 0.4025,
+    "compute_ms": 1.9418322916666668,
+    "acquisition_ms": 32.0,
+    "utility": 0.3346163354166667
+  },
+  {
+    "policy": "confidence",
+    "accuracy": 0.43,
+    "compute_ms": 10.457252083333334,
+    "acquisition_ms": 32.0,
+    "utility": 0.3450854958333333
+  },
+  {
+    "policy": "flatness",
+    "accuracy": 0.4483333333333333,
+    "compute_ms": 13.336638541666668,
+    "acquisition_ms": 41.25333333333333,
+    "utility": 0.3391533895833333
+  },
+  {
+    "policy": "selector",
+    "accuracy": 0.45166666666666666,
+    "compute_ms": 24.340475,
+    "acquisition_ms": 36.82666666666667,
+    "utility": 0.3293323833333333
+  }
+]

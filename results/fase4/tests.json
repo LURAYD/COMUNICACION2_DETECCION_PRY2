@@ -1,0 +1,7 @@
+{
+  "command": ".venv\\Scripts\\python.exe -m pytest -q -W error",
+  "exit_code": 0,
+  "passed": 227,
+  "seconds": 10.03,
+  "result": "227 passed in 10.03s"
+}

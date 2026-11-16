@@ -1,0 +1,291 @@
+% ==============================================================================
+% SECTION III: SYSTEM MODEL AND PROBLEM FORMULATION
+% SECTION IV: MULTI-DOMAIN FEATURE REPRESENTATION AND EXPERT ARCHITECTURE
+% File: docs/paper/sections/02_system_model_architecture.tex
+% ==============================================================================
+
+\section{System Model and Problem Formulation}
+\label{sec:system_model}
+
+In this section, we formulate the end-to-end discrete-time signal model, the wireless propagation channel impairments, the mathematical model of the front-end analog-to-digital converter (ADC), and the automatic modulation classification (AMC) problem under strict zero-leakage constraints.
+
+\subsection{Transmitted Signal and Pulse Shaping Model}
+\label{subsec:tx_signal}
+
+We consider a multi-class digital communication system transmitting symbols drawn from an alphabet $\mathcal{M}$ selected from six standardized modulation schemes:
+\begin{equation}
+\Omega = \{\text{BPSK}, \text{QPSK}, \text{8PSK}, \text{16-QAM}, \text{64-QAM}, \text{4-PAM}\},
+\end{equation}
+with cardinalities $M \in \{2, 4, 8, 16, 64, 4\}$, respectively. The information bit sequence is mapped into a stream of complex symbols $\{s_m\}_{m=-\infty}^{\infty}$, where each constellation is normalized to unit average symbol energy, $\mathbb{E}[|s_m|^2] = 1$. The theoretical constellations and Gray mappings are formulated as follows:
+\begin{itemize}
+    \item \textbf{BPSK ($M=2$):} The binary bits $b_m \in \{0, 1\}$ map to antipodal points on the real axis:
+    \begin{equation}
+    s_m = 1 - 2b_m \in \{-1, +1\}.
+    \end{equation}
+    \item \textbf{QPSK ($M=4$):} Gray mapping assigns bit pairs $(b_{0,m}, b_{1,m}) \in \{0, 1\}^2$ into quadrants:
+    \begin{equation}
+    s_m = \frac{(1 - 2b_{0,m}) + j(1 - 2b_{1,m})}{\sqrt{2}}.
+    \end{equation}
+    \item \textbf{8PSK ($M=8$):} Bit triplets map to eight uniformly spaced phase states with unit radius:
+    \begin{equation}
+    s_m = \exp\left(j \frac{2\pi k_m}{8}\right), \quad k_m \in \{0, 1, \dots, 7\}.
+    \end{equation}
+    \item \textbf{16-QAM ($M=16$):} A rectangular grid on $\{\pm 1, \pm 3\} \times \{\pm 1, \pm 3\}$ normalized by $\sqrt{10}$:
+    \begin{equation}
+    s_m = \frac{I_m + j Q_m}{\sqrt{10}}, \quad I_m, Q_m \in \{\pm 1, \pm 3\}.
+    \end{equation}
+    \item \textbf{64-QAM ($M=64$):} An $8 \times 8$ grid on $\{\pm 1, \pm 3, \pm 5, \pm 7\}^2$ normalized by $\sqrt{42}$:
+    \begin{equation}
+    s_m = \frac{I_m + j Q_m}{\sqrt{42}}, \quad I_m, Q_m \in \{\pm 1, \dots, \pm 7\}.
+    \end{equation}
+    \item \textbf{4-PAM ($M=4$):} A real one-dimensional constellation on $\{\pm 1, \pm 3\}$ normalized by $\sqrt{5}$:
+    \begin{equation}
+    s_m = \frac{A_m}{\sqrt{5}} + j \cdot 0, \quad A_m \in \{\pm 1, \pm 3\}.
+    \end{equation}
+\end{itemize}
+
+The discrete symbol stream is upsampled by an oversampling ratio $sps = f_s / R_s = 8$ samples per symbol, where $R_s$ denotes the symbol rate ($R_s = 1000\text{ Baud}$) and $f_s$ is the system sampling frequency ($f_s = 8000\text{ Hz}$). The upsampled impulse train is shaped by a discrete-time square-root raised cosine (SRRC) filter $p[n]$ of roll-off factor $\beta \in [0.25, 0.50]$ and truncation span $K_{\text{span}} = 10$ symbol periods ($L_p = K_{\text{span}} \cdot sps + 1 = 81$ taps). The continuous-time impulse response $p(t)$ with $\tau = t / T_s$ is defined by:
+\begin{equation}
+p(t) = \frac{\sin(\pi \tau (1 - \beta)) + 4\beta \tau \cos(\pi \tau (1 + \beta))}{\pi \tau \left(1 - (4\beta \tau)^2\right)},
+\label{eq:srrc_continuous}
+\end{equation}
+with removable singularities at the origin:
+\begin{equation}
+p(0) = 1 + \beta\left(\frac{4}{\pi} - 1\right),
+\end{equation}
+and at the transition instances $\tau = \pm 1 / (4\beta)$:
+\begin{align}
+p\left(\pm \frac{T_s}{4\beta}\right) &= \frac{\beta}{\sqrt{2}} \left[ \left(1 + \frac{2}{\pi}\right) \sin\left(\frac{\pi}{4\beta}\right) \right. \nonumber \\
+&\quad \left. + \left(1 - \frac{2}{\pi}\right) \cos\left(\frac{\pi}{4\beta}\right) \right].
+\end{align}
+The discrete filter taps $p[n] = p(n T_{\text{sample}})$ are strictly normalized to unit discrete energy $\sum_{n} |p[n]|^2 = 1$. The resulting transmitted discrete baseband signal with random large-scale path-loss scaling $A \sim \mathcal{U}[0.5, 1.5]$ is:
+\begin{equation}
+x[n] = A \sum_{m=-\infty}^{\infty} s_m p[n - m \cdot sps].
+\label{eq:tx_baseband}
+\end{equation}
+
+\subsection{Wireless Propagation Channel and RF Impairments}
+\label{subsec:channel_model}
+
+The transmitted baseband waveform $x[n]$ traverses an uncoordinated multipath propagation medium subject to carrier frequency offsets, phase rotations, and additive noise. The channel transformation is modeled as a causal cascade of physical impairments:
+
+\subsubsection{Discrete Multipath Propagation (FIR Filter)}
+The channel dispersion is represented as a causal discrete finite impulse response (FIR) filter $\mathbf{h} = [h_0, h_1, \dots, h_{L-1}]^T$:
+\begin{equation}
+x_{\text{mp}}[n] = \sum_{l=0}^{L-1} h_l \, x[n - l],
+\label{eq:multipath}
+\end{equation}
+where $h_l \in \mathbb{C}$ denotes the $l$-th tap gain. In-distribution (ID) partitions draw uniformly across three canonical channels: ideal flat propagation $\mathbf{h} = [1]$, an asymmetric quadrature echo $\mathbf{h} = [1, 0, 0.35j]$ ($\tau = 2$ samples), and a complex five-sample echo $\mathbf{h} = [1, 0, 0, 0, 0, 0.15 - 0.15j]$ ($\tau = 5$ samples). Conversely, the out-of-distribution (OOD) shift partition (\texttt{test\_shift}) injects unseen extended delay spreads with secondary paths at $\tau \in \{9, 13\}$ samples.
+
+\subsubsection{Carrier Frequency Offset (CFO) and Initial Phase Rotation}
+Due to local oscillator inaccuracies and Doppler shifts between transmitter and receiver, the signal undergoes continuous phase rotation:
+\begin{equation}
+x_{\text{rot}}[n] = x_{\text{mp}}[n] \cdot \exp\left(j \left( 2\pi \frac{\Delta f}{f_s} n + \theta_0 \right)\right),
+\label{eq:cfo_rotation}
+\end{equation}
+where $\Delta f$ is the carrier frequency offset in Hertz, and $\theta_0 \sim \mathcal{U}[-\pi, \pi)$ is the unknown initial carrier phase. In nominal in-distribution scenarios, $\Delta f \in [-100, 100]\text{ Hz}$ (corresponding to relative frequency offsets up to $\pm 1.25\%$ of $f_s$). In OOD channel-shift conditions, severe frequency drift $|\Delta f| \in [200, 300]\text{ Hz}$ is introduced to test physical model robustness.
+
+\subsubsection{Additive White Gaussian Noise (AWGN)}
+The received analog baseband signal prior to sampling and digitization is given by:
+\begin{equation}
+y_{\text{analog}}[n] = x_{\text{rot}}[n] + w[n],
+\label{eq:awgn_addition}
+\end{equation}
+where $w[n] = w_I[n] + j w_Q[n]$ is a complex zero-mean circular additive white Gaussian noise process with independent and identically distributed (i.i.d.) components:
+\begin{equation}
+w_I[n], w_Q[n] \sim \mathcal{N}\left(0, \frac{\sigma_w^2}{2}\right), \quad \mathbb{E}[|w[n]|^2] = \sigma_w^2.
+\end{equation}
+The noise variance $\sigma_w^2$ is governed by the nominal pre-detection signal-to-noise ratio $\text{SNR} \in [-20, +20]\text{ dB}$:
+\begin{equation}
+\sigma_w^2 = P_{\text{sig}} \cdot 10^{-\text{SNR}_{\text{dB}} / 10}, \quad P_{\text{sig}} = \mathbb{E}\left[|x_{\text{rot}}[n]|^2\right].
+\end{equation}
+
+\subsection{Virtual Front-End Uniform Mid-Rise ADC Model}
+\label{subsec:adc_model}
+
+Unlike prior AMC studies that assume idealized infinite-precision floating-point I/Q samples~\cite{gao2026mlea, quan2026fftformer} or examine time-interleaved converter channel mismatches ($g, o, \delta$) over long blocks ($N=32\,768$)~\cite{gros2025mitigating}, practical software-defined and cognitive radio receivers digitize baseband signals using finite-resolution analog-to-digital converters (ADCs).
+
+We model the front-end digitization as an independent $B$-bit uniform symmetric mid-rise quantizer operating over each in-phase ($I$) and quadrature ($Q$) channel with a fixed full-scale voltage range $[-V_{\text{FS}}, +V_{\text{FS}}]$. Crucially, to prevent data leakage, $V_{\text{FS}}$ is maintained constant across all observations ($V_{\text{FS}} = 2.5\text{ V}$) without adaptively scaling to test sample statistics.
+
+For an input component $v \in \{ \text{Re}\{y_{\text{analog}}[n]\}, \text{Im}\{y_{\text{analog}}[n]\} \}$, the ADC divides the span $[-V_{\text{FS}}, +V_{\text{FS}}]$ into $\mathcal{L} = 2^B$ quantization intervals of uniform width:
+\begin{equation}
+\Delta = \frac{2 V_{\text{FS}}}{2^B} = \frac{V_{\text{FS}}}{2^{B-1}}.
+\label{eq:adc_step}
+\end{equation}
+The input signal is first passed through a non-linear saturation operator to account for ADC front-end clipping:
+\begin{equation}
+\text{clip}(v, V_{\text{FS}}) = \begin{cases}
+-V_{\text{FS}}, & v < -V_{\text{FS}}, \\
+v, & -V_{\text{FS}} \le v \le V_{\text{FS}}, \\
++V_{\text{FS}}, & v > +V_{\text{FS}}.
+\end{cases}
+\label{eq:adc_clip}
+\end{equation}
+The discrete code index $k(v) \in \{0, 1, \dots, 2^B - 1\}$ is determined by:
+\begin{equation}
+k(v) = \min\left( \max\left( \left\lfloor \frac{\text{clip}(v, V_{\text{FS}}) + V_{\text{FS}}}{\Delta} \right\rfloor, 0 \right), 2^B - 1 \right).
+\label{eq:adc_index}
+\end{equation}
+The mid-rise reconstructed voltage $\mathcal{Q}_B(v)$, situated at the mid-point of the $k$-th quantization bin, is expressed as:
+\begin{equation}
+\mathcal{Q}_B(v) = -V_{\text{FS}} + \left(k(v) + \frac{1}{2}\right) \Delta.
+\label{eq:adc_reconstruct}
+\end{equation}
+This mid-rise formulation guarantees that the $2^B$ output levels are strictly symmetric about zero with no reconstruction level at exact zero, avoiding zero-crossing dead zones. The digitized baseband complex observation $r[n]$ is therefore:
+\begin{equation}
+r[n] = \mathcal{Q}_B\left(\text{Re}\{y_{\text{analog}}[n]\}\right) + j \, \mathcal{Q}_B\left(\text{Im}\{y_{\text{analog}}[n]\}\right).
+\label{eq:adc_complex_out}
+\end{equation}
+
+For offline diagnostic and physical validation (strictly withheld from classification and policy models), the Signal-to-Quantization-Noise Ratio (SQNR) over a window of $N$ samples is evaluated as:
+\begin{equation}
+\text{SQNR}_{\text{dB}} = 10 \log_{10} \left( \frac{\sum_{n=0}^{N-1} |y_{\text{analog}}[n]|^2}{\sum_{n=0}^{N-1} |y_{\text{analog}}[n] - r[n]|^2} \right).
+\label{eq:sqnr_eval}
+\end{equation}
+
+\subsection{AMC Problem Formulation and Zero-Leakage Protocol}
+\label{subsec:problem_formulation}
+
+Given a temporal observation window of $N$ digitized baseband samples $\mathbf{r} = [r[0], r[1], \dots, r[N-1]]^T \in \mathbb{C}^N$, the objective of automatic modulation classification is to determine the true underlying modulation class $c^* \in \Omega$.
+
+Prior to classification, each observed window undergoes sample-wise DC centering and sample power normalization:
+\begin{equation}
+\bar{r} = \frac{1}{N} \sum_{n=0}^{N-1} r[n], \quad P_r = \frac{1}{N} \sum_{n=0}^{N-1} |r[n] - \bar{r}|^2,
+\label{eq:sample_norm_1}
+\end{equation}
+\begin{equation}
+\tilde{r}[n] = \frac{r[n] - \bar{r}}{\sqrt{\max(P_r, \epsilon)}}, \quad n \in \{0, 1, \dots, N-1\},
+\label{eq:sample_norm_2}
+\end{equation}
+where $\epsilon = 10^{-7}$ prevents numerical singularity. The normalized discrete observation is mapped to a real two-channel tensor $\mathbf{X} \in \mathbb{R}^{2 \times N}$, with channel $0$ containing $\text{Re}\{\tilde{r}[n]\}$ and channel $1$ containing $\text{Im}\{\tilde{r}[n]\}$.
+
+\subsubsection{Strict Zero-Leakage Guarantee}
+To guarantee rigorous scientific reproducibility and avoid pervasive pitfalls identified in competitive literature~\cite{gao2026mlea, li2026openset}:
+\begin{enumerate}
+    \item \textbf{No Oracle State Access:} At no point during inference do the classifiers or the adaptive selector receive ground-truth metadata, such as true $\text{SNR}_{\text{dB}}$, true carrier offset $\Delta f$, channel taps $\{h_l\}$, true noise variance $\sigma_w^2$, or pre-quantization reference waveforms.
+    \item \textbf{Parent Waveform Isolation:} All data partitioning into training ($\mathcal{D}_{\text{train}}$), validation calibration ($\mathcal{D}_{\text{val\_cal}}$), validation selection ($\mathcal{D}_{\text{val\_select}}$), holdout test ($\mathcal{D}_{\text{test}}$), and out-of-distribution shifted test ($\mathcal{D}_{\text{shift}}$) is performed strictly at the \textit{parent waveform} generation stage before slicing windows or generating multi-length/ADC variants. No two windows derived from the same simulation realization exist across splits.
+    \item \textbf{Batch-Independent Normalization Guarantee:} Deep neural architectures commonly rely on Batch Normalization (BatchNorm), which computes mini-batch running means and variances $\mu_{\mathcal{B}}, \sigma^2_{\mathcal{B}}$ during testing. In wireless communications, this introduces critical inter-sample leakage and catastrophic failure under varying batch sizes or non-stationary signal streams. In our framework, all deep architectures enforce window-independent normalization exclusively via Group Normalization (GroupNorm) and Layer Normalization (LayerNorm), satisfying the strict mathematical equivalence:
+    \begin{equation}
+    f(\mathbf{X}_i \mid \{\mathbf{X}_1,\dots,\mathbf{X}_K\}) \equiv f(\mathbf{X}_i \mid \{\mathbf{X}_i\}),\; \forall i \in \{1,\dots,K\},
+    \label{eq:batch_independence_theorem}
+    \end{equation}
+    verified to single-precision floating-point/TF32 tolerance ($\Delta_{\text{abs}} < 10^{-3}$).
+\end{enumerate}
+
+\section{Multi-Domain Feature Representation and Expert Architecture}
+\label{sec:architecture}
+
+Conventional deep AMC models feed raw two-channel I/Q sequences directly into generic convolutional or recurrent networks~\cite{sathyanarayanan2023rml22, guo2025fewer}. However, under uncompensated carrier frequency offsets ($\Delta f$) and half-SRRC pulse shaping without receiver matched filtering, raw oversampled I/Q constellations exhibit substantial inter-symbol interference (ISI) and out-of-band noise excess ($\approx 7\text{--}8\text{ dB}$ SNR penalty at $sps=8$), while asymmetric multipath echoes ($\mathbf{h} = [1, 0, 0.35j]$) severely bias naive lag-1 phase estimators. Conversely, hand-crafted High-Order Cumulants (HOC) offer rotation invariance~\cite{xia2026optimal} but discard fine-grained temporal pulse trajectories and ring-spacing cues.
+
+To resolve this physical bottleneck, we propose \textbf{MultiDomainAMCNet}, a physics-informed deep expert neural architecture operating in FP32/BF16 GPU tensor cores. Each short observation window of $N=256$ samples passes through a deterministic, global-phase-invariant multi-domain DSP extraction layer into four complementary feature representations:
+\begin{enumerate}
+    \item A blind carrier-despun, matched-filtered temporal tensor ($\mathbf{T} \in \mathbb{R}^{16 \times N}$);
+    \item A multi-harmonic log-normalized spectral tensor including 2nd-, 4th-, and 8th-order cyclic harmonics ($\mathbf{S} \in \mathbb{R}^{6 \times N}$);
+    \item A matched-filtered polyphase symbol and ordered constellation-ring tensor ($\mathbf{P} \in \mathbb{R}^{25 \times N_{\text{sym}}}$);
+    \item A multi-scale normalized higher-order cumulant and axial quantile vector ($\mathbf{v}_{\text{stat}} \in \mathbb{R}^{120}$).
+\end{enumerate}
+These representations are processed by four specialized expert branches and fused via dynamic cross-domain attention gating (Fig.~\ref{fig:multidomain_architecture}).
+
+\begin{figure*}[!t]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    node distance=0.8cm,
+    every node/.style={font=\footnotesize},
+    box/.style={draw, rounded corners, fill=blue!6, minimum height=0.85cm, align=center, inner sep=4pt},
+    dsp/.style={draw, rounded corners, fill=orange!10, minimum height=0.85cm, align=center, inner sep=4pt},
+    gate/.style={draw, rounded corners, fill=purple!12, minimum height=0.9cm, align=center, inner sep=5pt},
+    >=stealth, thick
+]
+    \node[box, fill=gray!12] (in) {$\tilde{r}[n] \in \mathbb{C}^{256}$\\(Unit Power)};
+    \node[dsp, right=0.55cm of in, text width=3.4cm] (cfo) {\textbf{Band-Edge Coarse CFO}\\Compressed Hann PSD\\+ SRRC Template ($\pm 1.2\text{ kHz}$)};
+    \node[dsp, right=0.55cm of cfo, text width=3.2cm] (mf) {\textbf{In-GPU RRC MF Bank}\\$\beta \in \{0.25, 0.35, 0.50\}$\\+ 25-pt Fine Symbol CFO};
+
+    \node[box, above right=0.95cm and 0.7cm of mf, text width=3.5cm] (b1) {\textbf{Temporal Branch} ($\mathbf{T}\in\mathbb{R}^{16\times 256}$)\\SE 1D-ResNet ($c_1{=}128\to c_3{=}384$)};
+    \node[box, right=0.7cm of mf, yshift=0.35cm, text width=3.5cm] (b2) {\textbf{Spectral Branch} ($\mathbf{S}\in\mathbb{R}^{6\times 256}$)\\Harmonic 1D-ResNet ($k\in\{1,2,4,8\}$)};
+    \node[box, right=0.7cm of mf, yshift=-0.75cm, text width=3.5cm] (b3) {\textbf{Polyphase Branch} ($\mathbf{P}\in\mathbb{R}^{25\times 32}$)\\ResNet + 3-Layer Transformer};
+    \node[box, below right=1.15cm and 0.7cm of mf, text width=3.5cm] (b4) {\textbf{Statistical Branch} ($\mathbf{v}_{\text{stat}}\in\mathbb{R}^{120}$)\\Residual LayerNorm MLP ($256\text{d}$)};
+
+    \node[gate, right=0.7cm of mf, xshift=4.3cm, text width=2.9cm] (agg) {\textbf{Cross-Domain Gate}\\Residual Softmax $(1{+}g_k)\mathbf{e}_k$\\$\to$ MLP Head $\to \mathbf{z}\in\mathbb{R}^6$};
+
+    \draw[->] (in) -- (cfo);
+    \draw[->] (cfo) -- (mf);
+    \draw[->] (mf.east) -- ++(0.3,0) |- (b1.west);
+    \draw[->] (mf.east) -- ++(0.3,0) |- (b2.west);
+    \draw[->] (mf.east) -- ++(0.3,0) |- (b3.west);
+    \draw[->] (mf.east) -- ++(0.3,0) |- (b4.west);
+    \draw[->] (b1.east) -- ++(0.3,0) |- ([yshift=0.25cm]agg.west);
+    \draw[->] (b2.east) -- ++(0.3,0) |- ([yshift=0.08cm]agg.west);
+    \draw[->] (b3.east) -- ++(0.3,0) |- ([yshift=-0.08cm]agg.west);
+    \draw[->] (b4.east) -- ++(0.3,0) |- ([yshift=-0.25cm]agg.west);
+\end{tikzpicture}%
+}
+\caption{Physics-informed architecture of \texttt{MultiDomainAMCNet} ($a_2$, $8.10\text{M}$ parameters). Band-edge spectral coarse CFO tracking and an in-GPU RRC matched-filter bank precede parallel SE-ResNet, harmonic spectral, polyphase symbol Transformer, and statistical-quantile branches.}
+\label{fig:multidomain_architecture}
+\end{figure*}
+
+\subsection{Physics-Informed Multi-Domain Tensor Extraction}
+\label{subsec:tensor_extraction}
+
+Given the normalized complex observation sequence $\tilde{r}[n]$ ($N=256$), the FP32 DSP front-end extracts four phase-calibrated domains in parallel on GPU:
+
+\subsubsection{Domain 1: Multipath-Immune Coarse CFO, RRC Matched Filter Bank, and Temporal Tensor}
+Because an asymmetric echo such as $\mathbf{h} = [1, 0, 0.35j]$ biases lag-1 autocorrelation ($\arg R_1 \neq 0$ even at $\Delta f = 0$), we instead lock coarse CFO in the frequency domain:
+\begin{itemize}
+    \item \textbf{Passband-Envelope Coarse Synchronization:} We compute a zero-padded Hann PSD $P[k] = |\text{FFTShift}(\text{DFT}_{512}(\tilde{r} \odot w_{\text{Hann}}))[k]|^2$, compress in-band amplitude ripple via $\tilde{P}[k] = \tanh(0.35\,P[k]/\text{median}(P))$, and cross-correlate against a smooth nominal bandwidth template ($\approx R_s$). Restricting peak localization to $|\Delta f| \le 0.15 f_s$ ($\pm 1200\text{ Hz}$) with parabolic sub-bin interpolation recovers $\hat{\omega}_{\text{coarse}}$ reliably regardless of in-band multipath tilt, yielding $z_c[n] = \tilde{r}[n] e^{-j\hat{\omega}_{\text{coarse}} n}$.
+    \item \textbf{In-GPU RRC Matched Filter Bank:} To suppress out-of-band noise and satisfy the zero-ISI Nyquist condition, $z_c[n]$ is convolved in parallel with edge-energy-normalized receiver SRRC kernels across $\beta \in \{0.25, 0.35, 0.50\}$ ($span=6$), producing matched-filtered sequences $z_{\text{MF}}^{(0.25)}, z_{\text{MF}}^{(0.35)}, z_{\text{MF}}^{(0.50)}$ normalized to unit window power.
+    \item \textbf{Vectorized Fine Symbol-Rate CFO Search:} After selecting the optimal symbol-timing polyphase strobe on $z_{\text{MF}}^{(0.35)}$, we evaluate a batched 25-point residual grid $\delta f \in [-48, +48]\text{ Hz}$ on the downsampled symbol sequence $s_{\delta f}[m]$, selecting $\hat{\omega}_{\text{fine}}$ maximizing $|\mathbb{E}[u^2]|^2 + |\mathbb{E}[s^4]|^2 + 0.5|\mathbb{E}[u^8]|^2$ ($u = s/|s|$)—an objective peaking sharply at zero frequency error for all six constellations including 8PSK and QAM—to obtain $z_{\text{fine}}[n]$.
+\end{itemize}
+After principal-axis alignment ($\psi_2, \psi_4$) and global-phase-invariant lag products ($d_\ell[n] = z_{\text{fine}}[n] z_{\text{fine}}^*[n-\ell]$ for $\ell \in \{1, 4, 8\}$), stacking $\text{Re}/\text{Im}\{z_{\text{align},4}, z_{\text{align},2}\}$, raw and multi-rolloff matched envelopes ($e_{\text{raw}}-1$, $e_{0.35}-1$, $e_{0.25}-1$, $e_{0.50}-1$), instantaneous out-of-band power contrast ($e_{\text{raw}}^2 - e_{0.35}^2$), and differential lags yields $\mathbf{T} \in \mathbb{R}^{16 \times N}$, where channels $4..15$ are strictly invariant to global phase $\theta_0$.
+
+\subsubsection{Domain 2: Multi-Harmonic Spectral Tensor ($\mathbf{S} \in \mathbb{R}^{6 \times N}$)}
+Let $\mathcal{F}_{\log}(s)$ denote the Hann-windowed log-normalized FFT magnitude spectrum. We stack six spectra: un-derotated raw baseband $\mathcal{F}_{\log}(\tilde{r})$, coarsely centered $\mathcal{F}_{\log}(z_c)$, matched-filtered $\mathcal{F}_{\log}(z_{\text{fine}})$, and normalized 2nd-, 4th-, and 8th-order cyclic harmonics $\mathcal{F}_{\log}(z_{\text{fine}}^k / |z_{\text{fine}}|^{k-1})$ for $k \in \{2, 4, 8\}$, providing sharp spectral lines for BPSK/4PAM ($k=2$), QPSK/QAM ($k=4$), and 8PSK ($k=8$).
+
+\subsubsection{Domain 3: Matched-Filtered Polyphase and Ring Profile Tensor ($\mathbf{P} \in \mathbb{R}^{25 \times 32}$)}
+Decimating $z_{\text{align},4}[n]$ into $sps=8$ phases yields $N_{\text{sym}} = 32$ symbol epochs per window. Alongside the 16 real/imaginary polyphase channels and the eye-strobe differential sequence $z^*[m]$ (5 channels), we append sorted symbol envelope $|z^*|_{(m)}$, $\pi/2$-invariant sorted axial maxima/minima ($\max(|\text{Re}|, |\text{Im}|)_{(m)}$ and $\min(|\text{Re}|, |\text{Im}|)_{(m)}$), and raw envelope excess ($4$ channels), exposing the crisp discrete multi-ring structure distinguishing 16QAM from 64QAM and QPSK from 8PSK to produce $\mathbf{P} \in \mathbb{R}^{25 \times 32}$.
+
+\subsubsection{Domain 4: Multi-Scale Cumulant and Constellation Quantile Vector ($\mathbf{v}_{\text{stat}} \in \mathbb{R}^{120}$)}
+We evaluate 12 complex cumulant/moment/resultant invariants ($C_{20}, C_{40}, C_{42}, C_{63}$, envelope statistics, and phase resultants $R_1, R_2, R_4, R_8$) across seven views: raw $\tilde{r}$, fine $z_{\text{fine}}$, 64-sample sub-blocks, polyphase mean/max/min, and optimal eye strobe ($84$ dims). We append $12$ spectral/channel descriptors (DC fraction, matched-filter in-band energy ratio, spectral flatness, harmonic peak ratios $k \in \{2,4,8\}$, multi-lag correlations $\ell \in \{1,2,4,8,12,16\}$) and $24$ empirical quantiles ($\{0.10, 0.25, 0.40, 0.50, 0.60, 0.75, 0.85, 0.95\}$ of $|z^*|$, $\max(|\text{Re}|, |\text{Im}|)$, and $\min(|\text{Re}|, |\text{Im}|)$), forming a $120$-dimensional phase-invariant descriptor vector clipped to $[-25, 25]$.
+
+\subsection{MultiDomainAMCNet Expert Architecture}
+\label{subsec:expert_architecture}
+
+With width multiplier $2.0$ ($c_1 = 128$, $c_2 = 256$, $c_3 = 384$, embedding dimension $d_e = 192$), the four stems ingest $(\mathbf{T}, \mathbf{S}, \mathbf{P}, \mathbf{v}_{\text{stat}})$ in parallel:
+\begin{itemize}
+    \item \textbf{Temporal SE-ResNet:} $\text{Conv1D}_{16 \to c_1, k=7}$ followed by five dilated Squeeze-and-Excitation ResBlocks ($c_1 \to c_2 \to c_3$, GroupNorm-16, SiLU, dropout $0.15$) and dual GAP+GMP pooling projected to $\mathbf{e}_{\text{temp}} \in \mathbb{R}^{192}$.
+    \item \textbf{Spectral 1D-ResNet:} $\text{Conv1D}_{6 \to c_1, k=7}$ followed by three downsampling SE-ResBlocks ($c_1 \to c_2$) and dual pooling projected to $\mathbf{e}_{\text{spec}} \in \mathbb{R}^{192}$.
+    \item \textbf{Polyphase Symbol Transformer:} $\text{Conv1D}_{25 \to c_2, k=3}$ plus two dilated ResBlocks feeding a 3-layer pre-LayerNorm Transformer Encoder ($d_{\text{model}} = 256$, $n_{\text{head}} = 8$, $d_{\text{ff}} = 512$, GELU), dual-pooled and projected to $\mathbf{e}_{\text{poly}} \in \mathbb{R}^{192}$.
+    \item \textbf{Statistical Residual MLP:} LayerNorm-120 + linear expansion to $256$ units + two-layer residual block projected to $\mathbf{e}_{\text{stat}} \in \mathbb{R}^{192}$.
+\end{itemize}
+
+\subsection{Adaptive Cross-Domain Gating and Classification Head}
+\label{subsec:cross_domain_gating}
+
+The concatenated descriptor $\mathbf{e}_{\text{concat}} = [\mathbf{e}_{\text{temp}} \parallel \mathbf{e}_{\text{spec}} \parallel \mathbf{e}_{\text{poly}} \parallel \mathbf{e}_{\text{stat}}] \in \mathbb{R}^{768}$ drives a bottleneck softmax gate $\mathbf{g} \in \Delta^4$, yielding residual-modulated features $\mathbf{e}_{\text{fused}} = [(1+g_k)\mathbf{e}_k]_{k=1}^4 \in \mathbb{R}^{768}$ and a three-layer LayerNorm classification MLP ($768 \to 256 \to 128 \to 6$), totaling $8\,098\,490$ parameters.
+
+\subsection{In-VRAM Physics Synthesis and Strict Zero-Leakage Training}
+\label{subsec:gpu_synthesizer}
+
+To train \texttt{MultiDomainAMCNet} across massive independent channel realizations without CPU--PCIe I/O stalls, \texttt{GPUChannelSynthesizer} executes fully vectorized CUDA waveform synthesis ($B_{\text{batch}}=768$): (1) balanced symbol generation and $sps=8$ upsampling; (2) grouped SRRC filtering ($\beta \in \{0.25, 0.35, 0.50\}$); (3) \textbf{strictly in-distribution (ID) multipath} ($70\%$ exact ID channel mixture, $30\%$ single causal echo $\tau \le 5$); (4) physical scaling $A \sim \mathcal{U}[0.5, 1.5]$; (5) random initial phase and \textbf{strictly ID-bounded CFO} $\Delta f \in [-100, 100]\text{ Hz}$; (6) AWGN across $[-20, +20]\text{ dB}$; and (7) optional vectorized mid-rise $B$-bit ADC quantization ($V_{\text{FS}} = 2.5$). Real training windows ($\mathcal{D}_{\text{train}} \cup \mathcal{D}_{\text{e2\_train}}$) receive only exact constellation symmetry transformations (random phase $\phi_0$ and $50\%$ conjugation) without double noise or multipath corruption. Critically, all OOD parameters ($|\Delta f| \in [200, 300]\text{ Hz}$, $\tau \in \{9, 13\}$) and unseen bit depths ($B \in \{5, 4\}$) remain completely excluded from training. Table~\ref{tab:arch_comparison} summarizes architectural distinctions against recent baselines.
+
+\begin{table*}[!t]
+\caption{Architectural Comparison: MultiDomainAMCNet vs. State-of-the-Art Deep AMC Baselines}
+\label{tab:arch_comparison}
+\centering
+\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Attribute} & \textbf{MLEA-AMR}~\cite{gao2026mlea} & \textbf{FFTFormer}~\cite{quan2026fftformer} & \textbf{BEACON}~\cite{liu2026beacon} & \textbf{MultiDomainAMCNet ($a_2$)} \\
+\midrule
+Observation Window ($N$) & 128 & 128 & 128 & \textbf{256} ($32.0\text{ ms}$ @ $8\text{ kHz}$) \\
+Parameters & $342\text{k}$ & $80\text{k}$ & $380\text{k}$ & $8.10\text{M}$ \\
+Domains Integrated & I/Q, STFT, MIDP & I/Q, FFT & I/Q (1D-ResNet) & \textbf{MF Temp, Harm Spec, Poly Trans, HOC/Q} \\
+Receiver Matched Filter & None & None & None & \textbf{In-GPU RRC Bank ($\beta\in\{0.25,0.35,0.50\}$)} \\
+CFO Blind Recovery & None & None & None & \textbf{Band-Edge FFT + 25-pt Fine Symbol Search} \\
+SNR Oracle Requirement & \textbf{Yes} (Oracle Input) & No & No & \textbf{No (Strict Zero-Leakage)} \\
+ADC Hardware Model & None & None & None & \textbf{Uniform Mid-Rise ($B\in\{8,6,5,4\}$-Bit)} \\
+Batch Normalization & Yes (Leakage) & Yes (Leakage) & Yes (Leakage) & \textbf{None (GroupNorm / LayerNorm)} \\
+Batch=1 vs. Batch=$K$ & Output Mismatch & Output Mismatch & Output Mismatch & \textbf{Identical ($\Delta_{\text{abs}} < 10^{-3}$)} \\
+\bottomrule
+\end{tabular}
+\end{table*}

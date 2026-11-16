@@ -1,0 +1,123 @@
+{
+  "train": {
+    "n": 4800,
+    "accuracy": 0.565,
+    "macro_precision": 0.5684493704079508,
+    "macro_recall": 0.565,
+    "macro_f1": 0.5648423672392964,
+    "per_class": [
+      {
+        "modulation": "BPSK",
+        "precision": 0.6804245283018868,
+        "recall": 0.72125,
+        "f1": 0.7002427184466019,
+        "support": 800
+      },
+      {
+        "modulation": "QPSK",
+        "precision": 0.46238938053097345,
+        "recall": 0.5225,
+        "f1": 0.49061032863849763,
+        "support": 800
+      },
+      {
+        "modulation": "8PSK",
+        "precision": 0.49176728869374314,
+        "recall": 0.56,
+        "f1": 0.5236703682057277,
+        "support": 800
+      },
+      {
+        "modulation": "16QAM",
+        "precision": 0.516030534351145,
+        "recall": 0.4225,
+        "f1": 0.4646048109965636,
+        "support": 800
+      },
+      {
+        "modulation": "64QAM",
+        "precision": 0.5166002656042497,
+        "recall": 0.48625,
+        "f1": 0.5009658725048294,
+        "support": 800
+      },
+      {
+        "modulation": "4PAM",
+        "precision": 0.7434842249657064,
+        "recall": 0.6775,
+        "f1": 0.7089601046435579,
+        "support": 800
+      }
+    ],
+    "cross_entropy_eval": 1.0039658546447754
+  },
+  "val": {
+    "n": 4800,
+    "accuracy": 0.405625,
+    "macro_precision": 0.4072868833369654,
+    "macro_recall": 0.40562499999999996,
+    "macro_f1": 0.4054192863648132,
+    "per_class": [
+      {
+        "modulation": "BPSK",
+        "precision": 0.5518433179723502,
+        "recall": 0.59875,
+        "f1": 0.5743405275779376,
+        "support": 800
+      },
+      {
+        "modulation": "QPSK",
+        "precision": 0.292358803986711,
+        "recall": 0.33,
+        "f1": 0.31004110393423373,
+        "support": 800
+      },
+      {
+        "modulation": "8PSK",
+        "precision": 0.31542857142857145,
+        "recall": 0.345,
+        "f1": 0.3295522388059702,
+        "support": 800
+      },
+      {
+        "modulation": "16QAM",
+        "precision": 0.32210834553440704,
+        "recall": 0.275,
+        "f1": 0.29669588671611596,
+        "support": 800
+      },
+      {
+        "modulation": "64QAM",
+        "precision": 0.32697547683923706,
+        "recall": 0.3,
+        "f1": 0.31290743155149936,
+        "support": 800
+      },
+      {
+        "modulation": "4PAM",
+        "precision": 0.6350067842605156,
+        "recall": 0.585,
+        "f1": 0.6089785296031229,
+        "support": 800
+      }
+    ],
+    "cross_entropy_eval": 1.2761344909667969
+  },
+  "val_rotations": [
+    {
+      "radians": 0.7853981633974483,
+      "prediction_changed": 0.34375,
+      "accuracy": 0.41479166666666667
+    },
+    {
+      "radians": 1.5707963267948966,
+      "prediction_changed": 0.478125,
+      "accuracy": 0.4139583333333333
+    },
+    {
+      "radians": 3.141592653589793,
+      "prediction_changed": 0.4945833333333333,
+      "accuracy": 0.4189583333333333
+    }
+  ]
+}

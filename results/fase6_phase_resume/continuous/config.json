@@ -1,0 +1,16 @@
+{
+  "seed": 2026110601,
+  "dataset_root": "data/e2_dataset",
+  "n_samples": 256,
+  "max_epochs": 2,
+  "patience": 15,
+  "batch_size": 128,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "checkpoint_steps": 1,
+  "selection": "val_macro_f1",
+  "architecture": "SmallCNN_v1",
+  "precision": "float32",
+  "scheduler": "ReduceLROnPlateau_val_loss_factor0.5_patience5",
+  "phase_augmentation": true
+}

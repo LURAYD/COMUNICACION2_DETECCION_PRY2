@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "dataset_config": "configs/dataset_e2.json",
+  "dataset_root": "data/e2_dataset",
+  "seed": 2026110503,
+  "window_lengths": [
+    256,
+    512
+  ],
+  "selection_metric": "macro_f1",
+  "tie_break": "first_candidate_in_config",
+  "fit_splits": [
+    "train"
+  ],
+  "selection_splits": [
+    "val"
+  ],
+  "evaluation_splits": [
+    "test"
+  ],
+  "latency_repeats": 5,
+  "latency_windows": 128,
+  "candidates": [
+    {
+      "name": "rf200_full",
+      "family": "random_forest",
+      "feature_set": "full",
+      "n_estimators": 200
+    },
+    {
+      "name": "svm_rbf_c1_full",
+      "family": "svm_rbf",
+      "feature_set": "full",
+      "C": 1.0
+    },
+    {
+      "name": "svm_rbf_c10_full",
+      "family": "svm_rbf",
+      "feature_set": "full",
+      "C": 10.0
+    },
+    {
+      "name": "rf200_core",
+      "family": "random_forest",
+      "feature_set": "core",
+      "n_estimators": 200
+    },
+    {
+      "name": "svm_rbf_c10_core",
+      "family": "svm_rbf",
+      "feature_set": "core",
+      "C": 10.0
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+Resumen y hashes del experimento:
+  9 fuentes coinciden con los archivos de esta ejecución.
+  Conteos individuales y agregados concuerdan en las 96 celdas y 9 600 padres.
+  P_FA medida = 0.01000000; IC Wilson = [0.007593772813946567, 0.013158575092209418].
+  P_FA teórica al umbral observado en AWGN complejo iid de potencia nominal conocida SOLO por verificador = 0.00951436.
+  Cálculo de contraste: cola de Erlang(N, escala=Pn/N) para energía media de N muestras.
+  Esta referencia analítica se calcula después de evaluar y no interviene en la calibración.
+  Ensayo de deriva: 5000/5000 falsas alarmas.
+  Cada error de SNR agregado informa denominador y cobertura compatibles con PD.
+  Se verificaron IDs únicos y SNR realizada de cada uno de los 9 600 padres desde las potencias guardadas.
+  Prueba separada de la API observacional con los imports de generación y experimento bloqueados: pasó; con referencia externa produce SNR y sin referencia devuelve not_identifiable en una detección.

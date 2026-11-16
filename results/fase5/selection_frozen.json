@@ -1,0 +1,42 @@
+{
+  "256": {
+    "n_samples": 256,
+    "selected_candidate": {
+      "name": "svm_rbf_c10_core",
+      "family": "svm_rbf",
+      "feature_set": "core",
+      "C": 10.0
+    },
+    "selection_metric": "val_macro_f1",
+    "selection_score": 0.4282307821427538,
+    "fit_split": "train",
+    "selection_split": "val",
+    "fit_seed": 2923241421,
+    "dataset_config_sha256": "332c18693db780a4fe0bd143b23b17ed8f114719e338391039625a0364ab72f6",
+    "n_train": 4800,
+    "n_val": 4800,
+    "all_features_computed": 65,
+    "n_features_selected": 49,
+    "model_sha256": "02d70d55b912c22394e5550cc978b785f45db1e26872f5b0bef3799fe358858f"
+  },
+  "512": {
+    "n_samples": 512,
+    "selected_candidate": {
+      "name": "svm_rbf_c10_full",
+      "family": "svm_rbf",
+      "feature_set": "full",
+      "C": 10.0
+    },
+    "selection_metric": "val_macro_f1",
+    "selection_score": 0.47410068634029257,
+    "fit_split": "train",
+    "selection_split": "val",
+    "fit_seed": 920160786,
+    "dataset_config_sha256": "332c18693db780a4fe0bd143b23b17ed8f114719e338391039625a0364ab72f6",
+    "n_train": 4800,
+    "n_val": 4800,
+    "all_features_computed": 65,
+    "n_features_selected": 65,
+    "model_sha256": "3c71dfa378c526f9dbce0732475a721b13c7f8587d47e3b6d7c50c380d04d45c"
+  }
+}

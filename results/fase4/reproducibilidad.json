@@ -1,0 +1,67 @@
+{
+  "command": ".venv\\Scripts\\python.exe -m experiments.exp01_detection --config configs/exp01_detection.json --output tmp/fase4_repeticion",
+  "all_artifacts_identical": true,
+  "excluded": "command.json registra output distinto por diseño",
+  "artifacts": [
+    {
+      "file": "config.json",
+      "sha256": "d95be3a8c459b45aa7e8158e42eefa846b3c975d479717bde28ba5945ce56edd",
+      "identical": true
+    },
+    {
+      "file": "metricas.json",
+      "sha256": "da7837732c86a2ae38e9ed57b1c3b61fc4630d8ab863dfa723633d5ca71e16e3",
+      "identical": true
+    },
+    {
+      "file": "pd_agregado.csv",
+      "sha256": "5796cd92aaa545c5ba8d685d2bae571c8b296d01a83bcd22d1533da0f9b011c9",
+      "identical": true
+    },
+    {
+      "file": "pd_por_clase.csv",
+      "sha256": "6a30bd754c13528030129696357f057be4c6a186694c40f93510ef97ef647f75",
+      "identical": true
+    },
+    {
+      "file": "pd_vs_snr.png",
+      "sha256": "fc030a0795860592ca6f6055c2a2c239d1d9f392d6582c6dd87f8ef71766c0ec",
+      "identical": true
+    },
+    {
+      "file": "psd_ejemplo.csv",
+      "sha256": "87a7dbc7cc3f5aff6aa852f0c4d1f3b76aa1faf0b085680ac6d6eb2602084899",
+      "identical": true
+    },
+    {
+      "file": "psd_ejemplo.png",
+      "sha256": "5e9723697b37282e71faf033ef05cc3badd32f004f82250ee43c10d5ae7d7dd0",
+      "identical": true
+    },
+    {
+      "file": "snr_error_condicional.png",
+      "sha256": "ff29f5865b914020157ba29f988dc19d48ddb7c907825e7a66de87de8277ef3b",
+      "identical": true
+    },
+    {
+      "file": "snr_errores_agregados.csv",
+      "sha256": "72ffdc7a6307c1be5f25be7277d63f55dc911d150d23b124ffadcada7cf3360e",
+      "identical": true
+    },
+    {
+      "file": "snr_errores_por_clase.csv",
+      "sha256": "f3fdba6ca00fa9f01a73074e0ded2a03a076779e9b440aa9325ae9cb2058cbd9",
+      "identical": true
+    },
+    {
+      "file": "snr_noise_drift.csv",
+      "sha256": "bfe0e852751d931158acbd429ed47757a644e1f469ab22467bb65e33ffc236fd",
+      "identical": true
+    },
+    {
+      "file": "trial_results_evaluation_only.csv",
+      "sha256": "6bb2bfb227a6cc2260a6d690edf53da27d798acf59b08de7fb2bce1bf45d3603",
+      "identical": true
+    }
+  ]
+}

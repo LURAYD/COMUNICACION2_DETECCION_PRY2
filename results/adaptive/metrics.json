@@ -1,0 +1,750 @@
+{
+  "test": {
+    "always_svm256": {
+      "n": 2400,
+      "accuracy": 0.4375,
+      "macro_precision": 0.439027291326954,
+      "macro_recall": 0.4375,
+      "macro_f1": 0.43734835795724364,
+      "per_class": [
+        {
+          "modulation": "BPSK",
+          "precision": 0.5514511873350924,
+          "recall": 0.5225,
+          "f1": 0.5365853658536586,
+          "support": 400
+        },
+        {
+          "modulation": "QPSK",
+          "precision": 0.41721854304635764,
+          "recall": 0.4725,
+          "f1": 0.44314185228604924,
+          "support": 400
+        },
+        {
+          "modulation": "8PSK",
+          "precision": 0.3931818181818182,
+          "recall": 0.4325,
+          "f1": 0.4119047619047619,
+          "support": 400
+        },
+        {
+          "modulation": "16QAM",
+          "precision": 0.3063583815028902,
+          "recall": 0.265,
+          "f1": 0.28418230563002683,
+          "support": 400
+        },
+        {
+          "modulation": "64QAM",
+          "precision": 0.3713592233009709,
+          "recall": 0.3825,
+          "f1": 0.3768472906403941,
+          "support": 400
+        },
+        {
+          "modulation": "4PAM",
+          "precision": 0.5945945945945946,
+          "recall": 0.55,
+          "f1": 0.5714285714285714,
+          "support": 400
+        }
+      ],
+      "compute_mean_ms": 6.277016916666667,
+      "compute_median_ms": 6.07615,
+      "compute_p95_ms": 7.941634999999998,
+      "acquisition_mean_ms": 32.0,
+      "total_mean_ms": 38.27701691666667,
+      "utility": 0.36094596616666663,
+      "actions": {
+        "0": 2400,
+        "1": 0,
+        "2": 0
+      }
+    },
+    "always_svm512": {
+      "n": 2400,
+      "accuracy": 0.46041666666666664,
+      "macro_precision": 0.459628330700997,
+      "macro_recall": 0.46041666666666664,
+      "macro_f1": 0.4593096458327535,
+      "per_class": [
+        {
+          "modulation": "BPSK",
+          "precision": 0.5742574257425742,
+          "recall": 0.58,
+          "f1": 0.5771144278606966,
+          "support": 400
+        },
+        {
+          "modulation": "QPSK",
+          "precision": 0.4495192307692308,
+          "recall": 0.4675,
+          "f1": 0.4583333333333333,
+          "support": 400
+        },
+        {
+          "modulation": "8PSK",
+          "precision": 0.425629290617849,
+          "recall": 0.465,
+          "f1": 0.4444444444444444,
+          "support": 400
+        },
+        {
+          "modulation": "16QAM",
+          "precision": 0.3704819277108434,
+          "recall": 0.3075,
+          "f1": 0.3360655737704918,
+          "support": 400
+        },
+        {
+          "modulation": "64QAM",
+          "precision": 0.3547619047619048,
+          "recall": 0.3725,
+          "f1": 0.36341463414634145,
+          "support": 400
+        },
+        {
+          "modulation": "4PAM",
+          "precision": 0.5831202046035806,
+          "recall": 0.57,
+          "f1": 0.5764854614412137,
+          "support": 400
+        }
+      ],
+      "compute_mean_ms": 7.98728025,
+      "compute_median_ms": 7.7742,
+      "compute_p95_ms": 10.062764999999999,
+      "acquisition_mean_ms": 64.0,
+      "total_mean_ms": 71.98728025,
+      "utility": 0.3164421061666667,
+      "actions": {
+        "0": 0,
+        "1": 2400,
+        "2": 0
+      }
+    },
+    "always_cnn": {
+      "n": 2400,
+      "accuracy": 0.425,
+      "macro_precision": 0.4300890844554454,
+      "macro_recall": 0.42500000000000004,
+      "macro_f1": 0.4250932971139341,
+      "per_class": [
+        {
+          "modulation": "BPSK",
+          "precision": 0.5689655172413793,
+          "recall": 0.66,
+          "f1": 0.6111111111111112,
+          "support": 400
+        },
+        {
+          "modulation": "QPSK",
+          "precision": 0.3237885462555066,
+          "recall": 0.3675,
+          "f1": 0.3442622950819672,
+          "support": 400
+        },
+        {
+          "modulation": "8PSK",
+          "precision": 0.32801822323462415,
+          "recall": 0.36,
+          "f1": 0.3432657926102503,
+          "support": 400
+        },
+        {
+          "modulation": "16QAM",
+          "precision": 0.3264094955489614,
+          "recall": 0.275,
+          "f1": 0.29850746268656714,
+          "support": 400
+        },
+        {
+          "modulation": "64QAM",
+          "precision": 0.3481675392670157,
+          "recall": 0.3325,
+          "f1": 0.340153452685422,
+          "support": 400
+        },
+        {
+          "modulation": "4PAM",
+          "precision": 0.6851851851851852,
+          "recall": 0.555,
+          "f1": 0.6132596685082873,
+          "support": 400
+        }
+      ],
+      "compute_mean_ms": 2.2454735,
+      "compute_median_ms": 2.0906000000000002,
+      "compute_p95_ms": 3.4164199999999973,
+      "acquisition_mean_ms": 32.0,
+      "total_mean_ms": 34.2454735,
+      "utility": 0.35650905299999996,
+      "actions": {
+        "0": 0,
+        "1": 0,
+        "2": 2400
+      }
+    },
+    "confidence": {
+      "n": 2400,
+      "accuracy": 0.4375,
+      "macro_precision": 0.439027291326954,
+      "macro_recall": 0.4375,
+      "macro_f1": 0.43734835795724364,
+      "per_class": [
+        {
+          "modulation": "BPSK",
+          "precision": 0.5514511873350924,
+          "recall": 0.5225,
+          "f1": 0.5365853658536586,
+          "support": 400
+        },
+        {
+          "modulation": "QPSK",
+          "precision": 0.41721854304635764,
+          "recall": 0.4725,
+          "f1": 0.44314185228604924,
+          "support": 400
+        },
+        {
+          "modulation": "8PSK",
+          "precision": 0.3931818181818182,
+          "recall": 0.4325,
+          "f1": 0.4119047619047619,
+          "support": 400
+        },
+        {
+          "modulation": "16QAM",
+          "precision": 0.3063583815028902,
+          "recall": 0.265,
+          "f1": 0.28418230563002683,
+          "support": 400
+        },
+        {
+          "modulation": "64QAM",
+          "precision": 0.3713592233009709,
+          "recall": 0.3825,
+          "f1": 0.3768472906403941,
+          "support": 400
+        },
+        {
+          "modulation": "4PAM",
+          "precision": 0.5945945945945946,
+          "recall": 0.55,
+          "f1": 0.5714285714285714,
+          "support": 400
+        }
+      ],
+      "compute_mean_ms": 10.2246175,
+      "compute_median_ms": 9.979600000000001,
+      "compute_p95_ms": 12.530004999999996,
+      "acquisition_mean_ms": 32.0,
+      "total_mean_ms": 42.2246175,
+      "utility": 0.353050765,
+      "actions": {
+        "0": 2400,
+        "1": 0,
+        "2": 0
+      }
+    },
+    "flatness": {
+      "n": 2400,
+      "accuracy": 0.4766666666666667,
+      "macro_precision": 0.47983274754084904,
+      "macro_recall": 0.47666666666666674,
+      "macro_f1": 0.47525486600416134,
+      "per_class": [
+        {
+          "modulation": "BPSK",
+          "precision": 0.567741935483871,
+          "recall": 0.66,
+          "f1": 0.6104046242774567,
+          "support": 400
+        },
+        {
+          "modulation": "QPSK",
+          "precision": 0.4258474576271186,
+          "recall": 0.5025,
+          "f1": 0.4610091743119266,
+          "support": 400
+        },
+        {
+          "modulation": "8PSK",
+          "precision": 0.42758620689655175,
+          "recall": 0.465,
+          "f1": 0.44550898203592815,
+          "support": 400
+        },
+        {
+          "modulation": "16QAM",
+          "precision": 0.378698224852071,
+          "recall": 0.32,
+          "f1": 0.34688346883468835,
+          "support": 400
+        },
+        {
+          "modulation": "64QAM",
+          "precision": 0.3875338753387534,
+          "recall": 0.3575,
+          "f1": 0.3719115734720416,
+          "support": 400
+        },
+        {
+          "modulation": "4PAM",
+          "precision": 0.6915887850467289,
+          "recall": 0.555,
+          "f1": 0.6158113730929264,
+          "support": 400
+        }
+      ],
+      "compute_mean_ms": 13.454693541666668,
+      "compute_median_ms": 12.2928,
+      "compute_p95_ms": 18.75009,
+      "acquisition_mean_ms": 41.82666666666667,
+      "total_mean_ms": 55.28136020833333,
+      "utility": 0.36610394625000003,
+      "actions": {
+        "0": 0,
+        "1": 737,
+        "2": 1663
+      }
+    },
+    "selector": {
+      "n": 2400,
+      "accuracy": 0.47875,
+      "macro_precision": 0.4811213003823609,
+      "macro_recall": 0.47875,
+      "macro_f1": 0.478529141061379,
+      "per_class": [
+        {
+          "modulation": "BPSK",
+          "precision": 0.6138613861386139,
+          "recall": 0.62,
+          "f1": 0.6169154228855721,
+          "support": 400
+        },
+        {
+          "modulation": "QPSK",
+          "precision": 0.43776824034334766,
+          "recall": 0.51,
+          "f1": 0.47113163972286376,
+          "support": 400
+        },
+        {
+          "modulation": "8PSK",
+          "precision": 0.4373522458628842,
+          "recall": 0.4625,
+          "f1": 0.44957472660996356,
+          "support": 400
+        },
+        {
+          "modulation": "16QAM",
+          "precision": 0.3633633633633634,
+          "recall": 0.3025,
+          "f1": 0.330150068212824,
+          "support": 400
+        },
+        {
+          "modulation": "64QAM",
+          "precision": 0.3761904761904762,
+          "recall": 0.395,
+          "f1": 0.3853658536585366,
+          "support": 400
+        },
+        {
+          "modulation": "4PAM",
+          "precision": 0.6581920903954802,
+          "recall": 0.5825,
+          "f1": 0.6180371352785146,
+          "support": 400
+        }
+      ],
+      "compute_mean_ms": 24.246359166666664,
+      "compute_median_ms": 23.436999999999998,
+      "compute_p95_ms": 31.09276,
+      "acquisition_mean_ms": 36.77333333333333,
+      "total_mean_ms": 61.019692500000005,
+      "utility": 0.356710615,
+      "actions": {
+        "0": 1041,
+        "1": 358,
+        "2": 1001
+      }
+    }
+  },
+  "test_shift": {
+    "always_svm256": {
+      "n": 2400,
+      "accuracy": 0.30333333333333334,
+      "macro_precision": 0.3130929480486343,
+      "macro_recall": 0.30333333333333334,
+      "macro_f1": 0.30266544570448245,
+      "per_class": [
+        {
+          "modulation": "BPSK",
+          "precision": 0.45819397993311034,
+          "recall": 0.3425,
+          "f1": 0.39198855507868385,
+          "support": 400
+        },
+        {
+          "modulation": "QPSK",
+          "precision": 0.22910216718266255,
+          "recall": 0.185,
+          "f1": 0.20470262793914246,
+          "support": 400
+        },
+        {
+          "modulation": "8PSK",
+          "precision": 0.24688279301745636,
+          "recall": 0.2475,
+          "f1": 0.24719101123595505,
+          "support": 400
+        },
+        {
+          "modulation": "16QAM",
+          "precision": 0.228287841191067,
+          "recall": 0.23,
+          "f1": 0.22914072229140722,
+          "support": 400
+        },
+        {
+          "modulation": "64QAM",
+          "precision": 0.28325508607198746,
+          "recall": 0.4525,
+          "f1": 0.3484119345524543,
+          "support": 400
+        },
+        {
+          "modulation": "4PAM",
+          "precision": 0.43283582089552236,
+          "recall": 0.3625,
+          "f1": 0.3945578231292517,
+          "support": 400
+        }
+      ],
+      "compute_mean_ms": 6.306005875,
+      "compute_median_ms": 6.080299999999999,
+      "compute_p95_ms": 8.0967,
+      "acquisition_mean_ms": 32.0,
+      "total_mean_ms": 38.306005875,
+      "utility": 0.22672132158333336,
+      "actions": {
+        "0": 2400,
+        "1": 0,
+        "2": 0
+      }
+    },
+    "always_svm512": {
+      "n": 2400,
+      "accuracy": 0.29541666666666666,
+      "macro_precision": 0.30289420294181807,
+      "macro_recall": 0.2954166666666667,
+      "macro_f1": 0.2913619713089394,
+      "per_class": [
+        {
+          "modulation": "BPSK",
+          "precision": 0.48881789137380194,
+          "recall": 0.3825,
+          "f1": 0.42917251051893407,
+          "support": 400
+        },
+        {
+          "modulation": "QPSK",
+          "precision": 0.2289855072463768,
+          "recall": 0.1975,
+          "f1": 0.21208053691275167,
+          "support": 400
+        },
+        {
+          "modulation": "8PSK",
+          "precision": 0.24770642201834864,
+          "recall": 0.2025,
+          "f1": 0.22283356258596973,
+          "support": 400
+        },
+        {
+          "modulation": "16QAM",
+          "precision": 0.15406162464985995,
+          "recall": 0.1375,
+          "f1": 0.1453104359313078,
+          "support": 400
+        },
+        {
+          "modulation": "64QAM",
+          "precision": 0.27785419532324623,
+          "recall": 0.505,
+          "f1": 0.35847382431233366,
+          "support": 400
+        },
+        {
+          "modulation": "4PAM",
+          "precision": 0.4199395770392749,
+          "recall": 0.3475,
+          "f1": 0.3803009575923393,
+          "support": 400
+        }
+      ],
+      "compute_mean_ms": 8.044632166666666,
+      "compute_median_ms": 7.82365,
+      "compute_p95_ms": 10.044449999999998,
+      "acquisition_mean_ms": 64.0,
+      "total_mean_ms": 72.04463216666667,
+      "utility": 0.1513274023333333,
+      "actions": {
+        "0": 0,
+        "1": 2400,
+        "2": 0
+      }
+    },
+    "always_cnn": {
+      "n": 2400,
+      "accuracy": 0.18666666666666668,
+      "macro_precision": 0.17692371902574197,
+      "macro_recall": 0.18666666666666665,
+      "macro_f1": 0.16954212506075347,
+      "per_class": [
+        {
+          "modulation": "BPSK",
+          "precision": 0.11797752808988764,
+          "recall": 0.0525,
+          "f1": 0.0726643598615917,
+          "support": 400
+        },
+        {
+          "modulation": "QPSK",
+          "precision": 0.17899761336515513,
+          "recall": 0.1875,
+          "f1": 0.18315018315018314,
+          "support": 400
+        },
+        {
+          "modulation": "8PSK",
+          "precision": 0.22514619883040934,
+          "recall": 0.1925,
+          "f1": 0.20754716981132076,
+          "support": 400
+        },
+        {
+          "modulation": "16QAM",
+          "precision": 0.16806722689075632,
+          "recall": 0.25,
+          "f1": 0.20100502512562815,
+          "support": 400
+        },
+        {
+          "modulation": "64QAM",
+          "precision": 0.2095890410958904,
+          "recall": 0.3825,
+          "f1": 0.27079646017699116,
+          "support": 400
+        },
+        {
+          "modulation": "4PAM",
+          "precision": 0.16176470588235295,
+          "recall": 0.055,
+          "f1": 0.08208955223880597,
+          "support": 400
+        }
+      ],
+      "compute_mean_ms": 2.282024916666667,
+      "compute_median_ms": 2.0908499999999997,
+      "compute_p95_ms": 3.481469999999999,
+      "acquisition_mean_ms": 32.0,
+      "total_mean_ms": 34.28202491666667,
+      "utility": 0.11810261683333333,
+      "actions": {
+        "0": 0,
+        "1": 0,
+        "2": 2400
+      }
+    },
+    "confidence": {
+      "n": 2400,
+      "accuracy": 0.30333333333333334,
+      "macro_precision": 0.3130929480486343,
+      "macro_recall": 0.30333333333333334,
+      "macro_f1": 0.30266544570448245,
+      "per_class": [
+        {
+          "modulation": "BPSK",
+          "precision": 0.45819397993311034,
+          "recall": 0.3425,
+          "f1": 0.39198855507868385,
+          "support": 400
+        },
+        {
+          "modulation": "QPSK",
+          "precision": 0.22910216718266255,
+          "recall": 0.185,
+          "f1": 0.20470262793914246,
+          "support": 400
+        },
+        {
+          "modulation": "8PSK",
+          "precision": 0.24688279301745636,
+          "recall": 0.2475,
+          "f1": 0.24719101123595505,
+          "support": 400
+        },
+        {
+          "modulation": "16QAM",
+          "precision": 0.228287841191067,
+          "recall": 0.23,
+          "f1": 0.22914072229140722,
+          "support": 400
+        },
+        {
+          "modulation": "64QAM",
+          "precision": 0.28325508607198746,
+          "recall": 0.4525,
+          "f1": 0.3484119345524543,
+          "support": 400
+        },
+        {
+          "modulation": "4PAM",
+          "precision": 0.43283582089552236,
+          "recall": 0.3625,
+          "f1": 0.3945578231292517,
+          "support": 400
+        }
+      ],
+      "compute_mean_ms": 10.375064333333333,
+      "compute_median_ms": 10.17225,
+      "compute_p95_ms": 12.57561,
+      "acquisition_mean_ms": 32.0,
+      "total_mean_ms": 42.375064333333334,
+      "utility": 0.21858320466666667,
+      "actions": {
+        "0": 2400,
+        "1": 0,
+        "2": 0
+      }
+    },
+    "flatness": {
+      "n": 2400,
+      "accuracy": 0.26125,
+      "macro_precision": 0.2840914982029274,
+      "macro_recall": 0.26125,
+      "macro_f1": 0.2609314736937618,
+      "per_class": [
+        {
+          "modulation": "BPSK",
+          "precision": 0.4043321299638989,
+          "recall": 0.28,
+          "f1": 0.3308714918759232,
+          "support": 400
+        },
+        {
+          "modulation": "QPSK",
+          "precision": 0.19786096256684493,
+          "recall": 0.185,
+          "f1": 0.19121447028423771,
+          "support": 400
+        },
+        {
+          "modulation": "8PSK",
+          "precision": 0.2452316076294278,
+          "recall": 0.225,
+          "f1": 0.23468057366362452,
+          "support": 400
+        },
+        {
+          "modulation": "16QAM",
+          "precision": 0.14947368421052631,
+          "recall": 0.1775,
+          "f1": 0.16228571428571428,
+          "support": 400
+        },
+        {
+          "modulation": "64QAM",
+          "precision": 0.2683982683982684,
+          "recall": 0.465,
+          "f1": 0.3403476669716377,
+          "support": 400
+        },
+        {
+          "modulation": "4PAM",
+          "precision": 0.4392523364485981,
+          "recall": 0.235,
+          "f1": 0.30618892508143325,
+          "support": 400
+        }
+      ],
+      "compute_mean_ms": 13.538007958333335,
+      "compute_median_ms": 12.34645,
+      "compute_p95_ms": 18.946994999999998,
+      "acquisition_mean_ms": 41.8,
+      "total_mean_ms": 55.33800795833333,
+      "utility": 0.15057398408333333,
+      "actions": {
+        "0": 0,
+        "1": 735,
+        "2": 1665
+      }
+    },
+    "selector": {
+      "n": 2400,
+      "accuracy": 0.27458333333333335,
+      "macro_precision": 0.29880627709627033,
+      "macro_recall": 0.27458333333333335,
+      "macro_f1": 0.2712889729910632,
+      "per_class": [
+        {
+          "modulation": "BPSK",
+          "precision": 0.4714285714285714,
+          "recall": 0.2475,
+          "f1": 0.32459016393442625,
+          "support": 400
+        },
+        {
+          "modulation": "QPSK",
+          "precision": 0.2276657060518732,
+          "recall": 0.1975,
+          "f1": 0.21151271753681392,
+          "support": 400
+        },
+        {
+          "modulation": "8PSK",
+          "precision": 0.24338624338624337,
+          "recall": 0.23,
+          "f1": 0.2365038560411311,
+          "support": 400
+        },
+        {
+          "modulation": "16QAM",
+          "precision": 0.18493150684931506,
+          "recall": 0.2025,
+          "f1": 0.19331742243436753,
+          "support": 400
+        },
+        {
+          "modulation": "64QAM",
+          "precision": 0.2677878395860285,
+          "recall": 0.5175,
+          "f1": 0.35294117647058826,
+          "support": 400
+        },
+        {
+          "modulation": "4PAM",
+          "precision": 0.39763779527559057,
+          "recall": 0.2525,
+          "f1": 0.308868501529052,
+          "support": 400
+        }
+      ],
+      "compute_mean_ms": 24.409140708333332,
+      "compute_median_ms": 23.65385,
+      "compute_p95_ms": 31.147579999999984,
+      "acquisition_mean_ms": 37.04,
+      "total_mean_ms": 61.44914070833334,
+      "utility": 0.15168505191666665,
+      "actions": {
+        "0": 1065,
+        "1": 378,
+        "2": 957
+      }
+    }
+  }
+}

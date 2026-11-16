@@ -1,0 +1,61 @@
+{
+  "config": {
+    "dataset_seed": 2026110613,
+    "selector_seed": 2026110614,
+    "parents_per_class_snr": 50,
+    "lambda_per_ms": 0.002,
+    "rf_trees": 100,
+    "rf_max_depth": 5,
+    "rf_min_samples_leaf": 30,
+    "calibration": "logistic_svm_top_two_margin_correctness",
+    "confidence_thresholds": [
+      0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.01
+    ],
+    "flatness_quantiles": [
+      0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1
+    ],
+    "cnn": "results/fase6/best.pt",
+    "scope": "signal_present_closed_set_no_abstention"
+  },
+  "dataset_hashes": {
+    "data\\adaptive_dataset\\audit.json": "4ee1092f0ddd3e6abcccc492709b953e0006fd73b89ba01adfc66a961b98da31",
+    "data\\adaptive_dataset\\config.json": "d3749c0f8b27630bc20d30ab22ac102f751fc360fee5238436bb24056805051a",
+    "data\\adaptive_dataset\\index.csv": "6b6aadd8b85bdcce22ab80435e804d3c8e3a108b9d367adede50267a073bca4c",
+    "data\\adaptive_dataset\\observations\\test.npz": "aaea06159e07f307f312e0a67066e3a4ad30ae078b42a983e09e24e36247f9cb",
+    "data\\adaptive_dataset\\observations\\test_shift.npz": "8269190aa836d19e0cafc68381f7bb07943895f4a08ca1f987a0ca239ee3a5bc",
+    "data\\adaptive_dataset\\observations\\train.npz": "e5fb697ef1532911f702b58280645febfebabf75626ab62530d9d83a3af20080",
+    "data\\adaptive_dataset\\observations\\val.npz": "b874b9cf9f4ebb5f4a5b6aac56e81b294ac35bf75f5a94e2db8c017cb5966db6",
+    "data\\adaptive_dataset\\public_metadata.json": "206511bcfe77e1325163eee6e43ef127eb6c30cb275b52b9d60f995d6550d0de",
+    "data\\adaptive_dataset\\supervision\\test.csv": "3db19feb5aaaf3d76e2844d11c8003883c362263bf257258bb373d03f25a4668",
+    "data\\adaptive_dataset\\supervision\\test_shift.csv": "4bc74275bb4edd136b5b1889e5685bb600948af94db3de9f5926e10d36cc1d62",
+    "data\\adaptive_dataset\\supervision\\train.csv": "62a460e2e70659979c1b03dba1831df3765deaea057e3dddd4caa2ac237751cb",
+    "data\\adaptive_dataset\\supervision\\val.csv": "cfa72dcb293d0978cf6a194a143922eca5d01612a099d64beb786ee38ecc10d6"
+  },
+  "model_hashes": {
+    "results/fase6/best.pt": "0a0dbf72d161c004a5f87b9ee59de42916a696362cf0061e60de2c1045128477",
+    "results/fase5/conventional_256.joblib": "02d70d55b912c22394e5550cc978b785f45db1e26872f5b0bef3799fe358858f",
+    "results/fase5/conventional_512.joblib": "3c71dfa378c526f9dbce0732475a721b13c7f8587d47e3b6d7c50c380d04d45c"
+  },
+  "test_status": "sealed_before_selector_development",
+  "validation_partition": "first25_per_class_snr_cal_rest25_selection_in_stored_order"
+}

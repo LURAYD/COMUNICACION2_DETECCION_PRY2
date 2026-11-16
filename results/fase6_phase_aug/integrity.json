@@ -1,0 +1,13 @@
+{
+  "original_model_hash_unchanged": true,
+  "holdout_hashes_unchanged": true,
+  "only_config_change": "phase_augmentation=True",
+  "training_completed": true,
+  "best_epoch": 24,
+  "final_epoch": 39,
+  "training_seconds": 36.85528020000004,
+  "best_sha256": "f8a16dddc3d666c147477bf8c112b766909e77edb6ea16b9149db88c9c56ad52",
+  "tests_passed": 236,
+  "test_seconds": 17.26,
+  "test_command": "python -m pytest -q -W error --basetemp tmp/pytest_fase6_aug"
+}

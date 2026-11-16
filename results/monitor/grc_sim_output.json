@@ -1,0 +1,43 @@
+{
+  "signal_id": "grc_sim_output",
+  "num_samples": 4096,
+  "fs_hz": 8000.0,
+  "detection": {
+    "detected": true,
+    "observed_energy": 0.875432600862861,
+    "threshold": 0.5,
+    "status": "signal_present"
+  },
+  "spectrum": {
+    "bandwidth_99": 1174.229090431226,
+    "bandwidth_unit": "Hz",
+    "frequency_bounds": [
+      -589.3070472887524,
+      584.9220431424736
+    ],
+    "integrated_power": 1.0071556423384058,
+    "window_method": "periodic_hann",
+    "spectrum_file": "results\\monitor\\grc_sim_output_psd.png"
+  },
+  "snr": {
+    "snr_est_db": null,
+    "status": "no_identificable_sin_supuestos",
+    "reason": "falta_referencia_de_piso_de_ruido",
+    "explanation": "La estimación rigurosa de SNR requiere una referencia independiente de ruido en la misma banda y ganancia.",
+    "observed_power": 0.875432600862861
+  },
+  "classification": {
+    "modulation": "BPSK",
+    "confidence": 0.2412,
+    "confidence_calibrated": true,
+    "model_used": "results\\fase5\\conventional_256.joblib",
+    "scope": "signal_present_closed_set",
+    "window_votes": {
+      "BPSK": 9,
+      "QPSK": 7
+    }
+  },
+  "warnings": [
+    "SNR indeterminada: se requiere referencia externa de ruido estacionario."
+  ]
+}

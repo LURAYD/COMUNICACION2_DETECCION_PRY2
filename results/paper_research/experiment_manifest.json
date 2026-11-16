@@ -1,0 +1,31 @@
+{
+  "completed": true,
+  "gpu_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "train_seconds": {
+    "multidomain_clean_a2": 989.5490765,
+    "multidomain_adc8": 550.4670610999999,
+    "multidomain_adc6": 552.3657773999998,
+    "multidomain_adc_mixed": 552.8016693,
+    "total_gpu_seconds": 2645.1835843
+  },
+  "latency_ms": {
+    "a0_svm256_ms": {
+      "mean": 2.028250694444444,
+      "median": 1.98955,
+      "p95": 2.4522999999999997
+    },
+    "a1_svm512_ms": {
+      "mean": 2.266828125,
+      "median": 2.2007,
+      "p95": 2.747125
+    },
+    "a2_multidomain_gpu_ms": {
+      "mean": 24.149633333333334,
+      "median": 23.90455,
+      "p95": 28.222899999999996
+    },
+    "lbap_gate_ms": 0.0346085
+  },
+  "temperature_a2": 0.917102575302124,
+  "confidence_threshold_a0": 0.44
+}

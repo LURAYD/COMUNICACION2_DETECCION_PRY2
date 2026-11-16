@@ -1,0 +1,22 @@
+[
+  {
+    "Archivo": "constelaciones.png",
+    "Identico": true,
+    "SHA256": "1C1FB8F47154929700D28CD9924789A66F62D2048F1B27F61DA8ED2BB2FC2DA3"
+  },
+  {
+    "Archivo": "rrc_diagnostico.png",
+    "Identico": true,
+    "SHA256": "4636EE9E4B1600ADD22EDD320FFBCF1F3615519F78C6EF907EA42E02692EAC40"
+  },
+  {
+    "Archivo": "iq_qpsk.png",
+    "Identico": true,
+    "SHA256": "051FB10B45BA9FF6B132DDC4BAB377A8F6DAD61C3695ABFA3437E4A692695F1E"
+  },
+  {
+    "Archivo": "metricas.json",
+    "Identico": true,
+    "SHA256": "0F1BE29FC56E4A9457BAA0AE0AECCEF636C28C9D32A6468799ED721C68CA3992"
+  }
+]

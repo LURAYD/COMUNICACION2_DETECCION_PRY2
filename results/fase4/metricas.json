@@ -1,0 +1,317 @@
+{
+  "config": {
+    "seed": 20261105,
+    "bootstrap_resamples": 2000,
+    "n_samples": 256,
+    "noise_power": 1.0,
+    "pfa_target": 0.01,
+    "n_calibration": 5000,
+    "n_noise_evaluation": 5000,
+    "trials_per_class_snr_regime": 100,
+    "drift_noise_power_factor": 2.0,
+    "drift_signal_trials_per_snr": 100,
+    "snr_db": [
+      -20,
+      -15,
+      -10,
+      -5,
+      0,
+      5,
+      10,
+      20
+    ],
+    "symbol_rate_hz": 1000,
+    "sps": 8,
+    "span": 10,
+    "symbols_per_parent": 128,
+    "betas": [
+      0.25,
+      0.35,
+      0.5
+    ],
+    "id_cfo_range_hz": [
+      -100,
+      100
+    ],
+    "shift_cfo_abs_range_hz": [
+      200,
+      300
+    ],
+    "id_channels": [
+      [
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0.35
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0.15,
+          -0.15
+        ]
+      ]
+    ],
+    "shift_channels": [
+      [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0.45
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0.3,
+          -0.2
+        ]
+      ]
+    ]
+  },
+  "calibration": {
+    "threshold": 1.1523924548278828,
+    "n_samples": 256,
+    "pfa_target": 0.01,
+    "n_calibration": 5000,
+    "quantile_method": "higher",
+    "calibration_pfa": 0.0098
+  },
+  "noise_reference": {
+    "noise_power_estimate": 0.9989814000936685,
+    "n_samples": 1280000,
+    "method": "independent_observed_noise_reference"
+  },
+  "seed_spawn_keys": {
+    "calibration": [
+      0
+    ],
+    "noise_evaluation": [
+      1
+    ],
+    "signals": [
+      2
+    ],
+    "drift": [
+      3
+    ],
+    "bootstrap": [
+      4
+    ]
+  },
+  "false_alarms": 50,
+  "noise_evaluation_trials": 5000,
+  "pfa_measured": 0.01,
+  "pfa_wilson95": [
+    0.007593772813946567,
+    0.013158575092209418
+  ],
+  "signal_trials": 9600,
+  "noise_drift": {
+    "noise_power_factor": 2.0,
+    "false_alarms": 5000,
+    "trials": 5000,
+    "pfa_measured": 1.0,
+    "pfa_wilson95": [
+      0.9992322980549431,
+      1.0
+    ],
+    "snr_results": [
+      {
+        "regime": "noise_drift_x2",
+        "modulation": "QPSK",
+        "snr_nominal_db": 0,
+        "detections": 100,
+        "n_total": 100,
+        "n_valid": 100,
+        "mae_db": 4.750371801410938,
+        "bias_db": 4.750371801410938,
+        "rmse_db": 4.7783833817430725,
+        "error_p05_db": 3.9780272278471043,
+        "error_p50_db": 4.7030473414293095,
+        "error_p95_db": 5.5787611816845155,
+        "bias_bootstrap95_low_db": 4.646998407598326,
+        "bias_bootstrap95_high_db": 4.848466343102283,
+        "mae_bootstrap95_low_db": 4.646998407598326,
+        "mae_bootstrap95_high_db": 4.848466343102283,
+        "rmse_bootstrap95_low_db": 4.674430389334452,
+        "rmse_bootstrap95_high_db": 4.877245772908717,
+        "bootstrap_status": "ok_conditional_on_n_valid"
+      },
+      {
+        "regime": "noise_drift_x2",
+        "modulation": "QPSK",
+        "snr_nominal_db": 10,
+        "detections": 100,
+        "n_total": 100,
+        "n_valid": 100,
+        "mae_db": 3.1743268546732883,
+        "bias_db": 3.1743268546732883,
+        "rmse_db": 3.191519909835054,
+        "error_p05_db": 2.6895583853358023,
+        "error_p50_db": 3.150151652468905,
+        "error_p95_db": 3.711277934231082,
+        "bias_bootstrap95_low_db": 3.1113122159524123,
+        "bias_bootstrap95_high_db": 3.2412425615021605,
+        "mae_bootstrap95_low_db": 3.1113122159524123,
+        "mae_bootstrap95_high_db": 3.2412425615021605,
+        "rmse_bootstrap95_low_db": 3.128347746075236,
+        "rmse_bootstrap95_high_db": 3.2578323528378337,
+        "bootstrap_status": "ok_conditional_on_n_valid"
+      }
+    ]
+  },
+  "versions": {
+    "python": "3.11.0",
+    "numpy": "2.4.6",
+    "matplotlib": "3.11.2"
+  },
+  "source_sha256": {
+    "src/detection.py": "1a17c5bd9c5a22d3e0c52132ff88f9d1fd91fb0031a71da5da21486f5d6348e2",
+    "src/spectrum.py": "6a7bc0fa38dbff3a045ca4c084eb604a52159c69976026940833e44a3ba42276",
+    "src/snr_estimation.py": "274791d95c4c3872173fa02b04e501984f4c3a12233d368d75cb6f223b60cae2",
+    "src/monitor.py": "4779546f0dc236b81db3cab118a73f8446b7cc211e0ffed2a1fb6bdc53446421",
+    "src/dataset.py": "92b8705b8d027e4316186cea687d384fcf8957b5d3e504940caffb9e67e77180",
+    "src/channels.py": "1ae4b0d2619de226bdae953a4a7f8f53c2af6dcf07dd8b8f8f9846d89dc00984",
+    "src/signals.py": "2f368e04acca974c7359b10f49844615c5854ff16d78cbe97053f7be000159f9",
+    "src/waveform.py": "0afa65f590950753892a8a85ece30ad457c4f13c4525d9e8d00c2a19b82000a5",
+    "experiments/exp01_detection.py": "a86e56bf5864020150cd998a9cac3d6896c58318cc17448ba9717405fff85632"
+  },
+  "limits": "E1 controlado: señal escalada por ventana y ruido fijo. IC Wilson condicional al umbral; no incluye incertidumbre entre calibraciones. Errores SNR solo sobre detecciones con estimación válida: sesgo de selección a baja SNR. Percentiles p05/p50/p95 son dispersión de errores. IC bootstrap percentil de bias/MAE/RMSE: remuestreo iid de padres válidos, condicional a n_valid y calibración fija; no cubre deriva ni incertidumbre entre calibraciones. Con n_valid<=1 no hay IC; con pocos válidos la cobertura nominal es aproximada. Referencia estacionaria, sin detección automática de deriva. No evalúa clasificadores.",
+  "spectral_example": {
+    "frequency_unit": "Hz",
+    "psd_unit": "amplitude^2/Hz",
+    "df": 7.8125,
+    "enbw": 46.875,
+    "integrated_power": 10.683436236533009,
+    "total_power_fraction": 0.99,
+    "total_power_bandwidth": 6971.883830792252,
+    "total_power_bounds": [
+      -3499.289450818557,
+      3472.594379973695
+    ],
+    "bandwidth_method": "central_fraction_piecewise_uniform_periodic_bins_in_nyquist",
+    "window": "periodic_hann",
+    "n_samples": 256,
+    "nfft": 1024
+  }
+}

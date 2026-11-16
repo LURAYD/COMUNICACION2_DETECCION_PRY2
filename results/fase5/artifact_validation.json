@@ -1,0 +1,62 @@
+{
+  "only_training_split_reopened": true,
+  "test_and_test_shift_not_loaded": true,
+  "checks": {
+    "256": {
+      "state_hashes": {
+        "select": {
+          "frozen": "8703d2ab1f032972792a2fcb2777a3c4",
+          "retrained": "8703d2ab1f032972792a2fcb2777a3c4",
+          "identical": true
+        },
+        "scale": {
+          "frozen": "e601fcd10e0ac06b063ddaec3e902e9d",
+          "retrained": "e601fcd10e0ac06b063ddaec3e902e9d",
+          "identical": true
+        },
+        "classifier": {
+          "frozen": "29d034161600c76b12ea0d47c489a714",
+          "retrained": "29d034161600c76b12ea0d47c489a714",
+          "identical": true
+        }
+      },
+      "train_predictions_identical": true,
+      "n_train_predictions": 4800,
+      "original_model_unchanged": true,
+      "model_sha256": "02d70d55b912c22394e5550cc978b785f45db1e26872f5b0bef3799fe358858f"
+    },
+    "512": {
+      "state_hashes": {
+        "select": {
+          "frozen": "ce74a412157efecf5174613ad10e0dda",
+          "retrained": "ce74a412157efecf5174613ad10e0dda",
+          "identical": true
+        },
+        "scale": {
+          "frozen": "55136bb1771b5201b53ce943635bb108",
+          "retrained": "55136bb1771b5201b53ce943635bb108",
+          "identical": true
+        },
+        "classifier": {
+          "frozen": "53d01a700fd3f0a7b997c073b17b7af0",
+          "retrained": "53d01a700fd3f0a7b997c073b17b7af0",
+          "identical": true
+        }
+      },
+      "train_predictions_identical": true,
+      "n_train_predictions": 4800,
+      "original_model_unchanged": true,
+      "model_sha256": "3c71dfa378c526f9dbce0732475a721b13c7f8587d47e3b6d7c50c380d04d45c"
+    }
+  },
+  "demo_seed": 2026110504,
+  "command": [
+    "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\.venv\\Scripts\\python.exe",
+    "-m",
+    "experiments.verify_exp02_artifacts",
+    "--results",
+    "results\\fase5",
+    "--demo-seed",
+    "2026110504"
+  ]
+}

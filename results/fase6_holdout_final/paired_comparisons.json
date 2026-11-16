@@ -1,0 +1,136 @@
+{
+  "test": {
+    "cnn_phase_minus_cnn_original": {
+      "accuracy_difference": 0.007916666666666667,
+      "ci95_percentile": [
+        -0.0060416666666666665,
+        0.021666666666666667
+      ],
+      "a_correct_b_wrong": 653,
+      "a_wrong_b_correct": 615,
+      "bootstrap_replicates": 10000,
+      "seed": 2026110610,
+      "strata": "true_class_x_snr",
+      "scope": "fixed_models_single_training_seed_conditional_on_simulator"
+    },
+    "cnn_original_minus_svm256": {
+      "accuracy_difference": -0.025208333333333333,
+      "ci95_percentile": [
+        -0.040625,
+        -0.009375
+      ],
+      "a_correct_b_wrong": 752,
+      "a_wrong_b_correct": 873,
+      "bootstrap_replicates": 10000,
+      "seed": 2026110610,
+      "strata": "true_class_x_snr",
+      "scope": "fixed_models_single_training_seed_conditional_on_simulator"
+    },
+    "cnn_phase_minus_svm256": {
+      "accuracy_difference": -0.017291666666666667,
+      "ci95_percentile": [
+        -0.03229166666666667,
+        -0.0027083333333333334
+      ],
+      "a_correct_b_wrong": 759,
+      "a_wrong_b_correct": 842,
+      "bootstrap_replicates": 10000,
+      "seed": 2026110610,
+      "strata": "true_class_x_snr",
+      "scope": "fixed_models_single_training_seed_conditional_on_simulator"
+    },
+    "cnn_phase_minus_svm512": {
+      "accuracy_difference": -0.056666666666666664,
+      "ci95_percentile": [
+        -0.07125,
+        -0.041666666666666664
+      ],
+      "a_correct_b_wrong": 659,
+      "a_wrong_b_correct": 931,
+      "bootstrap_replicates": 10000,
+      "seed": 2026110610,
+      "strata": "true_class_x_snr",
+      "scope": "fixed_models_single_training_seed_conditional_on_simulator"
+    },
+    "svm512_minus_svm256": {
+      "accuracy_difference": 0.039375,
+      "ci95_percentile": [
+        0.025,
+        0.05354166666666667
+      ],
+      "a_correct_b_wrong": 717,
+      "a_wrong_b_correct": 528,
+      "bootstrap_replicates": 10000,
+      "seed": 2026110610,
+      "strata": "true_class_x_snr",
+      "scope": "fixed_models_single_training_seed_conditional_on_simulator"
+    }
+  },
+  "test_shift": {
+    "cnn_phase_minus_cnn_original": {
+      "accuracy_difference": 0.004583333333333333,
+      "ci95_percentile": [
+        -0.007088541666666661,
+        0.016666666666666666
+      ],
+      "a_correct_b_wrong": 502,
+      "a_wrong_b_correct": 480,
+      "bootstrap_replicates": 10000,
+      "seed": 2026110610,
+      "strata": "true_class_x_snr",
+      "scope": "fixed_models_single_training_seed_conditional_on_simulator"
+    },
+    "cnn_original_minus_svm256": {
+      "accuracy_difference": -0.07791666666666666,
+      "ci95_percentile": [
+        -0.09270833333333334,
+        -0.06291666666666666
+      ],
+      "a_correct_b_wrong": 599,
+      "a_wrong_b_correct": 973,
+      "bootstrap_replicates": 10000,
+      "seed": 2026110610,
+      "strata": "true_class_x_snr",
+      "scope": "fixed_models_single_training_seed_conditional_on_simulator"
+    },
+    "cnn_phase_minus_svm256": {
+      "accuracy_difference": -0.07333333333333333,
+      "ci95_percentile": [
+        -0.0875,
+        -0.05874479166666674
+      ],
+      "a_correct_b_wrong": 598,
+      "a_wrong_b_correct": 950,
+      "bootstrap_replicates": 10000,
+      "seed": 2026110610,
+      "strata": "true_class_x_snr",
+      "scope": "fixed_models_single_training_seed_conditional_on_simulator"
+    },
+    "cnn_phase_minus_svm512": {
+      "accuracy_difference": -0.09583333333333334,
+      "ci95_percentile": [
+        -0.11020833333333334,
+        -0.08166666666666667
+      ],
+      "a_correct_b_wrong": 539,
+      "a_wrong_b_correct": 999,
+      "bootstrap_replicates": 10000,
+      "seed": 2026110610,
+      "strata": "true_class_x_snr",
+      "scope": "fixed_models_single_training_seed_conditional_on_simulator"
+    },
+    "svm512_minus_svm256": {
+      "accuracy_difference": 0.0225,
+      "ci95_percentile": [
+        0.008333333333333333,
+        0.037083333333333336
+      ],
+      "a_correct_b_wrong": 696,
+      "a_wrong_b_correct": 588,
+      "bootstrap_replicates": 10000,
+      "seed": 2026110610,
+      "strata": "true_class_x_snr",
+      "scope": "fixed_models_single_training_seed_conditional_on_simulator"
+    }
+  }
+}

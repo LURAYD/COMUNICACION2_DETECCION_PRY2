@@ -1,0 +1,12 @@
+Revisión independiente, 3 de noviembre de 2026.
+Comando desde la raíz:
+.\.venv\Scripts\python.exe -m pytest -q -W error
+
+Salida observada:
+........................................................................ [ 52%]
+................................................................         [100%]
+136 passed in 1.34s
+
+Se inspeccionaron visualmente constelaciones.png, rrc_diagnostico.png e iq_qpsk.png.
+Se repitió el diagnóstico en tmp/fase1_repeticion; los tres PNG y metricas.json
+coincidieron por SHA-256. Valores registrados en reproducibilidad.json.

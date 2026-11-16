@@ -1,0 +1,15 @@
+{
+  "policy_sha256": "740f1253234a010866ca5d18a97fc57f9993d646288d2742a056817ec1a15c4e",
+  "reference_fixed": "always_svm256",
+  "selected_policy": "always_svm256",
+  "confidence_threshold": 0,
+  "flatness_threshold": 0.202189066280298,
+  "base_ms": [
+    6.401189583333333,
+    7.956355555555555,
+    2.128375
+  ],
+  "lambda_per_ms": 0.002,
+  "test_opened": false,
+  "decision_inputs": "65_features_plus6_svm_scores_from256_only"
+}

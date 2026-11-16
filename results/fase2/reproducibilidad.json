@@ -1,0 +1,12 @@
+[
+  {
+    "Archivo": "canal_diagnostico.png",
+    "Identico": true,
+    "SHA256": "4EA32B85AFC155558FC255D4C6CA33034CACB81D1A9C36F86E2C11371BFC685D"
+  },
+  {
+    "Archivo": "metricas.json",
+    "Identico": true,
+    "SHA256": "C9FE5878DD56DD45A41E5EA1C5FADA356CFE1DB3CC074A6E8EE78506AF3DDED6"
+  }
+]

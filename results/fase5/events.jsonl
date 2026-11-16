@@ -1,0 +1,8 @@
+{"sequence": 0, "stage": "protocol_fixed", "selection": "val_macro_f1_then_first_config_candidate", "test_shift": "sealed"}
+{"sequence": 1, "stage": "split_loaded", "split": "train"}
+{"sequence": 2, "stage": "split_loaded", "split": "val"}
+{"sequence": 3, "stage": "model_saved", "n_samples": 256, "model_sha256": "02d70d55b912c22394e5550cc978b785f45db1e26872f5b0bef3799fe358858f"}
+{"sequence": 4, "stage": "model_saved", "n_samples": 512, "model_sha256": "3c71dfa378c526f9dbce0732475a721b13c7f8587d47e3b6d7c50c380d04d45c"}
+{"sequence": 5, "stage": "both_models_frozen", "selection_sha256": "e27ae22861abd2f9f6ddbe7827294d8556d916ff77ec16e29545686677c9aa2d"}
+{"sequence": 6, "stage": "split_loaded", "split": "test"}
+{"sequence": 7, "stage": "evaluation_completed", "test_shift": "sealed"}

@@ -1,0 +1,6 @@
+{
+  "best_epoch": 46,
+  "val_macro_f1": 0.4054192863648132,
+  "sha256": "0a0dbf72d161c004a5f87b9ee59de42916a696362cf0061e60de2c1045128477",
+  "selection": "val_only"
+}

@@ -1,0 +1,4 @@
+Comparacion pareada {'method': 'Bootstrap percentil pareado dentro de cada celda clase/SNR, modelos fijos, una pareja por padre', 'seed': 20261505, 'replicates': 10000, 'n': 4800, 'cells': 48, 'incorrect_256_correct_512': 696, 'correct_256_incorrect_512': 556, 'unchanged_correctness': 3548, 'accuracy_difference': 0.029166666666666667, 'ci95': [0.014583333333333334, 0.043541666666666666]}
+Metricas recalculadas desde predicciones 256 {'accuracy': np.float64(0.436875), 'macro_precision': np.float64(0.4396456572521794), 'macro_recall': np.float64(0.43687499999999996), 'macro_f1': np.float64(0.4376524070668779)}
+Metricas recalculadas desde predicciones 512 {'accuracy': np.float64(0.4660416666666667), 'macro_precision': np.float64(0.46302250261052996), 'macro_recall': np.float64(0.4660416666666667), 'macro_f1': np.float64(0.4636914839912691)}
+Conteos, modelos, fuentes, regla de seleccion val y orden de congelacion/test verificados.

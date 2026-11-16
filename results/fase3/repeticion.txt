@@ -1,0 +1,1 @@
+Dataset generado: 224 padres, 448 ventanas; C:\PROYECTO_COM2_2026\COM2_Proyecto2\tmp\fase3_repeticion

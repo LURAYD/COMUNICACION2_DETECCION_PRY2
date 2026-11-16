@@ -1,0 +1,15 @@
+{
+  "method": "Bootstrap percentil pareado dentro de cada celda clase/SNR, modelos fijos, una pareja por padre",
+  "seed": 20261505,
+  "replicates": 10000,
+  "n": 4800,
+  "cells": 48,
+  "incorrect_256_correct_512": 696,
+  "correct_256_incorrect_512": 556,
+  "unchanged_correctness": 3548,
+  "accuracy_difference": 0.029166666666666667,
+  "ci95": [
+    0.014583333333333334,
+    0.043541666666666666
+  ]
+}

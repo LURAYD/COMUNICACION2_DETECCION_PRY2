@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "predictions": 38400,
+  "groups": 8,
+  "metrics_reconstructed": true,
+  "confusion_matrices_reconstructed": true,
+  "parents_paired": true,
+  "paired_differences_reconstructed": true,
+  "tests": "2 passed in 15.68s: tests/test_holdout_comparison.py"
+}

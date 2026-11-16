@@ -1,0 +1,10 @@
+{
+  "256": {
+    "validation_cases": 32,
+    "predictions_identical": true
+  },
+  "512": {
+    "validation_cases": 32,
+    "predictions_identical": true
+  }
+}

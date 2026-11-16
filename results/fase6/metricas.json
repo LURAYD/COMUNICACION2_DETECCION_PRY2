@@ -1,0 +1,348 @@
+{
+  "metrics": {
+    "test": {
+      "cnn256": {
+        "n": 4800,
+        "accuracy": 0.409375,
+        "macro_precision": 0.4096158864299928,
+        "macro_recall": 0.409375,
+        "macro_f1": 0.4083296493797552,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.5593784683684795,
+            "recall": 0.63,
+            "f1": 0.5925925925925926,
+            "support": 800
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.3038116591928251,
+            "recall": 0.33875,
+            "f1": 0.3203309692671395,
+            "support": 800
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.29534883720930233,
+            "recall": 0.3175,
+            "f1": 0.3060240963855422,
+            "support": 800
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.32661870503597124,
+            "recall": 0.28375,
+            "f1": 0.3036789297658863,
+            "support": 800
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.3393854748603352,
+            "recall": 0.30375,
+            "f1": 0.32058047493403696,
+            "support": 800
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.6331521739130435,
+            "recall": 0.5825,
+            "f1": 0.6067708333333334,
+            "support": 800
+          }
+        ]
+      },
+      "svm256": {
+        "n": 4800,
+        "accuracy": 0.436875,
+        "macro_precision": 0.4396456572521794,
+        "macro_recall": 0.43687499999999996,
+        "macro_f1": 0.4376524070668779,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.5485564304461942,
+            "recall": 0.5225,
+            "f1": 0.5352112676056338,
+            "support": 800
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.41609977324263037,
+            "recall": 0.45875,
+            "f1": 0.43638525564803804,
+            "support": 800
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.38826185101580135,
+            "recall": 0.43,
+            "f1": 0.4080664294187426,
+            "support": 800
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.36136662286465177,
+            "recall": 0.34375,
+            "f1": 0.3523382447149263,
+            "support": 800
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.33766233766233766,
+            "recall": 0.325,
+            "f1": 0.33121019108280253,
+            "support": 800
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.5859269282814614,
+            "recall": 0.54125,
+            "f1": 0.5627030539311241,
+            "support": 800
+          }
+        ]
+      },
+      "svm512": {
+        "n": 4800,
+        "accuracy": 0.4660416666666667,
+        "macro_precision": 0.46302250261052996,
+        "macro_recall": 0.4660416666666667,
+        "macro_f1": 0.4636914839912691,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.5404101326899879,
+            "recall": 0.56,
+            "f1": 0.5500306936771026,
+            "support": 800
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.45498783454987834,
+            "recall": 0.4675,
+            "f1": 0.46115906288532676,
+            "support": 800
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.4429065743944637,
+            "recall": 0.48,
+            "f1": 0.46070785842831435,
+            "support": 800
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.40610687022900765,
+            "recall": 0.3325,
+            "f1": 0.3656357388316151,
+            "support": 800
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.3646759847522236,
+            "recall": 0.35875,
+            "f1": 0.3616887208569628,
+            "support": 800
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.569047619047619,
+            "recall": 0.5975,
+            "f1": 0.5829268292682926,
+            "support": 800
+          }
+        ]
+      }
+    },
+    "test_shift": {
+      "cnn256": {
+        "n": 4800,
+        "accuracy": 0.18604166666666666,
+        "macro_precision": 0.17614007055926262,
+        "macro_recall": 0.18604166666666666,
+        "macro_f1": 0.16788138038073355,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.13746630727762804,
+            "recall": 0.06375,
+            "f1": 0.08710503842869342,
+            "support": 800
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.18579881656804734,
+            "recall": 0.19625,
+            "f1": 0.19088145896656536,
+            "support": 800
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.18055555555555555,
+            "recall": 0.14625,
+            "f1": 0.16160220994475138,
+            "support": 800
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.18365627632687448,
+            "recall": 0.2725,
+            "f1": 0.21942627075993962,
+            "support": 800
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.20657276995305165,
+            "recall": 0.385,
+            "f1": 0.26887821911828896,
+            "support": 800
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.16279069767441862,
+            "recall": 0.0525,
+            "f1": 0.07939508506616257,
+            "support": 800
+          }
+        ]
+      },
+      "svm256": {
+        "n": 4800,
+        "accuracy": 0.2791666666666667,
+        "macro_precision": 0.29015047419614776,
+        "macro_recall": 0.2791666666666667,
+        "macro_f1": 0.279496883324505,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.3900709219858156,
+            "recall": 0.275,
+            "f1": 0.3225806451612903,
+            "support": 800
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.24447717231222385,
+            "recall": 0.2075,
+            "f1": 0.2244759972954699,
+            "support": 800
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.22469135802469137,
+            "recall": 0.2275,
+            "f1": 0.22608695652173913,
+            "support": 800
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.20927601809954752,
+            "recall": 0.23125,
+            "f1": 0.21971496437054633,
+            "support": 800
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.2680327868852459,
+            "recall": 0.40875,
+            "f1": 0.3237623762376238,
+            "support": 800
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.40435458786936235,
+            "recall": 0.325,
+            "f1": 0.36036036036036034,
+            "support": 800
+          }
+        ]
+      },
+      "svm512": {
+        "n": 4800,
+        "accuracy": 0.2866666666666667,
+        "macro_precision": 0.29701951689817757,
+        "macro_recall": 0.2866666666666667,
+        "macro_f1": 0.28391389317368376,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.47019867549668876,
+            "recall": 0.355,
+            "f1": 0.4045584045584046,
+            "support": 800
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.2352092352092352,
+            "recall": 0.20375,
+            "f1": 0.21835231078365708,
+            "support": 800
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.22965116279069767,
+            "recall": 0.1975,
+            "f1": 0.21236559139784947,
+            "support": 800
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.16920943134535368,
+            "recall": 0.1525,
+            "f1": 0.16042077580539119,
+            "support": 800
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.26525017135023987,
+            "recall": 0.48375,
+            "f1": 0.3426294820717131,
+            "support": 800
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.4125984251968504,
+            "recall": 0.3275,
+            "f1": 0.3651567944250871,
+            "support": 800
+          }
+        ]
+      }
+    }
+  },
+  "latency": {
+    "cnn256_cpu": {
+      "median_ms": 0.4216,
+      "p95_ms": 0.6919999999999997
+    },
+    "cnn256_cuda": {
+      "median_ms": 0.9621500000000001,
+      "p95_ms": 1.7183199999999998
+    },
+    "svm256": {
+      "median_ms": 1.6176499999999998,
+      "p95_ms": 2.5288049999999993
+    },
+    "svm512": {
+      "median_ms": 1.9953,
+      "p95_ms": 2.577299999999999
+    }
+  },
+  "parameters": 94726,
+  "train_seconds": 16.34061059999658,
+  "epochs": 61,
+  "best_epoch": 46,
+  "cpu": "13th Gen Intel(R) Core(TM) i7-13620H",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "torch": "2.10.0+cu128",
+  "cuda": "12.8",
+  "cpu_threads": 1,
+  "batch_size_latency": 1,
+  "warmup": 16,
+  "acquisition_ms": {
+    "256": 32,
+    "512": 64
+  },
+  "peak_cuda_allocated_bytes": 29259776
+}

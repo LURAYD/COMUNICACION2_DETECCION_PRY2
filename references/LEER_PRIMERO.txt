@@ -1,0 +1,9 @@
+Este paquete incluye la guia principal, la guia oficial del profesor, el formulario,
+las notas DOCX y 15 articulos academicos diferentes (sin duplicados).
+
+Falta agregar manualmente el libro grande escaneado:
+Fundamentos de Ingeniería de Comunicación Carlos A. Medina Parte 2, capitulos del 9 al 15.pdf
+Colocarlo en esta carpeta references/ desde el archivo que el estudiante ya tiene.
+
+Empezar con la Fase 0 y 1: auditoria de codigo y lectura de fuentes.
+No asumir que existen los scripts del proyecto si no se encuentran.

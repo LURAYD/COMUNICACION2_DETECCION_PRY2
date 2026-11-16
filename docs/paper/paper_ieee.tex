@@ -1,0 +1,49 @@
+\documentclass[journal]{IEEEtran}
+
+% Standard IEEE packages
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{microtype}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes}
+
+\begin{document}
+
+\title{Risk-Conditioned Multi-Action Modulation Classification: Balancing Physical Acquisition Horizon and Multi-Domain Deep Inference}
+
+\author{Research Team, Communications II Research Group%
+\thanks{Department of Telecommunications and Signal Processing Engineering, Communications II Research Group (e-mail: research.team@institution.edu).}}
+
+\maketitle
+
+\begin{abstract}
+Automatic modulation classification (AMC) on resource-constrained wireless edge devices faces a fundamental physical dilemma: extended observation windows reduce estimator variance but incur substantial physical analog-to-digital converter (ADC) acquisition latency ($T_{\mathrm{acq}} = N / f_s$), whereas deep multi-domain neural networks achieve high accuracy on short windows at the expense of arithmetic compute time and energy. Existing literature treats sample length adaptation and computational early-exit as isolated paradigms, frequently relying on unphysical oracle parameters (such as ground-truth SNR or zero carrier frequency offset).
+
+In this paper, we propose an integrated, risk-conditioned multi-action AMC framework that orchestrates classification across a tri-action space: (1) fast conventional baseline on a short window ($N_0 = 256$), (2) physical observation horizon extension ($N_1 = 512$), and (3) deep multi-domain expert inference ($\mathrm{MultiDomainAMCNet}$) on the short window, which fuses an in-GPU root-raised-cosine (RRC) matched-filter bank, blind spectral-and-constellation carrier recovery, multi-harmonic spectra, and polyphase fractional-timing attention. To govern action routing under latency constraints, we develop $\mathrm{FastLBAPSelector}$, an ultra-compact policy router operating in $0.035\,\mathrm{ms}$ ($<0.07\%$ of total latency) that predicts counterfactual error recoverability ($C_{01}$) and suppresses deep-noise escalation ($C_{00}$) strictly from non-oracle observables.
+
+Our experimental methodology enforces a rigorous zero-leakage protocol governed by atomic parent waveform partitioning ($\texttt{parent\_waveform\_id}$), strict out-of-distribution (OOD) isolation, and sample-independent GroupNorm layers. On an independent holdout test set of $2{,}400$ waveforms, Fast LBAP achieves $51.62\%$ accuracy ($0.4374$ net utility) with a mean latency of $52.56\,\mathrm{ms}$, outperforming standalone deep inference ($51.58\%$, $56.15\,\mathrm{ms}$) while saving $3.59\,\mathrm{ms}$ of reception time. Under severe uncalibrated domain shift ($200$--$300\,\mathrm{Hz}$ carrier frequency offset and $13$-sample multipath delays), Fast LBAP achieves $31.62\%$ accuracy, significantly outperforming every standalone expert ($+2.08\,\mathrm{pp}$ over $a_1$, $95\%$ CI $[+0.17\%, +3.96\%]$). Furthermore, multi-domain neural processing demonstrates high resilience down to unseen $4$-bit ADC quantization ($44.96\%$--$46.50\%$ accuracy, $+20.9$ to $+22.4\,\mathrm{pp}$ over collapsing SVM baselines).
+\end{abstract}
+
+\begin{IEEEkeywords}
+Automatic modulation classification, cognitive radio, early exit, physical acquisition latency, zero-leakage protocol, uncertainty quantification, ADC quantization, edge computing.
+\end{IEEEkeywords}
+
+% Include unified modular paper sections
+\input{sections/01_intro_related}
+\input{sections/02_system_model_architecture}
+\input{sections/03_adaptive_policy}
+\input{sections/04_methodology_validity}
+\input{sections/05_results_discussion}
+\input{sections/06_conclusion}
+
+% References
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

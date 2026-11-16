@@ -1,0 +1,8 @@
+
+============================== warnings summary ===============================
+src\test_signal.py:26
+  C:\PROYECTO_COM2_2026\COM2_Proyecto2\src\test_signal.py:26: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+    plt.show()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+1 warning in 1.02s

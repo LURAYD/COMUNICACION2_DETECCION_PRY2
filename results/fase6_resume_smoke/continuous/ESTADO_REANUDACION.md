@@ -1,0 +1,9 @@
+# Estado de entrenamiento
+
+Época completada: 0; siguiente minibatch: 0; pasos: 0; terminado: False.
+
+Checkpoint last.pt atómico: modelo, optimizador, scheduler, RNG Python/NumPy/Torch CPU/CUDA, orden/paso, historial, configuración y hashes de datos. Float32; scaler no aplica.
+
+Reanudar desde raíz: `.\.venv\Scripts\python.exe -m experiments.exp03_advanced --output results/fase6_resume_smoke/continuous --resume`
+
+No hay detector de cuota. Si el proceso se interrumpe abruptamente, se repiten como máximo checkpoint_steps minibatches desde el último guardado. Evaluación E3–E6 y reporte pendientes hasta existir metricas.json.

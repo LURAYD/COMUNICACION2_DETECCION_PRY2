@@ -1,0 +1,14 @@
+{
+  "dataset_seed": 2026110613,
+  "selector_seed": 2026110614,
+  "parents_per_class_snr": 50,
+  "lambda_per_ms": 0.002,
+  "rf_trees": 100,
+  "rf_max_depth": 5,
+  "rf_min_samples_leaf": 30,
+  "calibration": "logistic_svm_top_two_margin_correctness",
+  "confidence_thresholds": [0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.01],
+  "flatness_quantiles": [0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],
+  "cnn": "results/fase6/best.pt",
+  "scope": "signal_present_closed_set_no_abstention"
+}

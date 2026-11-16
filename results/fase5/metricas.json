@@ -1,0 +1,1744 @@
+{
+  "config": {
+    "schema_version": 1,
+    "dataset_config": "configs/dataset_e2.json",
+    "dataset_root": "data/e2_dataset",
+    "seed": 2026110503,
+    "window_lengths": [
+      256,
+      512
+    ],
+    "selection_metric": "macro_f1",
+    "tie_break": "first_candidate_in_config",
+    "fit_splits": [
+      "train"
+    ],
+    "selection_splits": [
+      "val"
+    ],
+    "evaluation_splits": [
+      "test"
+    ],
+    "latency_repeats": 5,
+    "latency_windows": 128,
+    "candidates": [
+      {
+        "name": "rf200_full",
+        "family": "random_forest",
+        "feature_set": "full",
+        "n_estimators": 200
+      },
+      {
+        "name": "svm_rbf_c1_full",
+        "family": "svm_rbf",
+        "feature_set": "full",
+        "C": 1.0
+      },
+      {
+        "name": "svm_rbf_c10_full",
+        "family": "svm_rbf",
+        "feature_set": "full",
+        "C": 10.0
+      },
+      {
+        "name": "rf200_core",
+        "family": "random_forest",
+        "feature_set": "core",
+        "n_estimators": 200
+      },
+      {
+        "name": "svm_rbf_c10_core",
+        "family": "svm_rbf",
+        "feature_set": "core",
+        "C": 10.0
+      }
+    ]
+  },
+  "dataset_config": {
+    "schema_version": 1,
+    "seed": 2026110502,
+    "symbol_rate_hz": 1000,
+    "sps": 8,
+    "span": 10,
+    "symbols_per_parent": 128,
+    "window_lengths": [
+      256,
+      512
+    ],
+    "betas": [
+      0.25,
+      0.35,
+      0.5
+    ],
+    "amplitude_range": [
+      0.5,
+      1.5
+    ],
+    "phase_range_rad": [
+      -3.141592653589793,
+      3.141592653589793
+    ],
+    "snr_db": [
+      -20,
+      -15,
+      -10,
+      -5,
+      0,
+      5,
+      10,
+      20
+    ],
+    "realizations_per_class_snr": 100,
+    "noise_only_per_split": 64,
+    "id_cfo_range_hz": [
+      -100,
+      100
+    ],
+    "shift_cfo_abs_range_hz": [
+      200,
+      300
+    ],
+    "id_channels": [
+      [
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0.35
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0.15,
+          -0.15
+        ]
+      ]
+    ],
+    "shift_channels": [
+      [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0.45
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0.3,
+          -0.2
+        ]
+      ]
+    ]
+  },
+  "classes": [
+    "BPSK",
+    "QPSK",
+    "8PSK",
+    "16QAM",
+    "64QAM",
+    "4PAM"
+  ],
+  "feature_names": [
+    "dc_power_fraction",
+    "envelope_mean",
+    "envelope_std",
+    "envelope_q10",
+    "envelope_q25",
+    "envelope_q50",
+    "envelope_q75",
+    "envelope_q90",
+    "envelope_q99",
+    "envelope_peak",
+    "moment_abs4",
+    "moment_abs6",
+    "moment_abs8",
+    "circularity",
+    "c40_abs",
+    "c42_real",
+    "derotated_circularity",
+    "derotated_c40_abs",
+    "block64_circularity_mean",
+    "block64_c40_abs_mean",
+    "block64_c42_mean",
+    "phase_resultant_1",
+    "phase_resultant_2",
+    "phase_resultant_4",
+    "phase_resultant_8",
+    "autocorr_abs_lag1",
+    "envelope_diff2_lag1",
+    "differential_resultant_m1_lag1",
+    "differential_resultant_m2_lag1",
+    "differential_resultant_m4_lag1",
+    "differential_resultant_m8_lag1",
+    "autocorr_abs_lag2",
+    "envelope_diff2_lag2",
+    "differential_resultant_m1_lag2",
+    "differential_resultant_m2_lag2",
+    "differential_resultant_m4_lag2",
+    "differential_resultant_m8_lag2",
+    "autocorr_abs_lag4",
+    "envelope_diff2_lag4",
+    "differential_resultant_m1_lag4",
+    "differential_resultant_m2_lag4",
+    "differential_resultant_m4_lag4",
+    "differential_resultant_m8_lag4",
+    "autocorr_abs_lag8",
+    "envelope_diff2_lag8",
+    "differential_resultant_m1_lag8",
+    "differential_resultant_m2_lag8",
+    "differential_resultant_m4_lag8",
+    "differential_resultant_m8_lag8",
+    "spectral_entropy",
+    "spectral_flatness",
+    "spectral_peak_fraction",
+    "spectral_centroid",
+    "spectral_rms_width",
+    "spectral_bw90",
+    "spectral_bw99",
+    "spectral_positive_fraction",
+    "spectral_band_0",
+    "spectral_band_1",
+    "spectral_band_2",
+    "spectral_band_3",
+    "spectral_band_4",
+    "spectral_band_5",
+    "spectral_band_6",
+    "spectral_band_7"
+  ],
+  "feature_version": "observable_v1",
+  "selection": {
+    "256": {
+      "n_samples": 256,
+      "selected_candidate": {
+        "name": "svm_rbf_c10_core",
+        "family": "svm_rbf",
+        "feature_set": "core",
+        "C": 10.0
+      },
+      "selection_metric": "val_macro_f1",
+      "selection_score": 0.4282307821427538,
+      "fit_split": "train",
+      "selection_split": "val",
+      "fit_seed": 2923241421,
+      "dataset_config_sha256": "332c18693db780a4fe0bd143b23b17ed8f114719e338391039625a0364ab72f6",
+      "n_train": 4800,
+      "n_val": 4800,
+      "all_features_computed": 65,
+      "n_features_selected": 49,
+      "model_sha256": "02d70d55b912c22394e5550cc978b785f45db1e26872f5b0bef3799fe358858f"
+    },
+    "512": {
+      "n_samples": 512,
+      "selected_candidate": {
+        "name": "svm_rbf_c10_full",
+        "family": "svm_rbf",
+        "feature_set": "full",
+        "C": 10.0
+      },
+      "selection_metric": "val_macro_f1",
+      "selection_score": 0.47410068634029257,
+      "fit_split": "train",
+      "selection_split": "val",
+      "fit_seed": 920160786,
+      "dataset_config_sha256": "332c18693db780a4fe0bd143b23b17ed8f114719e338391039625a0364ab72f6",
+      "n_train": 4800,
+      "n_val": 4800,
+      "all_features_computed": 65,
+      "n_features_selected": 65,
+      "model_sha256": "3c71dfa378c526f9dbce0732475a721b13c7f8587d47e3b6d7c50c380d04d45c"
+    }
+  },
+  "metrics": {
+    "256": {
+      "feature_extraction_seconds": {
+        "train": 16.34694270000182,
+        "val": 16.916615800000727
+      },
+      "test": {
+        "n": 4800,
+        "accuracy": 0.436875,
+        "macro_precision": 0.4396456572521794,
+        "macro_recall": 0.43687499999999996,
+        "macro_f1": 0.4376524070668779,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.5485564304461942,
+            "recall": 0.5225,
+            "f1": 0.5352112676056338,
+            "support": 800
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.41609977324263037,
+            "recall": 0.45875,
+            "f1": 0.43638525564803804,
+            "support": 800
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.38826185101580135,
+            "recall": 0.43,
+            "f1": 0.4080664294187426,
+            "support": 800
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.36136662286465177,
+            "recall": 0.34375,
+            "f1": 0.3523382447149263,
+            "support": 800
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.33766233766233766,
+            "recall": 0.325,
+            "f1": 0.33121019108280253,
+            "support": 800
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.5859269282814614,
+            "recall": 0.54125,
+            "f1": 0.5627030539311241,
+            "support": 800
+          }
+        ]
+      },
+      "confusion_matrix": [
+        [
+          418,
+          85,
+          94,
+          57,
+          66,
+          80
+        ],
+        [
+          73,
+          367,
+          172,
+          73,
+          69,
+          46
+        ],
+        [
+          67,
+          183,
+          344,
+          89,
+          77,
+          40
+        ],
+        [
+          63,
+          97,
+          100,
+          275,
+          207,
+          58
+        ],
+        [
+          64,
+          89,
+          97,
+          208,
+          260,
+          82
+        ],
+        [
+          77,
+          61,
+          79,
+          59,
+          91,
+          433
+        ]
+      ],
+      "latency": {
+        "batch_size": 1,
+        "repeats": 5,
+        "distinct_windows": 128,
+        "calls": 640,
+        "all_features_computed": 65,
+        "features_wall_ms": {
+          "mean": 3.9725446875,
+          "median": 3.5787,
+          "p95": 6.166944999999998,
+          "std": 1.6365354635641194
+        },
+        "classifier_wall_ms": {
+          "mean": 1.9291431250000002,
+          "median": 1.64275,
+          "p95": 2.599549999999998,
+          "std": 2.7401330107170865
+        },
+        "total_wall_ms": {
+          "mean": 5.9016878125000005,
+          "median": 5.2226,
+          "p95": 8.95482,
+          "std": 3.457663481435327
+        },
+        "total_process_cpu_ms": {
+          "mean": 5.2490234375,
+          "median": 0.0,
+          "p95": 15.625,
+          "std": 7.379955566499922
+        }
+      },
+      "test_batch_prediction_seconds": 21.046885799994925,
+      "virtual_acquisition_seconds": 0.032
+    },
+    "512": {
+      "feature_extraction_seconds": {
+        "train": 22.823716999999306,
+        "val": 23.47721480000473
+      },
+      "test": {
+        "n": 4800,
+        "accuracy": 0.4660416666666667,
+        "macro_precision": 0.46302250261052996,
+        "macro_recall": 0.4660416666666667,
+        "macro_f1": 0.4636914839912691,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.5404101326899879,
+            "recall": 0.56,
+            "f1": 0.5500306936771026,
+            "support": 800
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.45498783454987834,
+            "recall": 0.4675,
+            "f1": 0.46115906288532676,
+            "support": 800
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.4429065743944637,
+            "recall": 0.48,
+            "f1": 0.46070785842831435,
+            "support": 800
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.40610687022900765,
+            "recall": 0.3325,
+            "f1": 0.3656357388316151,
+            "support": 800
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.3646759847522236,
+            "recall": 0.35875,
+            "f1": 0.3616887208569628,
+            "support": 800
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.569047619047619,
+            "recall": 0.5975,
+            "f1": 0.5829268292682926,
+            "support": 800
+          }
+        ]
+      },
+      "confusion_matrix": [
+        [
+          448,
+          88,
+          88,
+          35,
+          69,
+          72
+        ],
+        [
+          75,
+          374,
+          158,
+          53,
+          72,
+          68
+        ],
+        [
+          72,
+          147,
+          384,
+          63,
+          73,
+          61
+        ],
+        [
+          84,
+          79,
+          92,
+          266,
+          212,
+          67
+        ],
+        [
+          59,
+          78,
+          83,
+          199,
+          287,
+          94
+        ],
+        [
+          91,
+          56,
+          62,
+          39,
+          74,
+          478
+        ]
+      ],
+      "latency": {
+        "batch_size": 1,
+        "repeats": 5,
+        "distinct_windows": 128,
+        "calls": 640,
+        "all_features_computed": 65,
+        "features_wall_ms": {
+          "mean": 5.03032796875,
+          "median": 4.817349999999999,
+          "p95": 6.64605,
+          "std": 0.8989076122137769
+        },
+        "classifier_wall_ms": {
+          "mean": 1.8381196875,
+          "median": 1.72505,
+          "p95": 2.5780399999999997,
+          "std": 0.44935985365979497
+        },
+        "total_wall_ms": {
+          "mean": 6.86844765625,
+          "median": 6.5748999999999995,
+          "p95": 9.022175,
+          "std": 1.173589360530657
+        },
+        "total_process_cpu_ms": {
+          "mean": 6.5185546875,
+          "median": 0.0,
+          "p95": 15.625,
+          "std": 7.704600040122736
+        }
+      },
+      "test_batch_prediction_seconds": 28.494359199998144,
+      "virtual_acquisition_seconds": 0.064
+    }
+  },
+  "dataset_audit": {
+    "schema_version": 1,
+    "parents": 19456,
+    "windows": 38912,
+    "splits_disjoint": true,
+    "prefixes_exact": true,
+    "config_sha256": "8b8ec7ab9f5599ead1ee27403ab9fa687d67e589c0939478d4a9193641eee347",
+    "splits": {
+      "train": {
+        "parents": 4864,
+        "signal_parents": 4800,
+        "noise_only_parents": 64,
+        "class_snr_counts": [
+          {
+            "modulation": "16QAM",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 20,
+            "count": 100
+          }
+        ],
+        "measured_window_snr_db_min": -20.509854431464767,
+        "measured_window_snr_db_max": 21.147429810378174,
+        "iq512_sha256": "144ba857b86b4a5b047dc2d19b2c4a9d5d0b9c8557dec0ffbb86443f20194cb7"
+      },
+      "val": {
+        "parents": 4864,
+        "signal_parents": 4800,
+        "noise_only_parents": 64,
+        "class_snr_counts": [
+          {
+            "modulation": "16QAM",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 20,
+            "count": 100
+          }
+        ],
+        "measured_window_snr_db_min": -20.75361596586573,
+        "measured_window_snr_db_max": 21.129548525574652,
+        "iq512_sha256": "61f0d428133b482d84660cd7df76e675a4e2fe79d71516fc2b72f31655ec1795"
+      },
+      "test": {
+        "parents": 4864,
+        "signal_parents": 4800,
+        "noise_only_parents": 64,
+        "class_snr_counts": [
+          {
+            "modulation": "16QAM",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 20,
+            "count": 100
+          }
+        ],
+        "measured_window_snr_db_min": -20.639311389470215,
+        "measured_window_snr_db_max": 21.266308043143574,
+        "iq512_sha256": "d5e0da9a5da72807b8820621e19a4d2600da834064dd0abe1dc42df266157cad"
+      },
+      "test_shift": {
+        "parents": 4864,
+        "signal_parents": 4800,
+        "noise_only_parents": 64,
+        "class_snr_counts": [
+          {
+            "modulation": "16QAM",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "16QAM",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "4PAM",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "64QAM",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "8PSK",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "BPSK",
+            "snr_db": 20,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -20,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -15,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -10,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": -5,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 0,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 5,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 10,
+            "count": 100
+          },
+          {
+            "modulation": "QPSK",
+            "snr_db": 20,
+            "count": 100
+          }
+        ],
+        "measured_window_snr_db_min": -20.773246649296656,
+        "measured_window_snr_db_max": 21.204337424381634,
+        "iq512_sha256": "79ea170c7f425b1e0272d36fd0019f46227bbed44aba18cac8662868a1eaa27c"
+      }
+    },
+    "versions": {
+      "python": "3.11.0",
+      "numpy": "2.4.6"
+    },
+    "sources_sha256": {
+      "src/dataset.py": "92b8705b8d027e4316186cea687d384fcf8957b5d3e504940caffb9e67e77180",
+      "src/signals.py": "2f368e04acca974c7359b10f49844615c5854ff16d78cbe97053f7be000159f9",
+      "src/waveform.py": "0afa65f590950753892a8a85ece30ad457c4f13c4525d9e8d00c2a19b82000a5",
+      "src/channels.py": "1ae4b0d2619de226bdae953a4a7f8f53c2af6dcf07dd8b8f8f9846d89dc00984"
+    },
+    "limits": "Smoke, no accuracy ni estimación ciega de SNR. IDs/semillas separados no demuestran independencia estadística absoluta."
+  },
+  "split_counts": {
+    "train": {
+      "signal_present": 4800,
+      "noise_only_excluded": 64
+    },
+    "val": {
+      "signal_present": 4800,
+      "noise_only_excluded": 64
+    },
+    "test": {
+      "signal_present": 4800,
+      "noise_only_excluded": 64
+    }
+  },
+  "test_shift": "sealed_not_loaded_by_e2",
+  "same_parents_for_both_lengths": true,
+  "versions": {
+    "python": "3.11.0",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "sklearn": "1.7.2",
+    "joblib": "1.6.0",
+    "matplotlib": "3.11.2"
+  },
+  "execution": {
+    "cpu": "13th Gen Intel(R) Core(TM) i7-13620H",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "n_jobs": 1,
+    "threadpool_limit": 1,
+    "threadpools_during_fit_and_timing": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "filepath": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\.venv\\Lib\\site-packages\\numpy.libs\\libscipy_openblas64_-63c857e738469261263c764a36be9436.dll",
+        "version": "0.3.31.188.0",
+        "threading_layer": "pthreads",
+        "architecture": "Haswell"
+      },
+      {
+        "user_api": "openmp",
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "vcomp",
+        "filepath": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\.venv\\Lib\\site-packages\\sklearn\\.libs\\vcomp140.dll",
+        "version": null
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "filepath": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\.venv\\Lib\\site-packages\\scipy.libs\\libscipy_openblas-64eda39e79589aedb16f58e5547eb599.dll",
+        "version": "0.3.30",
+        "threading_layer": "pthreads",
+        "architecture": "Haswell"
+      }
+    ]
+  },
+  "source_sha256": {
+    "src/features.py": "e255ccec0de7802985ad8058640ca131a8866663588411d9e2978155d4b73670",
+    "src/conventional.py": "d6ccc2b0132a656b22b64c405a71b26da1dae39d5392d529e3d1ca42697ceb9e",
+    "src/classification_data.py": "b5196c5f98e556fd693fbe14a2c3ee71dade437d40c881782d231953839b7079",
+    "src/dataset.py": "92b8705b8d027e4316186cea687d384fcf8957b5d3e504940caffb9e67e77180",
+    "src/signals.py": "2f368e04acca974c7359b10f49844615c5854ff16d78cbe97053f7be000159f9",
+    "src/waveform.py": "0afa65f590950753892a8a85ece30ad457c4f13c4525d9e8d00c2a19b82000a5",
+    "src/channels.py": "1ae4b0d2619de226bdae953a4a7f8f53c2af6dcf07dd8b8f8f9846d89dc00984",
+    "experiments/exp02_conventional.py": "c2ddf0f2efa134c8206863f3b9586f50019d4e1d0afb43582600fd594a5776e3"
+  },
+  "limits": "AMC closed-set condicionada a presencia real en el benchmark, sin evaluar gating del detector. No produce confianza calibrada. ID comparte distribuciones de canal, no padres. test_shift reservado E6. Selección entre candidatos predefinidos solo por macro-F1 val; modelos ajustados solo train, sin refit train+val. Core selecciona49 de65 pero el pipeline calcula65: latencia incluye todo. SNR/IDs solo supervisión/evaluación. N/fs es adquisición virtual, separado de latencia CPU batch1. Tiempos son mediciones, no constantes reproducibles bit a bit ni consumo energético."
+}

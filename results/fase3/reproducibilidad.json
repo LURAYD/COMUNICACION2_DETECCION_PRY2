@@ -1,0 +1,54 @@
+{
+  "parents": 224,
+  "windows": 448,
+  "all_files_identical": true,
+  "files": {
+    "config.json": {
+      "sha256_original": "62a89ece395cf90155d57997851c529214c979ae2d08f95d6e76414ca60e6090",
+      "sha256_repeticion": "62a89ece395cf90155d57997851c529214c979ae2d08f95d6e76414ca60e6090",
+      "identicos": true
+    },
+    "public_metadata.json": {
+      "sha256_original": "206511bcfe77e1325163eee6e43ef127eb6c30cb275b52b9d60f995d6550d0de",
+      "sha256_repeticion": "206511bcfe77e1325163eee6e43ef127eb6c30cb275b52b9d60f995d6550d0de",
+      "identicos": true
+    },
+    "index.csv": {
+      "sha256_original": "53ce557077234207c75aea58fb3d11a70f06e5b568db8df83d95aa505c77712f",
+      "sha256_repeticion": "53ce557077234207c75aea58fb3d11a70f06e5b568db8df83d95aa505c77712f",
+      "identicos": true
+    },
+    "oracle/manifest.jsonl": {
+      "sha256_original": "8cedb1db86fe96bbff3a50841a4aba30b6f51b78b1a7c92c9aeb5b28ea5feaec",
+      "sha256_repeticion": "8cedb1db86fe96bbff3a50841a4aba30b6f51b78b1a7c92c9aeb5b28ea5feaec",
+      "identicos": true
+    },
+    "audit.json": {
+      "sha256_original": "5034976d261c4a5c56b9aa0cbfe3d93f0da1d4494e266ee30a4dc26e96a9c637",
+      "sha256_repeticion": "5034976d261c4a5c56b9aa0cbfe3d93f0da1d4494e266ee30a4dc26e96a9c637",
+      "identicos": true
+    },
+    "observations/train.npz": {
+      "sha256_original": "ab3e4a40025534d8569da2ad04d87bca367eae85c113d7623936931380b289f8",
+      "sha256_repeticion": "ab3e4a40025534d8569da2ad04d87bca367eae85c113d7623936931380b289f8",
+      "identicos": true
+    },
+    "observations/val.npz": {
+      "sha256_original": "ab9b4b7f1051569ded07b906466d1ad12c8417aefcf016b906463d669dce1506",
+      "sha256_repeticion": "ab9b4b7f1051569ded07b906466d1ad12c8417aefcf016b906463d669dce1506",
+      "identicos": true
+    },
+    "observations/test.npz": {
+      "sha256_original": "9a3d9c5a642bfdf0a367c5769155f98a56bbca5a209c3fd98f66ec7f32577d35",
+      "sha256_repeticion": "9a3d9c5a642bfdf0a367c5769155f98a56bbca5a209c3fd98f66ec7f32577d35",
+      "identicos": true
+    },
+    "observations/test_shift.npz": {
+      "sha256_original": "9c0db683f7570ff5c32b8ca04cab01bcbf1ccd4e08c479f983a95b565f3ae8c1",
+      "sha256_repeticion": "9c0db683f7570ff5c32b8ca04cab01bcbf1ccd4e08c479f983a95b565f3ae8c1",
+      "identicos": true
+    }
+  },
+  "dataset_total_bytes": 3005629,
+  "observation_bytes": 2754536
+}

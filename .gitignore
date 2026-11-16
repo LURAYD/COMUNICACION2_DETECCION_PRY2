@@ -1,0 +1,32 @@
+# Entorno virtual
+.venv/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribución / empaquetado
+build/
+dist/
+*.egg-info/
+
+# Logs y temporales
+*.log
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Datos regenerables y artefactos binarios pesados; conservar configs, código y evidencia resumida.
+data/
+tmp/
+.pytest_cache/
+*.pt
+*.joblib
+*.npz
+*.c64

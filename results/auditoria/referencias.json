@@ -1,0 +1,87 @@
+[
+  {
+    "archivo": "A_Survey_of_Deep_Transfer_Learning_in_Automatic_Modulation_Classification.pdf",
+    "paginas": 25,
+    "sha256": "18a425765a5ba6517accccc7fff3c74e72647b54c03eaedc5091df1ea6c7227e"
+  },
+  {
+    "archivo": "An_Uncertainty_Quantification_Framework_for_Deep_Learning-Based_Automatic_Modulation_Classification.pdf",
+    "paginas": 10,
+    "sha256": "3bb4307b8d66e3704e832f252aa6e899088f81f7dff84e786bef8f72117cbbf7"
+  },
+  {
+    "archivo": "BEACON_Benefit-Aware_Early-Exit_for_Automatic_Modulation_Classification_via_Recoverability_Prediction.pdf",
+    "paginas": 13,
+    "sha256": "169522f3ab69b33cbd2cb1a9c125c904dc188385b3e699bb6d5399d023362e35"
+  },
+  {
+    "archivo": "Fewer-Sample_Fast_Automatic_Modulation_Recognition_with_Multimodal_Deep_Learning_and_Resized_Signal_Representation.pdf",
+    "paginas": 6,
+    "sha256": "4d0be309bd94ea1763aad7d06c02ad06c87f76ff1a8ee5c090b46a97c33b3419"
+  },
+  {
+    "archivo": "FFTFormer_A_Frequency-Aware_Transformer_With_Multi-Task_Learning_for_Robust_Modulation_Recognition.pdf",
+    "paginas": 19,
+    "sha256": "a5742234061283a1ffe6750e5d1349edea9e4341367c52878acb6f5bca1b0869"
+  },
+  {
+    "archivo": "Formulas_Comunicaciones 2 (5).pdf",
+    "paginas": 2,
+    "sha256": "1b4a192d77eab39c41fd20d9d486ec6cbb341f0d7ecb0cd5cf5ad0a140c3aa06"
+  },
+  {
+    "archivo": "FPGA-based_Deep_Learning_Accelerator_for_RF_Applications.pdf",
+    "paginas": 6,
+    "sha256": "f49be623d0f05cbcd0b73df4ff70785efd9b32287856c4ce5405cfe702deb448"
+  },
+  {
+    "archivo": "FSOS-AMC_Few-Shot_Open-Set_Learning_for_Automatic_Modulation_Classification_Over_Multipath_Fading_Channels.pdf",
+    "paginas": 14,
+    "sha256": "2f690c8479b4e0511de57a5839f5683077cbef6716545ac04c52a07dd7e88d57"
+  },
+  {
+    "archivo": "Guia_proyectos_COMII 2026-3.pdf",
+    "paginas": 7,
+    "sha256": "6b46f04c169898df12430086dffcd47f81503756ed9cdd748640eef41f8abe8b"
+  },
+  {
+    "archivo": "Joint_Early_Exit_and_Structured_Pruning_for_Automatic_Modulation_Classification_in_Vehicular_Networks.pdf",
+    "paginas": 6,
+    "sha256": "bb661b8c14509254927db50e0a0314cdbd35824fb72af954853c0bdc9ca1192a"
+  },
+  {
+    "archivo": "Lightweight_Domain-Adaptive_Modulation_Classification_Under_SNR_and_Channel_Mismatch.pdf",
+    "paginas": 4,
+    "sha256": "36c49bec6e8afd491ab559dcca29ad04734b63359d5bfddf3bd57d438ecac156"
+  },
+  {
+    "archivo": "Mitigating_Interleaved_ADC_Mismatches_in_Automatic_Modulation_Classification_via_Sampling_Schemes_and_Layer_Fusion.pdf",
+    "paginas": 7,
+    "sha256": "07e81d99ccf98df1d25bb7790798cfdf80d82c02428de077aa0efcf1053d72c1"
+  },
+  {
+    "archivo": "MLEA-AMR_A_Multi-Domain_Lightweight_Expert_Framework_With_SNR-Conditioned_Attention_for_Robust_Automatic_Modulation_Recognition.pdf",
+    "paginas": 14,
+    "sha256": "75342fd51ff1ac73d901a9a34b1ea3089c20aa69c9afc6e1aaabbe941e93e11c"
+  },
+  {
+    "archivo": "Open-Set_Domain_Adaptation_for_Automatic_Modulation_Classification_via_Domain-Adaptive_Mixup_and_Prototype-Based_Representative_Learning.pdf",
+    "paginas": 12,
+    "sha256": "6dff52c413187d64295180fd61f5c389ce95cd1b2c8b5d88483535431c3ede68"
+  },
+  {
+    "archivo": "Optimal-Feature-Driven_Adversarial_Adaptive_Cascade_Forest_Method_for_Automatic_Modulation_Recognition.pdf",
+    "paginas": 19,
+    "sha256": "b4234245c33eafaeffe0ecf8807aff0c19a89fe865b1667013bb4bef034a68f5"
+  },
+  {
+    "archivo": "RML22_Realistic_Dataset_Generation_for_Wireless_Modulation_Classification.pdf",
+    "paginas": 13,
+    "sha256": "9abc19872378f87107bcaa05fb209b4dae0e976c6fc4b43be8218cbf3f00562c"
+  },
+  {
+    "archivo": "Single-shot_Detector_for_Joint_Signal_Detection_and_Modulation_Classification_with_Open-set_Recognition.pdf",
+    "paginas": 6,
+    "sha256": "e4be40a5eaa8b30729d97109c5b84625af9ae9726525f0084ee55c57f934084e"
+  }
+]

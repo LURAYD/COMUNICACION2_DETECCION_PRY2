@@ -1,0 +1,319 @@
+\relax 
+\citation{sathyanarayanan2023rml22,wang2025survey}
+\citation{gao2026mlea,quan2026fftformer}
+\citation{guo2025fewer,denboer2021fpga}
+\citation{denboer2021fpga}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{}\protected@file@percent }
+\newlabel{sec:introduction}{{I}{1}{}{section.1}{}}
+\newlabel{eq:t_acq_intro}{{1}{1}{}{equation.1}{}}
+\newlabel{eq:t_total_intro}{{2}{1}{}{equation.2}{}}
+\citation{liu2026beacon}
+\citation{mohammed2023early}
+\citation{liu2025joint}
+\citation{verbruggen2025width}
+\citation{guo2025fewer}
+\citation{sathyanarayanan2023rml22,wang2025survey}
+\citation{yang2026uncertainty}
+\citation{liu2026beacon}
+\citation{liu2026beacon}
+\citation{wang2025survey}
+\citation{sathyanarayanan2023rml22}
+\citation{sathyanarayanan2023rml22}
+\citation{sathyanarayanan2023rml22}
+\citation{sathyanarayanan2023rml22}
+\citation{guo2025fewer}
+\citation{guo2025fewer}
+\citation{guo2025fewer}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Architectural overview of the proposed Risk-Aware Joint Observation and Computation Allocation framework. Every incoming transmission is initially observed over a minimal short prefix of $N=256$ samples. The lightweight, sub-50-microsecond utility predictor (\texttt  {FastLBAPSelector}) evaluates empirical margin calibration, decision entropy, and spectral structure to selectively terminate immediately ($a_0$), request additional physical observation ($a_1$), or deploy deep multi-domain neural inference ($a_2$).}}{3}{}\protected@file@percent }
+\newlabel{fig:framework_overview}{{1}{3}{}{figure.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work and Background}{3}{}\protected@file@percent }
+\newlabel{sec:related_work}{{II}{3}{}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Data-Centric Realism and Foundational Datasets}{3}{}\protected@file@percent }
+\newlabel{subsec:rel_rml22}{{\mbox  {II-A}}{3}{}{subsection.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Physical Acquisition Delay vs. Algorithmic Computation Latency}{3}{}\protected@file@percent }
+\newlabel{subsec:rel_fewersample_fpga}{{\mbox  {II-B}}{3}{}{subsection.2.2}{}}
+\citation{denboer2021fpga}
+\citation{denboer2021fpga}
+\citation{zhang2024mamc}
+\citation{he2024edge}
+\citation{mohammed2023early}
+\citation{liu2026beacon}
+\citation{liu2026beacon}
+\citation{liu2026beacon}
+\citation{verbruggen2025width}
+\citation{liu2025joint}
+\citation{liu2025joint}
+\citation{gao2026mlea}
+\citation{gao2026mlea}
+\citation{gao2026mlea}
+\citation{gao2026mlea}
+\citation{quan2026fftformer}
+\citation{quan2026fftformer}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Dynamic Resource Allocation: Early-Exit, Width-Wise Exiting, and Pruning}{4}{}\protected@file@percent }
+\newlabel{subsec:rel_beacon_pruning}{{\mbox  {II-C}}{4}{}{subsection.2.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-D}}Multi-Domain Representation and High-Order Statistical Baselines}{4}{}\protected@file@percent }
+\newlabel{subsec:rel_multidomain_hoc}{{\mbox  {II-D}}{4}{}{subsection.2.4}{}}
+\citation{xia2026optimal}
+\citation{xia2026optimal}
+\citation{zhang2026cspmnet}
+\citation{gao2026mlea}
+\citation{wang2025survey}
+\citation{yang2026uncertainty}
+\citation{yang2026uncertainty}
+\citation{yang2026uncertainty}
+\citation{shahriar2026lightweight}
+\citation{shahriar2026lightweight}
+\citation{zhang2025fsos}
+\citation{li2026openset}
+\citation{li2026openset}
+\citation{wang2025survey}
+\citation{wang2025survey}
+\citation{gros2025mitigating}
+\citation{gros2025mitigating}
+\citation{gros2025mitigating}
+\citation{high2026singleshot}
+\citation{high2026singleshot}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-E}}Reliability, Calibration, and Domain Adaptation under RF Imperfections}{5}{}\protected@file@percent }
+\newlabel{subsec:rel_uq_da}{{\mbox  {II-E}}{5}{}{subsection.2.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-F}}Front-End Hardware Imperfections and Single-Shot Detection}{5}{}\protected@file@percent }
+\newlabel{subsec:rel_adc_singleshot}{{\mbox  {II-F}}{5}{}{subsection.2.6}{}}
+\citation{sathyanarayanan2023rml22}
+\citation{liu2026beacon}
+\citation{guo2025fewer}
+\citation{yang2026uncertainty}
+\citation{shahriar2026lightweight}
+\citation{gao2026mlea}
+\citation{xia2026optimal}
+\citation{liu2025joint}
+\citation{quan2026fftformer}
+\citation{gros2025mitigating}
+\citation{denboer2021fpga}
+\citation{wang2025survey}
+\citation{zhang2025fsos}
+\citation{li2026openset}
+\citation{high2026singleshot}
+\citation{guo2025fewer}
+\citation{liu2026beacon}
+\citation{mohammed2023early}
+\citation{liu2025joint}
+\citation{verbruggen2025width}
+\citation{gao2026mlea}
+\citation{xia2026optimal}
+\citation{quan2026fftformer}
+\citation{li2026openset}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-G}}Literature Synthesis and Research Gap}{6}{}\protected@file@percent }
+\newlabel{subsec:rel_matrix_gap}{{\mbox  {II-G}}{6}{}{subsection.2.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}System Model and Problem Formulation}{6}{}\protected@file@percent }
+\newlabel{sec:system_model}{{III}{6}{}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Transmitted Signal and Pulse Shaping Model}{6}{}\protected@file@percent }
+\newlabel{subsec:tx_signal}{{\mbox  {III-A}}{6}{}{subsection.3.1}{}}
+\newlabel{eq:srrc_continuous}{{10}{6}{}{equation.10}{}}
+\citation{gao2026mlea,quan2026fftformer}
+\citation{gros2025mitigating}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Comprehensive Methodological Comparison of the 15 Literature Papers and the Proposed Framework}}{7}{}\protected@file@percent }
+\newlabel{tab:literature_matrix}{{I}{7}{}{table.1}{}}
+\newlabel{eq:tx_baseband}{{13}{7}{}{equation.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Wireless Propagation Channel and RF Impairments}{7}{}\protected@file@percent }
+\newlabel{subsec:channel_model}{{\mbox  {III-B}}{7}{}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}1}Discrete Multipath Propagation (FIR Filter)}{7}{}\protected@file@percent }
+\newlabel{eq:multipath}{{14}{7}{}{equation.14}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}2}Carrier Frequency Offset (CFO) and Initial Phase Rotation}{7}{}\protected@file@percent }
+\newlabel{eq:cfo_rotation}{{15}{7}{}{equation.15}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}3}Additive White Gaussian Noise (AWGN)}{7}{}\protected@file@percent }
+\newlabel{eq:awgn_addition}{{16}{7}{}{equation.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Virtual Front-End Uniform Mid-Rise ADC Model}{7}{}\protected@file@percent }
+\newlabel{subsec:adc_model}{{\mbox  {III-C}}{7}{}{subsection.3.3}{}}
+\citation{gao2026mlea,li2026openset}
+\citation{sathyanarayanan2023rml22,guo2025fewer}
+\citation{xia2026optimal}
+\newlabel{eq:adc_step}{{19}{8}{}{equation.19}{}}
+\newlabel{eq:adc_clip}{{20}{8}{}{equation.20}{}}
+\newlabel{eq:adc_index}{{21}{8}{}{equation.21}{}}
+\newlabel{eq:adc_reconstruct}{{22}{8}{}{equation.22}{}}
+\newlabel{eq:adc_complex_out}{{23}{8}{}{equation.23}{}}
+\newlabel{eq:sqnr_eval}{{24}{8}{}{equation.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}AMC Problem Formulation and Zero-Leakage Protocol}{8}{}\protected@file@percent }
+\newlabel{subsec:problem_formulation}{{\mbox  {III-D}}{8}{}{subsection.3.4}{}}
+\newlabel{eq:sample_norm_1}{{25}{8}{}{equation.25}{}}
+\newlabel{eq:sample_norm_2}{{26}{8}{}{equation.26}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-D}1}Strict Zero-Leakage Guarantee}{8}{}\protected@file@percent }
+\newlabel{eq:batch_independence_theorem}{{27}{8}{}{equation.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Multi-Domain Feature Representation and Expert Architecture}{8}{}\protected@file@percent }
+\newlabel{sec:architecture}{{IV}{8}{}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Physics-Informed Multi-Domain Tensor Extraction}{9}{}\protected@file@percent }
+\newlabel{subsec:tensor_extraction}{{\mbox  {IV-A}}{9}{}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-A}1}Domain 1: Multipath-Immune Coarse CFO, RRC Matched Filter Bank, and Temporal Tensor}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-A}2}Domain 2: Multi-Harmonic Spectral Tensor ($\mathbf  {S} \in \mathbb  {R}^{6 \times N}$)}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-A}3}Domain 3: Matched-Filtered Polyphase and Ring Profile Tensor ($\mathbf  {P} \in \mathbb  {R}^{25 \times 32}$)}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IV-A}4}Domain 4: Multi-Scale Cumulant and Constellation Quantile Vector ($\mathbf  {v}_{\text  {stat}} \in \mathbb  {R}^{120}$)}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}MultiDomainAMCNet Expert Architecture}{9}{}\protected@file@percent }
+\newlabel{subsec:expert_architecture}{{\mbox  {IV-B}}{9}{}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Adaptive Cross-Domain Gating and Classification Head}{9}{}\protected@file@percent }
+\newlabel{subsec:cross_domain_gating}{{\mbox  {IV-C}}{9}{}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}In-VRAM Physics Synthesis and Strict Zero-Leakage Training}{9}{}\protected@file@percent }
+\newlabel{subsec:gpu_synthesizer}{{\mbox  {IV-D}}{9}{}{subsection.4.4}{}}
+\citation{gao2026mlea}
+\citation{quan2026fftformer}
+\citation{liu2026beacon}
+\citation{guo2025fewer}
+\citation{liu2026beacon,denboer2021fpga}
+\citation{guo2025fewer}
+\citation{liu2026beacon}
+\citation{liu2025joint}
+\citation{xia2026optimal}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Physics-informed architecture of \texttt  {MultiDomainAMCNet} ($a_2$, $8.10\text  {M}$ parameters). Band-edge spectral coarse CFO tracking and an in-GPU RRC matched-filter bank precede parallel SE-ResNet, harmonic spectral, polyphase symbol Transformer, and statistical-quantile branches.}}{10}{}\protected@file@percent }
+\newlabel{fig:multidomain_architecture}{{2}{10}{}{figure.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Joint Observation-Computation Adaptive Policy via Fast LBAP}{10}{}\protected@file@percent }
+\newlabel{sec:adaptive_policy}{{V}{10}{}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Tripartite Action Space and Zero-Leakage Observable Prefix}{10}{}\protected@file@percent }
+\newlabel{subsec:action_space}{{\mbox  {V-A}}{10}{}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Architectural Comparison: MultiDomainAMCNet vs. State-of-the-Art Deep AMC Baselines}}{11}{}\protected@file@percent }
+\newlabel{tab:arch_comparison}{{II}{11}{}{table.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Sequential execution pipeline of the proposed joint observation-computation policy. The gating decision $\pi (\mathbf  {g})$ is reached in $<0.05\,\mathrm  {ms}$ from prefix observables, branching into immediate termination ($a_0$), physical window extension ($a_1$), or GPU multi-domain neural escalation ($a_2$).}}{11}{}\protected@file@percent }
+\newlabel{fig:pipeline_flowchart}{{3}{11}{}{figure.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Operational Characteristics of the Tripartite Action Set $\mathcal  {A}$}}{11}{}\protected@file@percent }
+\newlabel{tab:action_characteristics}{{III}{11}{}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Strict Latency Decomposition and Sequential Cost Modeling}{11}{}\protected@file@percent }
+\newlabel{subsec:latency_decomposition}{{\mbox  {V-B}}{11}{}{subsection.5.2}{}}
+\newlabel{eq:t_total_general}{{28}{11}{}{equation.28}{}}
+\newlabel{eq:t_acq}{{29}{11}{}{equation.29}{}}
+\newlabel{eq:t_comp_a0}{{30}{11}{}{equation.30}{}}
+\newlabel{eq:t_comp_a1}{{31}{11}{}{equation.31}{}}
+\newlabel{eq:t_comp_a2}{{32}{11}{}{equation.32}{}}
+\citation{liu2026beacon,liu2025joint}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Taxonomy of joint classification events between baseline $a_0$ and complex action $a_k \in \{a_1, a_2\}$. Escalate decisions are profitable \emph  {only} in Quadrant $C_{01}$ (recoverable errors). Confidence thresholds cannot distinguish $C_{01}$ from $C_{00}$, squandering budget in deep-noise regimes.}}{12}{}\protected@file@percent }
+\newlabel{fig:recoverability_quadrants}{{4}{12}{}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Net Utility Formulation: Recoverability vs. Irrecuperability}{12}{}\protected@file@percent }
+\newlabel{subsec:net_utility}{{\mbox  {V-C}}{12}{}{subsection.5.3}{}}
+\newlabel{eq:net_utility_def}{{33}{12}{}{equation.33}{}}
+\newlabel{eq:bayes_optimal_policy}{{34}{12}{}{equation.34}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-C}1}The Failure of Confidence-Threshold Early Exiting}{12}{}\protected@file@percent }
+\newlabel{eq:conf_policy}{{35}{12}{}{equation.35}{}}
+\newlabel{eq:delta_utility}{{36}{12}{}{equation.36}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-C}2}Physical Bifurcation of Recoverable Errors}{12}{}\protected@file@percent }
+\newlabel{eq:bifurcation}{{37}{12}{}{equation.37}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Fast LBAP Selector Architecture and Formulation}{12}{}\protected@file@percent }
+\newlabel{subsec:lbap_architecture}{{\mbox  {V-D}}{12}{}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-D}1}Gating Representation Vector $\mathbf  {g} \in \mathbb  {R}^{74}$}{12}{}\protected@file@percent }
+\citation{yang2026uncertainty}
+\citation{yang2026uncertainty}
+\newlabel{eq:decision_entropy}{{38}{13}{}{equation.38}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-D}2}Hybrid Ridge--MLP Estimator}{13}{}\protected@file@percent }
+\newlabel{eq:input_standardization}{{39}{13}{}{equation.39}{}}
+\newlabel{eq:ridge_path}{{40}{13}{}{equation.40}{}}
+\newlabel{eq:ridge_closed_form}{{41}{13}{}{equation.41}{}}
+\newlabel{eq:mlp_hidden}{{42}{13}{}{equation.42}{}}
+\newlabel{eq:mlp_output}{{43}{13}{}{equation.43}{}}
+\newlabel{eq:huber_loss}{{44}{13}{}{equation.44}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-D}3}Convex Ensembling and Action Selection}{13}{}\protected@file@percent }
+\newlabel{eq:blended_utility}{{45}{13}{}{equation.45}{}}
+\newlabel{eq:final_action_choice}{{46}{13}{}{equation.46}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-E}}Rigorous Probabilistic Calibration and Temperature Scaling}{13}{}\protected@file@percent }
+\newlabel{subsec:calibration}{{\mbox  {V-E}}{13}{}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-E}1}Margin-Based Platt Calibration for Baseline $a_0$}{13}{}\protected@file@percent }
+\newlabel{eq:platt_margin}{{47}{13}{}{equation.47}{}}
+\newlabel{eq:logistic_cal_loss}{{48}{13}{}{equation.48}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-E}2}Temperature Scaling for Deep Expert $a_2$}{13}{}\protected@file@percent }
+\newlabel{eq:temp_scaling}{{49}{13}{}{equation.49}{}}
+\newlabel{eq:temp_nll_opt}{{50}{13}{}{equation.50}{}}
+\citation{sathyanarayanan2023rml22,wang2025survey}
+\citation{sathyanarayanan2023rml22}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Conceptual Risk--Latency Pareto frontier at $f_s = 8\,\mathrm  {kHz}$. At low sampling rates, the physical waiting penalty of $a_1$ ($+32\,\mathrm  {ms}$) exceeds the isolated neural pass $T_{\mathrm  {base}, 2} = 24.15\,\mathrm  {ms}$ ($66.27\,\mathrm  {ms}$ vs. $56.15\,\mathrm  {ms}$ total); Fast LBAP routes across $\{a_0,a_1,a_2\}$ to achieve lower mean latency ($52.56\,\mathrm  {ms}$) than standalone $a_2$ at slightly higher accuracy.}}{14}{}\protected@file@percent }
+\newlabel{fig:pareto_conceptual}{{5}{14}{}{figure.5}{}}
+\newlabel{eq:ece_def}{{51}{14}{}{equation.51}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-F}}Pareto Optimality across Latency Regimes and Sampling Frequencies}{14}{}\protected@file@percent }
+\newlabel{subsec:pareto_formulation}{{\mbox  {V-F}}{14}{}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-F}1}Parametric Sensitivity to Trade-Off Coefficient $\lambda $}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-F}2}Asymptotic Inversion with Sampling Rate $f_s$}{14}{}\protected@file@percent }
+\newlabel{eq:limit_fs_inf}{{52}{14}{}{equation.52}{}}
+\newlabel{eq:limit_fs_zero}{{53}{14}{}{equation.53}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Experimental Methodology, Zero-Leakage Protocol, and Threats to Validity}{14}{}\protected@file@percent }
+\newlabel{sec:methodology_validity}{{VI}{14}{}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Unit of Independence and Strict Partitioning}{14}{}\protected@file@percent }
+\newlabel{subsec:unit_independence}{{\mbox  {VI-A}}{14}{}{subsection.6.1}{}}
+\citation{gao2026mlea}
+\citation{guo2025fewer}
+\citation{guo2025fewer,liu2026beacon}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}Zero-Leakage Information Barrier}{15}{}\protected@file@percent }
+\newlabel{subsec:zero_leakage}{{\mbox  {VI-B}}{15}{}{subsection.6.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Architectural representation of the zero-leakage information barrier. Candidate models ($a_0, a_1, a_2$) and the LBAP action selector operate strictly on observable complex baseband sequences $\mathbf  {r}_{1:N}$ without access to oracle channel parameters, true CFO, nominal SNR, or future samples.}}{15}{}\protected@file@percent }
+\newlabel{fig:information_barrier}{{6}{15}{}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}Latency Profiling and Virtual Acquisition Decomposition}{15}{}\protected@file@percent }
+\newlabel{subsec:latency_protocol}{{\mbox  {VI-C}}{15}{}{subsection.6.3}{}}
+\citation{denboer2021fpga}
+\citation{liu2026beacon}
+\citation{gros2025mitigating}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-D}}Threats to Validity}{16}{}\protected@file@percent }
+\newlabel{subsec:threats_validity}{{\mbox  {VI-D}}{16}{}{subsection.6.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-D}1}Internal Validity}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-D}2}Construct Validity}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VI-D}3}External Validity}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Experimental Results and Discussion}{16}{}\protected@file@percent }
+\newlabel{sec:results_discussion}{{VII}{16}{}{section.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Classification Performance and Latency on Holdout Datasets}}{17}{}\protected@file@percent }
+\newlabel{tab:holdout_performance}{{IV}{17}{}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-A}}Physical-Layer Energy Detection and Noise-Drift Sensitivity (Stage 1)}{17}{}\protected@file@percent }
+\newlabel{subsec:energy_detection_results}{{\mbox  {VII-A}}{17}{}{subsection.7.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-B}}Overall Holdout Evaluation, OOD Domain Shift, and SNR Stratification}{17}{}\protected@file@percent }
+\newlabel{subsec:holdout_performance}{{\mbox  {VII-B}}{17}{}{subsection.7.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-B}1}In-Distribution Generalization and Neural Surge}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-B}2}Oracle Ensembling Bounds}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-B}3}Honest Out-of-Distribution Shift Degradation}{17}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Holdout evaluation across SNR regimes. (a) Classification accuracy versus nominal SNR for standalone actions and Fast LBAP on in-distribution test data. (b) Dynamic action allocation fractions across SNR under Fast LBAP at $f_s = 8\,\mathrm  {kHz}$ ($\lambda = 0.0015\,\mathrm  {ms}^{-1}$). (c) Out-of-distribution domain shift accuracy comparison under severe CFO ($200$--$300\,\mathrm  {Hz}$) and excess multipath delays ($9$ and $13$ samples). (d) Action allocation fractions under OOD domain shift.}}{18}{}\protected@file@percent }
+\newlabel{fig:snr_accuracy_and_actions}{{7}{18}{}{figure.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-C}}Per-Class Modulation Discrimination and Counterfactual Recoverability}{18}{}\protected@file@percent }
+\newlabel{subsec:per_class_recoverability}{{\mbox  {VII-C}}{18}{}{subsection.7.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-C}1}Per-Class Synergistic Superiority}{18}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Per-Class Accuracy and Counterfactual Recoverability}}{18}{}\protected@file@percent }
+\newlabel{tab:per_class_counterfactual}{{V}{18}{}{table.5}{}}
+\citation{liu2026beacon}
+\citation{guo2025fewer}
+\citation{liu2026beacon}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-C}2}Counterfactual Accounting: Recoverability vs. Irrecuperability}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-D}}Input Representation and Action Space Ablations with Bootstrap Significance}{19}{}\protected@file@percent }
+\newlabel{subsec:ablations_bootstrap}{{\mbox  {VII-D}}{19}{}{subsection.7.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-D}1}Why Compact 2-Feature State (I2) Edges Full State (I4) In-Distribution}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-D}2}Action Space Synergy}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-E}}Sampling-Rate Asymptotic Inversion and Pareto Frontier Dynamics}{19}{}\protected@file@percent }
+\newlabel{subsec:pareto_fs_dynamics}{{\mbox  {VII-E}}{19}{}{subsection.7.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-E}1}Physical Crossover: Narrowband vs. Wideband Regimes}{19}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Policy Input and Action Space Ablation with Paired Stratified Bootstrap Significance ($10{,}000$ Replicates)}}{20}{}\protected@file@percent }
+\newlabel{tab:ablation_bootstrap}{{VI}{20}{}{table.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Empirical Risk--Latency Pareto frontier ($1 - \mathrm  {Accuracy}$ vs. $T_{\mathrm  {total}}$) across ablated policies on both the in-distribution test set (left) and out-of-distribution channel shift (right). Fast LBAP and compact I2 form the Pareto-optimal frontier in-distribution, while tri-action Fast LBAP dominates standalone classifiers under domain shift.}}{20}{}\protected@file@percent }
+\newlabel{fig:pareto_ablation_frontier}{{8}{20}{}{figure.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Sampling-Rate ($f_s$) and Latency Penalty ($\lambda $) Trade-Off Dynamics}}{20}{}\protected@file@percent }
+\newlabel{tab:pareto_fs_crossover}{{VII}{20}{}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-F}}Posterior Calibration and Low-Bit ADC Quantization Resilience}{20}{}\protected@file@percent }
+\newlabel{subsec:calibration_adc_resilience}{{\mbox  {VII-F}}{20}{}{subsection.7.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-F}1}Probabilistic Uncertainty Calibration}{20}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {VII-F}2}Virtual ADC Quantization Breakdown}{20}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {VIII}{\ignorespaces Posterior Uncertainty Calibration and Virtual ADC Quantization Resilience}}{21}{}\protected@file@percent }
+\newlabel{tab:calibration_and_adc}{{VIII}{21}{}{table.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Classification accuracy under virtual uniform mid-rise ADC quantization from floating-point down to $4$-bit resolution ($\mathrm  {SQNR} = 7.87\,\mathrm  {dB}$) on ID test (left) and OOD shift (right). MultiDomainAMCNet sustains $44.96\%$--$46.50\%$ accuracy at $4$ bits in-distribution, whereas conventional SVM classifiers collapse to $23.46\%$--$24.08\%$.}}{21}{}\protected@file@percent }
+\newlabel{fig:adc_quantization_robustness}{{9}{21}{}{figure.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Conclusion}{21}{}\protected@file@percent }
+\newlabel{sec:conclusion}{{VIII}{21}{}{section.8}{}}
+\bibstyle{IEEEtran}
+\bibdata{references}
+\bibcite{sathyanarayanan2023rml22}{1}
+\bibcite{wang2025survey}{2}
+\bibcite{gao2026mlea}{3}
+\bibcite{quan2026fftformer}{4}
+\bibcite{guo2025fewer}{5}
+\bibcite{denboer2021fpga}{6}
+\bibcite{liu2026beacon}{7}
+\bibcite{mohammed2023early}{8}
+\bibcite{liu2025joint}{9}
+\bibcite{verbruggen2025width}{10}
+\bibcite{yang2026uncertainty}{11}
+\bibcite{zhang2024mamc}{12}
+\bibcite{he2024edge}{13}
+\bibcite{xia2026optimal}{14}
+\bibcite{zhang2026cspmnet}{15}
+\bibcite{shahriar2026lightweight}{16}
+\bibcite{zhang2025fsos}{17}
+\bibcite{li2026openset}{18}
+\bibcite{gros2025mitigating}{19}
+\bibcite{high2026singleshot}{20}
+\@writefile{toc}{\contentsline {section}{References}{22}{}\protected@file@percent }
+\gdef \@abspage@last{22}

@@ -1,0 +1,95 @@
+{
+  "seed": 2026110504,
+  "fs_hz": 8000,
+  "api_arguments": [
+    "iq",
+    "fs_hz"
+  ],
+  "scope": "Demostración de API, no métrica de exactitud; seis padres nuevos y sus dos prefijos.",
+  "predictions": [
+    {
+      "observation_id": "demo_0",
+      "modulation": "BPSK",
+      "n_samples": 256,
+      "scope": "closed_set_signal_present",
+      "scores_calibrated": false
+    },
+    {
+      "observation_id": "demo_0",
+      "modulation": "BPSK",
+      "n_samples": 512,
+      "scope": "closed_set_signal_present",
+      "scores_calibrated": false
+    },
+    {
+      "observation_id": "demo_1",
+      "modulation": "QPSK",
+      "n_samples": 256,
+      "scope": "closed_set_signal_present",
+      "scores_calibrated": false
+    },
+    {
+      "observation_id": "demo_1",
+      "modulation": "QPSK",
+      "n_samples": 512,
+      "scope": "closed_set_signal_present",
+      "scores_calibrated": false
+    },
+    {
+      "observation_id": "demo_2",
+      "modulation": "8PSK",
+      "n_samples": 256,
+      "scope": "closed_set_signal_present",
+      "scores_calibrated": false
+    },
+    {
+      "observation_id": "demo_2",
+      "modulation": "8PSK",
+      "n_samples": 512,
+      "scope": "closed_set_signal_present",
+      "scores_calibrated": false
+    },
+    {
+      "observation_id": "demo_3",
+      "modulation": "16QAM",
+      "n_samples": 256,
+      "scope": "closed_set_signal_present",
+      "scores_calibrated": false
+    },
+    {
+      "observation_id": "demo_3",
+      "modulation": "8PSK",
+      "n_samples": 512,
+      "scope": "closed_set_signal_present",
+      "scores_calibrated": false
+    },
+    {
+      "observation_id": "demo_4",
+      "modulation": "16QAM",
+      "n_samples": 256,
+      "scope": "closed_set_signal_present",
+      "scores_calibrated": false
+    },
+    {
+      "observation_id": "demo_4",
+      "modulation": "64QAM",
+      "n_samples": 512,
+      "scope": "closed_set_signal_present",
+      "scores_calibrated": false
+    },
+    {
+      "observation_id": "demo_5",
+      "modulation": "4PAM",
+      "n_samples": 256,
+      "scope": "closed_set_signal_present",
+      "scores_calibrated": false
+    },
+    {
+      "observation_id": "demo_5",
+      "modulation": "4PAM",
+      "n_samples": 512,
+      "scope": "closed_set_signal_present",
+      "scores_calibrated": false
+    }
+  ]
+}

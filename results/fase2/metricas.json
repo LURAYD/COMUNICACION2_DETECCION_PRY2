@@ -1,0 +1,139 @@
+{
+  "seed": 2026,
+  "versiones": {
+    "python": "3.11.0",
+    "numpy": "2.4.6",
+    "matplotlib": "3.11.2"
+  },
+  "fuentes_sha256": {
+    "src/signals.py": "2f368e04acca974c7359b10f49844615c5854ff16d78cbe97053f7be000159f9",
+    "src/waveform.py": "0afa65f590950753892a8a85ece30ad457c4f13c4525d9e8d00c2a19b82000a5",
+    "src/channels.py": "1ae4b0d2619de226bdae953a4a7f8f53c2af6dcf07dd8b8f8f9846d89dc00984",
+    "experiments/diagnostico_fase2.py": "561aed26663fde294e2c3d3aa2a0e9f672863fc7873b0f9978aebd9731bd5c6b"
+  },
+  "parametros": {
+    "rs_baud": 1000,
+    "sps": 8,
+    "fs_hz": 8000,
+    "beta": 0.35,
+    "span": 10,
+    "phase_rad": 0.6,
+    "cfo_hz": 75.0,
+    "snr_db": 10.0,
+    "sample_offset": 0,
+    "taps_real_imag": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.35
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.07500000000000001,
+        -0.12990381056766578
+      ]
+    ],
+    "retardos_no_nulos_muestras": [
+      0,
+      2,
+      5
+    ]
+  },
+  "longitudes": {
+    "simbolos": 4096,
+    "rrc": 81,
+    "limpia": 32848,
+    "canal": 32853
+  },
+  "potencias": {
+    "limpia": 0.12468280454449929,
+    "multipath": 0.14226623210046002,
+    "portadora": 0.14226623210046002,
+    "ruido": 0.01417970626880033,
+    "recibida": 0.15655184853633033
+  },
+  "awgn": {
+    "snr_medida_db": 10.014345948661685,
+    "varianza_i": 0.0070684894765836144,
+    "varianza_q": 0.007111100855443753,
+    "varianza_objetivo_componente": 0.007113311605023001
+  },
+  "continuidad_portadora_error_max": 0.0,
+  "barrido_awgn": [
+    {
+      "snr_nominal_db": -10,
+      "amplitud": 0.5,
+      "snr_medida_db": -9.977053807538251
+    },
+    {
+      "snr_nominal_db": -10,
+      "amplitud": 1.0,
+      "snr_medida_db": -10.000597730754881
+    },
+    {
+      "snr_nominal_db": -10,
+      "amplitud": 1.5,
+      "snr_medida_db": -9.993952944127178
+    },
+    {
+      "snr_nominal_db": 0,
+      "amplitud": 0.5,
+      "snr_medida_db": -0.02471840725874835
+    },
+    {
+      "snr_nominal_db": 0,
+      "amplitud": 1.0,
+      "snr_medida_db": 0.0059248641718097255
+    },
+    {
+      "snr_nominal_db": 0,
+      "amplitud": 1.5,
+      "snr_medida_db": -0.0344527961001126
+    },
+    {
+      "snr_nominal_db": 10,
+      "amplitud": 0.5,
+      "snr_medida_db": 10.007990627085432
+    },
+    {
+      "snr_nominal_db": 10,
+      "amplitud": 1.0,
+      "snr_medida_db": 10.03854971437067
+    },
+    {
+      "snr_nominal_db": 10,
+      "amplitud": 1.5,
+      "snr_medida_db": 10.012357018164009
+    },
+    {
+      "snr_nominal_db": 20,
+      "amplitud": 0.5,
+      "snr_medida_db": 19.982394172503323
+    },
+    {
+      "snr_nominal_db": 20,
+      "amplitud": 1.0,
+      "snr_medida_db": 20.01759921457409
+    },
+    {
+      "snr_nominal_db": 20,
+      "amplitud": 1.5,
+      "snr_medida_db": 19.97991632735144
+    }
+  ],
+  "nota": "Parámetros de ingeniería ilustrativos; métricas oracle solo para validar el simulador. No es un dataset."
+}

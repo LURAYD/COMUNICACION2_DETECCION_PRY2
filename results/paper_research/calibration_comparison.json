@@ -1,0 +1,38 @@
+{
+  "test": {
+    "a0_logistic_margin": {
+      "brier": 0.2460974474255452,
+      "nll": 0.68531635246205,
+      "ece10": 0.008270474524622928
+    },
+    "a2_multidomain_uncalibrated_max_softmax": {
+      "brier": 0.13871063581964058,
+      "nll": 0.4236265902038819,
+      "ece10": 0.029043640730281654
+    },
+    "a2_multidomain_temperature_scaled": {
+      "brier": 0.13844594571053961,
+      "nll": 0.4216019109622963,
+      "ece10": 0.024235149888942622,
+      "temperature": 0.917102575302124
+    }
+  },
+  "test_shift": {
+    "a0_logistic_margin": {
+      "brier": 0.22721857494145184,
+      "nll": 0.6473034313850405,
+      "ece10": 0.12599085401171595
+    },
+    "a2_multidomain_uncalibrated_max_softmax": {
+      "brier": 0.20869535008111653,
+      "nll": 0.6120012157328892,
+      "ece10": 0.12384920267388226
+    },
+    "a2_multidomain_temperature_scaled": {
+      "brier": 0.21284543007362966,
+      "nll": 0.6257117606555888,
+      "ece10": 0.1381647635065019,
+      "temperature": 0.917102575302124
+    }
+  }
+}

@@ -1,0 +1,541 @@
+{
+  "schema_version": 1,
+  "parents": 224,
+  "windows": 448,
+  "splits_disjoint": true,
+  "prefixes_exact": true,
+  "config_sha256": "552f5ff905db77f7fb47d519a4d621996437a38f1007f61a30488015dae14d65",
+  "splits": {
+    "train": {
+      "parents": 56,
+      "signal_parents": 48,
+      "noise_only_parents": 8,
+      "class_snr_counts": [
+        {
+          "modulation": "16QAM",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "16QAM",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "16QAM",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "16QAM",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": 20,
+          "count": 2
+        }
+      ],
+      "measured_window_snr_db_min": -10.289042409210582,
+      "measured_window_snr_db_max": 20.996674458812148,
+      "iq512_sha256": "bff1b981e71742ce295e5d2d642412d7cf3de11590672b7f0fe49658c33dc57a"
+    },
+    "val": {
+      "parents": 56,
+      "signal_parents": 48,
+      "noise_only_parents": 8,
+      "class_snr_counts": [
+        {
+          "modulation": "16QAM",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "16QAM",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "16QAM",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "16QAM",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": 20,
+          "count": 2
+        }
+      ],
+      "measured_window_snr_db_min": -10.158660162878272,
+      "measured_window_snr_db_max": 20.84929419449212,
+      "iq512_sha256": "e6003dee44289c7bcc9f94873f5c3c54b51b029273c436e06be2d465f798c060"
+    },
+    "test": {
+      "parents": 56,
+      "signal_parents": 48,
+      "noise_only_parents": 8,
+      "class_snr_counts": [
+        {
+          "modulation": "16QAM",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "16QAM",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "16QAM",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "16QAM",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": 20,
+          "count": 2
+        }
+      ],
+      "measured_window_snr_db_min": -10.007329108763678,
+      "measured_window_snr_db_max": 20.732401026485846,
+      "iq512_sha256": "d02d4f4c6e29a0fd1131e302bf393bb9953fe5d3bcfd2b9afb311dfe4759ec2b"
+    },
+    "test_shift": {
+      "parents": 56,
+      "signal_parents": 48,
+      "noise_only_parents": 8,
+      "class_snr_counts": [
+        {
+          "modulation": "16QAM",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "16QAM",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "16QAM",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "16QAM",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "4PAM",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "64QAM",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "8PSK",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "BPSK",
+          "snr_db": 20,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": -10,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": 0,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": 10,
+          "count": 2
+        },
+        {
+          "modulation": "QPSK",
+          "snr_db": 20,
+          "count": 2
+        }
+      ],
+      "measured_window_snr_db_min": -10.128039171061207,
+      "measured_window_snr_db_max": 21.174453880088464,
+      "iq512_sha256": "907cfe7c5fd04252c3942e9fa2e556ffeeab1e27540d9d02fab050be93f843d4"
+    }
+  },
+  "versions": {
+    "python": "3.11.0",
+    "numpy": "2.4.6"
+  },
+  "sources_sha256": {
+    "src/dataset.py": "92b8705b8d027e4316186cea687d384fcf8957b5d3e504940caffb9e67e77180",
+    "src/signals.py": "2f368e04acca974c7359b10f49844615c5854ff16d78cbe97053f7be000159f9",
+    "src/waveform.py": "0afa65f590950753892a8a85ece30ad457c4f13c4525d9e8d00c2a19b82000a5",
+    "src/channels.py": "1ae4b0d2619de226bdae953a4a7f8f53c2af6dcf07dd8b8f8f9846d89dc00984"
+  },
+  "limits": "Smoke, no accuracy ni estimación ciega de SNR. IDs/semillas separados no demuestran independencia estadística absoluta."
+}

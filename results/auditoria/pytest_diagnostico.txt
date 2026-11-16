@@ -1,0 +1,15 @@
+..........xxxxxx..........                                               [100%]
+============================== warnings summary ===============================
+src\test_signal.py:26
+  C:\PROYECTO_COM2_2026\COM2_Proyecto2\src\test_signal.py:26: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+    plt.show()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+XFAIL tests/test_auditoria.py::test_qpsk_disponible - QPSK todav�a no implementada
+XFAIL tests/test_auditoria.py::test_bpsk_rechaza_vacio - BPSK acepta entrada vac�a
+XFAIL tests/test_auditoria.py::test_bpsk_rechaza_matriz - BPSK permite arreglos 2D
+XFAIL tests/test_auditoria.py::test_bpsk_uint8 - Resta sin signo en BPSK produce 255
+XFAIL tests/test_auditoria.py::test_qam_bits_float[qam16_modulation-4] - QAM valida floats binarios pero los usa como �ndices
+XFAIL tests/test_auditoria.py::test_qam_bits_float[qam64_modulation-6] - QAM valida floats binarios pero los usa como �ndices
+20 passed, 6 xfailed, 1 warning in 2.05s

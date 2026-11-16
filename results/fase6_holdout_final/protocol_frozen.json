@@ -1,0 +1,49 @@
+{
+  "models": {
+    "cnn_original": {
+      "path": "results/fase6/best.pt",
+      "sha256": "0a0dbf72d161c004a5f87b9ee59de42916a696362cf0061e60de2c1045128477"
+    },
+    "cnn_phase": {
+      "path": "results/fase6_phase_aug/best.pt",
+      "sha256": "f8a16dddc3d666c147477bf8c112b766909e77edb6ea16b9149db88c9c56ad52"
+    },
+    "svm256": {
+      "path": "results/fase5/conventional_256.joblib",
+      "sha256": "02d70d55b912c22394e5550cc978b785f45db1e26872f5b0bef3799fe358858f"
+    },
+    "svm512": {
+      "path": "results/fase5/conventional_512.joblib",
+      "sha256": "3c71dfa378c526f9dbce0732475a721b13c7f8587d47e3b6d7c50c380d04d45c"
+    }
+  },
+  "dataset_hashes": {
+    "data\\fase6_holdout_sellado\\audit.json": "3f80fc17b08017993fec3f4710d9bc76ad72fa48db9c5ca60384cdfa86eef685",
+    "data\\fase6_holdout_sellado\\config.json": "c4558b029b121f1007d498863147e1843ab6fe75ac1f4c0d5abe2a32907d56e3",
+    "data\\fase6_holdout_sellado\\index.csv": "9d0120f4cb4683063186f0ba64700ff1849663a4f73ab54589ffd6acc846a65c",
+    "data\\fase6_holdout_sellado\\observations\\test.npz": "25f687af0083632df1f938034d3362d83057d7ac509a1acf687a04f9e21cf17b",
+    "data\\fase6_holdout_sellado\\observations\\test_shift.npz": "26991385f41d3829a8961ae35a9f3ad93e6c969f7637a2dd4489c5ddbd7c0a9c",
+    "data\\fase6_holdout_sellado\\observations\\train.npz": "2da3a597bc0035c205faf535b14db3c91e913ddcb13dac27b5b4753a7fa0751b",
+    "data\\fase6_holdout_sellado\\observations\\val.npz": "ebe4bee34e9d59e4586d0e81e6611d04237e4106c958b7c65d73739407335530",
+    "data\\fase6_holdout_sellado\\public_metadata.json": "206511bcfe77e1325163eee6e43ef127eb6c30cb275b52b9d60f995d6550d0de",
+    "data\\fase6_holdout_sellado\\supervision\\test.csv": "294989e6abe96b81a028dd8463c1dd2eae31584693dff5af8b250f62322af2a4",
+    "data\\fase6_holdout_sellado\\supervision\\test_shift.csv": "7312a932a3a863aa055ce4d0d5e4199a80ad05521d252570cd30e5b67079e85a",
+    "data\\fase6_holdout_sellado\\supervision\\train.csv": "3c02127fd2f0aea70dac7c4b0a667f55d1de4e9c15a97814377382cbf5de38a3",
+    "data\\fase6_holdout_sellado\\supervision\\val.csv": "81d02c135faba7c205e753f2d1f69d23904a28c52c8d9d1c9f5272e7eee0f166"
+  },
+  "independence": "different_seed_same_config_disjoint_parent_ids_no_identical_iq256_against_all_old_splits",
+  "fit": false,
+  "selection_after_evaluation": false,
+  "splits": [
+    "test",
+    "test_shift"
+  ],
+  "primary_comparison": "cnn_phase_minus_cnn_original",
+  "other_comparisons": "descriptive_no_multiplicity_correction",
+  "bootstrap": {
+    "replicates": 10000,
+    "seed": 2026110610,
+    "stratify": "class_x_snr",
+    "unit": "parent_paired"
+  }
+}

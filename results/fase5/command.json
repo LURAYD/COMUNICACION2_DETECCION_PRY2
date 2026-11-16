@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\.venv\\Scripts\\python.exe",
+    "-m",
+    "experiments.exp02_conventional",
+    "--config",
+    "configs\\exp02_conventional.json",
+    "--output",
+    "results\\fase5"
+  ],
+  "cwd": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2"
+}

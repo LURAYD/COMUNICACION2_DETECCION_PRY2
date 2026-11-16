@@ -1,0 +1,49 @@
+{
+  "radioconda_path": "C:\\Users\\Luisr\\radioconda",
+  "radioconda_available": true,
+  "gnuradio_version": "3.10.9.2",
+  "flowgraphs": [
+    {
+      "grc_file": "grc\\flowgraph_headless_sim.grc",
+      "compiled_script": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\grc\\flowgraph_headless_sim.py",
+      "status": "compiled_successfully"
+    },
+    {
+      "grc_file": "grc\\flowgraph_tx_channel.grc",
+      "compiled_script": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\grc\\flowgraph_tx_channel.py",
+      "status": "compiled_successfully"
+    },
+    {
+      "grc_file": "grc\\flowgraph_rx_from_file.grc",
+      "compiled_script": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\grc\\flowgraph_rx_from_file.py",
+      "status": "compiled_successfully"
+    }
+  ],
+  "python_to_grc": {
+    "file": "results\\gnuradio\\py_qpsk_15db.c64",
+    "num_samples": 4178,
+    "mean_power": 0.13248580753687736,
+    "bandwidth_99_hz": 5292.5226365605695
+  },
+  "grc_to_python": {
+    "output_file": "results\\gnuradio\\sim_run\\grc_sim_output.c64",
+    "num_samples": 4096,
+    "mean_power": 0.9994045495986938,
+    "bandwidth_99_hz": 1134.478641522059,
+    "integrated_power": 1.0129003580357165,
+    "svm256_predictions": [
+      "QPSK",
+      "QPSK",
+      "BPSK",
+      "BPSK",
+      "BPSK",
+      "BPSK",
+      "QPSK",
+      "BPSK",
+      "BPSK",
+      "BPSK",
+      "BPSK",
+      "QPSK"
+    ]
+  }
+}

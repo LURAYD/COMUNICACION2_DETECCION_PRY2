@@ -1,0 +1,4 @@
+# Entorno mínimo observado y usado en la auditoría del 2026-11-03 (Python 3.11).
+numpy==2.4.6
+matplotlib==3.11.2
+pytest==9.2.0

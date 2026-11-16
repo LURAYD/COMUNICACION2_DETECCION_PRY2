@@ -1,0 +1,9 @@
+{
+  "seed": 2026110611,
+  "snr_db": [-5, 0, 10, 20],
+  "parents_per_class_snr": 30,
+  "scenarios": ["id", "cfo_zero", "cfo_shift", "multipath_shift", "both_shift", "beta_025", "beta_035", "beta_050", "beta_065"],
+  "common_channel_length": 14,
+  "base_config": "configs/dataset_e2.json",
+  "scope": "exploratory_frozen_models_no_training"
+}

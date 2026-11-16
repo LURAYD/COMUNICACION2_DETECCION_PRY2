@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "parents": 720,
+  "scenario_versions": 6480,
+  "model_predictions": 25920,
+  "paired_tables": 270,
+  "prefixes_exact": true,
+  "all_parent_parameters_paired": true,
+  "snr_window_diagnostics": {
+    "id": {
+      "mean_window_minus_nominal_snr_db": 0.36573998167348365,
+      "std_window_minus_nominal_snr_db": 0.2809037792854092
+    },
+    "cfo_zero": {
+      "mean_window_minus_nominal_snr_db": 0.36573998167348365,
+      "std_window_minus_nominal_snr_db": 0.2809037792854093
+    },
+    "cfo_shift": {
+      "mean_window_minus_nominal_snr_db": 0.3657399816734837,
+      "std_window_minus_nominal_snr_db": 0.28090377928540927
+    },
+    "multipath_shift": {
+      "mean_window_minus_nominal_snr_db": 0.3700468239624697,
+      "std_window_minus_nominal_snr_db": 0.3297895925786137
+    },
+    "both_shift": {
+      "mean_window_minus_nominal_snr_db": 0.3700468239624698,
+      "std_window_minus_nominal_snr_db": 0.3297895925786137
+    },
+    "beta_025": {
+      "mean_window_minus_nominal_snr_db": 0.3660064991094365,
+      "std_window_minus_nominal_snr_db": 0.2819312443932561
+    },
+    "beta_035": {
+      "mean_window_minus_nominal_snr_db": 0.3657204029971122,
+      "std_window_minus_nominal_snr_db": 0.2808685816808588
+    },
+    "beta_050": {
+      "mean_window_minus_nominal_snr_db": 0.36559818584368947,
+      "std_window_minus_nominal_snr_db": 0.2797025300699932
+    },
+    "beta_065": {
+      "mean_window_minus_nominal_snr_db": 0.36543897458179936,
+      "std_window_minus_nominal_snr_db": 0.2788688949134179
+    }
+  },
+  "tests": "2 passed in0.51s: tests/test_channel_scenarios.py"
+}

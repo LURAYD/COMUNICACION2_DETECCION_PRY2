@@ -1,0 +1,68 @@
+{
+  "seed": 2026,
+  "constelaciones": {
+    "BPSK": {
+      "puntos": 2,
+      "bits_por_simbolo": 1,
+      "energia_equiprobable": 1.0
+    },
+    "QPSK": {
+      "puntos": 4,
+      "bits_por_simbolo": 2,
+      "energia_equiprobable": 1.0
+    },
+    "8PSK": {
+      "puntos": 8,
+      "bits_por_simbolo": 3,
+      "energia_equiprobable": 1.0
+    },
+    "16-QAM": {
+      "puntos": 16,
+      "bits_por_simbolo": 4,
+      "energia_equiprobable": 1.0
+    },
+    "64-QAM": {
+      "puntos": 64,
+      "bits_por_simbolo": 6,
+      "energia_equiprobable": 1.0000000000000002
+    },
+    "4-PAM": {
+      "puntos": 4,
+      "bits_por_simbolo": 2,
+      "energia_equiprobable": 1.0
+    }
+  },
+  "versiones": {
+    "python": "3.11.0",
+    "numpy": "2.4.6",
+    "matplotlib": "3.11.2"
+  },
+  "fuentes_sha256": {
+    "src/signals.py": "2f368e04acca974c7359b10f49844615c5854ff16d78cbe97053f7be000159f9",
+    "src/waveform.py": "0afa65f590950753892a8a85ece30ad457c4f13c4525d9e8d00c2a19b82000a5",
+    "experiments/diagnostico_fase1.py": "7ce8f1f72cd2359d2c33b33c2f3d1302b9bc08776732791c72ce7a7d34b447e3"
+  },
+  "rrc": {
+    "beta": 0.35,
+    "sps": 8,
+    "span": 10,
+    "coeficientes": 81,
+    "energia_discreta": 1.0,
+    "retardo_tx_muestras": 40,
+    "retardo_tx_rx_muestras": 80,
+    "isi_residual_max": 0.005816568303543849,
+    "error_espectral_max": 0.01230609047504494,
+    "nfft": 65536,
+    "eje_frecuencia": "f/Rs",
+    "normalizacion_espectral": "|H|^2/sps"
+  },
+  "trama_qpsk": {
+    "simbolos": 32,
+    "muestras": 336,
+    "energia_media_simbolos": 1.0,
+    "energia_total_iq": 31.947418033828306,
+    "error_recuperacion_max": 0.014077400829638374,
+    "error_recuperacion_rms": 0.00809653596617121,
+    "potencia_media_iq_con_transitorios": 0.09508160129115567
+  }
+}

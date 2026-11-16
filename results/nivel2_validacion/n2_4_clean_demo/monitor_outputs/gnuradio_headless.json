@@ -1,0 +1,92 @@
+{
+  "signal_id": "grc_sim_output",
+  "num_samples": 4096,
+  "fs_hz": 8000.0,
+  "fs_source": "explicit_argument",
+  "detection": {
+    "detected": true,
+    "observed_energy": 1.0152731224827454,
+    "mean_energy": 0.999113026666654,
+    "threshold": 0.0004739214581512805,
+    "threshold_per_window": 0.0004493972242796599,
+    "threshold_per_file": 0.0004739214581512805,
+    "normalized_statistic": 2600.5844899105023,
+    "active_window_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "num_windows_evaluated": 16,
+    "pfa_file_target": 0.01,
+    "status": "signal_present",
+    "calibration_status": "calibrated_from_noise_reference",
+    "decision_rule": "file_max_energy_sidak"
+  },
+  "spectrum": {
+    "bandwidth_99": 1158.8208824188478,
+    "bandwidth_type": "total_power_99_includes_noise",
+    "bandwidth_unit": "Hz",
+    "frequency_bounds": [
+      -581.9031436780457,
+      576.917738740802
+    ],
+    "integrated_power": 1.0071873425603615,
+    "signal_bandwidth_est": 1158.295282761579,
+    "signal_bandwidth_bounds": [
+      -581.7125492218452,
+      576.5827335397339
+    ],
+    "signal_bandwidth_status": "estimated_above_noise_floor",
+    "window_method": "periodic_hann",
+    "spectrum_file": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\results\\nivel2_validacion\\n2_4_clean_demo\\monitor_outputs\\gnuradio_headless_psd.png"
+  },
+  "snr": {
+    "snr_est_db": 34.079329672440394,
+    "status": "ok_under_stationarity_assumption",
+    "reason": null,
+    "method": "independent_observed_noise_reference",
+    "observed_power": 0.9991130266666539,
+    "noise_power_estimate": 0.00039040189865843794,
+    "signal_power_estimate": 0.9987226247679954
+  },
+  "classification": {
+    "modulation": "BPSK",
+    "status": "classified_closed_set",
+    "confidence": 0.6935,
+    "confidence_calibrated": false,
+    "confidence_status": "uncalibrated_no_match_for_model_or_16_windows",
+    "calibration_unit": "uncalibrated_heuristic_margin_score",
+    "model_used": "results\\fase5\\conventional_256.joblib",
+    "model_family": "svm_rbf",
+    "model_sha256": "02d70d55b912c22394e5550cc978b785f45db1e26872f5b0bef3799fe358858f",
+    "model_window_len": 256,
+    "scope": "signal_present_closed_set_6_classes",
+    "closed_set_classes": [
+      "BPSK",
+      "QPSK",
+      "8PSK",
+      "16QAM",
+      "64QAM",
+      "4PAM"
+    ],
+    "window_votes": {
+      "BPSK": 12,
+      "QPSK": 4
+    },
+    "windows_evaluated": 16
+  },
+  "warnings": []
+}

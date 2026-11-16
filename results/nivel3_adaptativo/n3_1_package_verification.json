@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "batch_size_reload": 300,
+  "action_counts_in_reload_batch": {
+    "0": 132,
+    "1": 37,
+    "2": 131
+  },
+  "new_process_reload_matches": 300,
+  "reload_100_percent_match": true,
+  "causal_prefix_tests": 200,
+  "causal_prefix_matches": 200,
+  "causal_100_percent_match": true,
+  "lazy_execution_calls_total": {
+    "svm512": 37,
+    "a2": 131
+  },
+  "lazy_execution_violations": 0,
+  "lazy_execution_strictly_verified": true,
+  "incompatible_hash_rejected": true
+}

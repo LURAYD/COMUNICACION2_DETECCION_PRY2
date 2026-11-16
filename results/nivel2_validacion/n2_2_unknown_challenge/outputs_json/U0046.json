@@ -1,0 +1,71 @@
+{
+  "signal_id": "U0046",
+  "num_samples": 512,
+  "fs_hz": 8000.0,
+  "fs_source": "sidecar:U0046.c64.meta.json",
+  "detection": {
+    "detected": false,
+    "observed_energy": 0.4083207612246792,
+    "mean_energy": 0.4063657833427345,
+    "threshold": 0.46810218062919384,
+    "threshold_per_window": 0.4612334006324339,
+    "threshold_per_file": 0.46810218062919384,
+    "normalized_statistic": 1.0190586442973926,
+    "active_window_indices": [],
+    "num_windows_evaluated": 2,
+    "pfa_file_target": 0.01,
+    "status": "noise_only_or_undetected",
+    "calibration_status": "calibrated_from_noise_reference",
+    "decision_rule": "file_max_energy_sidak"
+  },
+  "spectrum": {
+    "bandwidth_99": 7944.2565644338265,
+    "bandwidth_type": "total_power_99_includes_noise",
+    "bandwidth_unit": "Hz",
+    "frequency_bounds": [
+      -3980.813852513606,
+      3963.44271192022
+    ],
+    "integrated_power": 0.3968459542408912,
+    "signal_bandwidth_est": null,
+    "signal_bandwidth_bounds": null,
+    "signal_bandwidth_status": "requires_detected_signal",
+    "window_method": "periodic_hann",
+    "spectrum_file": null
+  },
+  "snr": {
+    "snr_est_db": null,
+    "status": "no_signal",
+    "reason": "detector_negative",
+    "method": null,
+    "observed_power": 0.4083207612246792,
+    "noise_power_estimate": null,
+    "signal_power_estimate": null
+  },
+  "classification": {
+    "modulation": "NO_SIGNAL",
+    "status": "no_signal_detected",
+    "confidence": null,
+    "confidence_calibrated": false,
+    "confidence_status": "not_applicable_no_signal",
+    "calibration_unit": null,
+    "model_used": null,
+    "model_family": null,
+    "model_sha256": null,
+    "model_window_len": null,
+    "scope": "signal_present_closed_set_6_classes",
+    "closed_set_classes": [
+      "BPSK",
+      "QPSK",
+      "8PSK",
+      "16QAM",
+      "64QAM",
+      "4PAM"
+    ],
+    "window_votes": {},
+    "windows_evaluated": 0
+  },
+  "warnings": [
+    "Detector negativo: modulación marcada como NO_SIGNAL."
+  ]
+}

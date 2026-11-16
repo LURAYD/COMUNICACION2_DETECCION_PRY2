@@ -1,0 +1,2038 @@
+{
+  "schema_version": 1,
+  "calibrator_package_path": "results\\nivel1_monitor\\monitor_calibrators.joblib",
+  "calibrator_package_sha256": "2dae5d4dd80508354230bbc1342aa430a536a85a0ed3fdcf6e72036fcb9729c1",
+  "calibration_units": 1200,
+  "evaluation_units_per_regime": 2400,
+  "artificial_clipping_applied": false,
+  "modes": {
+    "single_window_256": {
+      "test_id": {
+        "base_unclipped_sigmoid": {
+          "n": 2400,
+          "accuracy": 0.4375,
+          "brier": 0.3141640276257616,
+          "brier_ci95": [
+            0.30600154953022785,
+            0.32234142029274515
+          ],
+          "nll": 0.8387679240400175,
+          "nll_ci95": [
+            0.8209917545839399,
+            0.8568111713896787
+          ],
+          "ece10_equal_width": 0.25796226074212897,
+          "ece10_ci95": [
+            0.23790504885592703,
+            0.27816677361022435
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 144,
+              "occupancy_fraction": 0.06,
+              "mean_confidence": 0.506183373765896,
+              "empirical_accuracy": 0.2361111111111111
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 1602,
+              "occupancy_fraction": 0.6675,
+              "mean_confidence": 0.692991822835824,
+              "empirical_accuracy": 0.4756554307116105
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 496,
+              "occupancy_fraction": 0.20666666666666667,
+              "mean_confidence": 0.7105681570359386,
+              "empirical_accuracy": 0.41935483870967744
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 158,
+              "occupancy_fraction": 0.06583333333333333,
+              "mean_confidence": 0.8455969233291459,
+              "empirical_accuracy": 0.2911392405063291
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "legacy_clipped_heuristic": {
+          "n": 2400,
+          "accuracy": 0.4375,
+          "brier": 0.3141640276257616,
+          "brier_ci95": [
+            0.30600154953022785,
+            0.32234142029274515
+          ],
+          "nll": 0.8387679240400175,
+          "nll_ci95": [
+            0.8209917545839399,
+            0.8568111713896787
+          ],
+          "ece10_equal_width": 0.25796226074212897,
+          "ece10_ci95": [
+            0.23790504885592703,
+            0.27816677361022435
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 144,
+              "occupancy_fraction": 0.06,
+              "mean_confidence": 0.506183373765896,
+              "empirical_accuracy": 0.2361111111111111
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 1602,
+              "occupancy_fraction": 0.6675,
+              "mean_confidence": 0.692991822835824,
+              "empirical_accuracy": 0.4756554307116105
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 496,
+              "occupancy_fraction": 0.20666666666666667,
+              "mean_confidence": 0.7105681570359386,
+              "empirical_accuracy": 0.41935483870967744
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 158,
+              "occupancy_fraction": 0.06583333333333333,
+              "mean_confidence": 0.8455969233291459,
+              "empirical_accuracy": 0.2911392405063291
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "calibrated": {
+          "n": 2400,
+          "accuracy": 0.4375,
+          "brier": 0.2460988885019978,
+          "brier_ci95": [
+            0.24319910871440412,
+            0.2489086244634854
+          ],
+          "nll": 0.6853194331026885,
+          "nll_ci95": [
+            0.6794796910190066,
+            0.690977460955552
+          ],
+          "ece10_equal_width": 0.008328750675506758,
+          "ece10_ci95": [
+            0.0004851324881758462,
+            0.028380003024489436
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 2400,
+              "occupancy_fraction": 1.0,
+              "mean_confidence": 0.42917124932449324,
+              "empirical_accuracy": 0.4375
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "meets_ece10_le_0_05": true,
+        "brier_not_worse_than_base": true
+      },
+      "test_shift": {
+        "base_unclipped_sigmoid": {
+          "n": 2400,
+          "accuracy": 0.30333333333333334,
+          "brier": 0.36900087586665364,
+          "brier_ci95": [
+            0.3615421545438075,
+            0.37713824527586454
+          ],
+          "nll": 0.9578148602277177,
+          "nll_ci95": [
+            0.9413378813582862,
+            0.975809492111729
+          ],
+          "ece10_equal_width": 0.3925840322094346,
+          "ece10_ci95": [
+            0.3747629082769546,
+            0.4107540829385543
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 162,
+              "occupancy_fraction": 0.0675,
+              "mean_confidence": 0.506606958921028,
+              "empirical_accuracy": 0.19753086419753085
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 1615,
+              "occupancy_fraction": 0.6729166666666667,
+              "mean_confidence": 0.6926642325199375,
+              "empirical_accuracy": 0.33746130030959753
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 418,
+              "occupancy_fraction": 0.17416666666666666,
+              "mean_confidence": 0.7100562606100704,
+              "empirical_accuracy": 0.23444976076555024
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 204,
+              "occupancy_fraction": 0.085,
+              "mean_confidence": 0.8419179910722738,
+              "empirical_accuracy": 0.25980392156862747
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 1,
+              "occupancy_fraction": 0.0004166666666666667,
+              "mean_confidence": 0.9238273239841454,
+              "empirical_accuracy": 0.0
+            }
+          ]
+        },
+        "legacy_clipped_heuristic": {
+          "n": 2400,
+          "accuracy": 0.30333333333333334,
+          "brier": 0.36900087586665364,
+          "brier_ci95": [
+            0.3615421545438075,
+            0.37713824527586454
+          ],
+          "nll": 0.9578148602277177,
+          "nll_ci95": [
+            0.9413378813582862,
+            0.975809492111729
+          ],
+          "ece10_equal_width": 0.3925840322094346,
+          "ece10_ci95": [
+            0.3747629082769546,
+            0.4107540829385543
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 162,
+              "occupancy_fraction": 0.0675,
+              "mean_confidence": 0.506606958921028,
+              "empirical_accuracy": 0.19753086419753085
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 1615,
+              "occupancy_fraction": 0.6729166666666667,
+              "mean_confidence": 0.6926642325199375,
+              "empirical_accuracy": 0.33746130030959753
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 418,
+              "occupancy_fraction": 0.17416666666666666,
+              "mean_confidence": 0.7100562606100704,
+              "empirical_accuracy": 0.23444976076555024
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 204,
+              "occupancy_fraction": 0.085,
+              "mean_confidence": 0.8419179910722738,
+              "empirical_accuracy": 0.25980392156862747
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 1,
+              "occupancy_fraction": 0.0004166666666666667,
+              "mean_confidence": 0.9238273239841454,
+              "empirical_accuracy": 0.0
+            }
+          ]
+        },
+        "calibrated": {
+          "n": 2400,
+          "accuracy": 0.30333333333333334,
+          "brier": 0.22720273336260505,
+          "brier_ci95": [
+            0.22457319346963994,
+            0.22967099833156437
+          ],
+          "nll": 0.6472713278979988,
+          "nll_ci95": [
+            0.6419787395753951,
+            0.6522383519004968
+          ],
+          "ece10_equal_width": 0.12593121894879383,
+          "ece10_ci95": [
+            0.10832344420810985,
+            0.14404875187681815
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 2400,
+              "occupancy_fraction": 1.0,
+              "mean_confidence": 0.4292645522821272,
+              "empirical_accuracy": 0.30333333333333334
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "meets_ece10_le_0_05": false,
+        "brier_not_worse_than_base": true
+      }
+    },
+    "majority_vote_2x256": {
+      "test_id": {
+        "base_unclipped_sigmoid": {
+          "n": 2400,
+          "accuracy": 0.4483333333333333,
+          "brier": 0.3103252068137186,
+          "brier_ci95": [
+            0.30197525393823527,
+            0.3184575412996761
+          ],
+          "nll": 0.827301675179371,
+          "nll_ci95": [
+            0.8091982328742683,
+            0.8451182967022695
+          ],
+          "ece10_equal_width": 0.24881868126225923,
+          "ece10_ci95": [
+            0.22916665561448507,
+            0.2688068659326031
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 48,
+              "occupancy_fraction": 0.02,
+              "mean_confidence": 0.5754404457472275,
+              "empirical_accuracy": 0.22916666666666666
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 1624,
+              "occupancy_fraction": 0.6766666666666666,
+              "mean_confidence": 0.6816546523316304,
+              "empirical_accuracy": 0.47413793103448276
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 703,
+              "occupancy_fraction": 0.29291666666666666,
+              "mean_confidence": 0.7364608875057247,
+              "empirical_accuracy": 0.40256045519203415
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 25,
+              "occupancy_fraction": 0.010416666666666666,
+              "mean_confidence": 0.8321813732185216,
+              "empirical_accuracy": 0.48
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "legacy_clipped_heuristic": {
+          "n": 2400,
+          "accuracy": 0.4483333333333333,
+          "brier": 0.20453684898840999,
+          "brier_ci95": [
+            0.19820150699256456,
+            0.2107570894781722
+          ],
+          "nll": 0.6002139264430216,
+          "nll_ci95": [
+            0.5869250385214695,
+            0.6133873487595004
+          ],
+          "ece10_equal_width": 0.06519187761481583,
+          "ece10_ci95": [
+            0.04885039828669474,
+            0.0823497429827322
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 36,
+              "occupancy_fraction": 0.015,
+              "mean_confidence": 0.2878648397384298,
+              "empirical_accuracy": 0.2222222222222222
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 1380,
+              "occupancy_fraction": 0.575,
+              "mean_confidence": 0.3479195903639557,
+              "empirical_accuracy": 0.2702898550724638
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 14,
+              "occupancy_fraction": 0.005833333333333334,
+              "mean_confidence": 0.41979110851610774,
+              "empirical_accuracy": 0.2857142857142857
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 12,
+              "occupancy_fraction": 0.005,
+              "mean_confidence": 0.5745727445583312,
+              "empirical_accuracy": 0.25
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 657,
+              "occupancy_fraction": 0.27375,
+              "mean_confidence": 0.6897527277791446,
+              "empirical_accuracy": 0.7321156773211568
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 290,
+              "occupancy_fraction": 0.12083333333333333,
+              "mean_confidence": 0.7286674060264697,
+              "empirical_accuracy": 0.6862068965517242
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 11,
+              "occupancy_fraction": 0.004583333333333333,
+              "mean_confidence": 0.8227621174556385,
+              "empirical_accuracy": 0.7272727272727273
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "calibrated": {
+          "n": 2400,
+          "accuracy": 0.4483333333333333,
+          "brier": 0.20113491126059455,
+          "brier_ci95": [
+            0.193891264328696,
+            0.20828465326597498
+          ],
+          "nll": 0.5921987036712003,
+          "nll_ci95": [
+            0.5768187529706947,
+            0.6074096380077121
+          ],
+          "ece10_equal_width": 0.03479014463626728,
+          "ece10_ci95": [
+            0.020890013226449837,
+            0.053398265759626105
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 281,
+              "occupancy_fraction": 0.11708333333333333,
+              "mean_confidence": 0.2806603550056693,
+              "empirical_accuracy": 0.2669039145907473
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 1149,
+              "occupancy_fraction": 0.47875,
+              "mean_confidence": 0.3077088226252256,
+              "empirical_accuracy": 0.26979982593559615
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 44,
+              "occupancy_fraction": 0.018333333333333333,
+              "mean_confidence": 0.6810549581158871,
+              "empirical_accuracy": 0.29545454545454547
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 926,
+              "occupancy_fraction": 0.3858333333333333,
+              "mean_confidence": 0.7115475896145085,
+              "empirical_accuracy": 0.7321814254859611
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "meets_ece10_le_0_05": true,
+        "brier_not_worse_than_base": true
+      },
+      "test_shift": {
+        "base_unclipped_sigmoid": {
+          "n": 2400,
+          "accuracy": 0.28125,
+          "brier": 0.37896411798703916,
+          "brier_ci95": [
+            0.37184867942639654,
+            0.3865343791927319
+          ],
+          "nll": 0.9744345883353615,
+          "nll_ci95": [
+            0.958592074835197,
+            0.9908473039342015
+          ],
+          "ece10_equal_width": 0.41570653476107283,
+          "ece10_ci95": [
+            0.39799461999489816,
+            0.43387816391340595
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 59,
+              "occupancy_fraction": 0.024583333333333332,
+              "mean_confidence": 0.5731012588508163,
+              "empirical_accuracy": 0.23728813559322035
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 1609,
+              "occupancy_fraction": 0.6704166666666667,
+              "mean_confidence": 0.6802924083681032,
+              "empirical_accuracy": 0.3057799875699192
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 707,
+              "occupancy_fraction": 0.2945833333333333,
+              "mean_confidence": 0.7401713244735976,
+              "empirical_accuracy": 0.22913719943422914
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 25,
+              "occupancy_fraction": 0.010416666666666666,
+              "mean_confidence": 0.8396439074906025,
+              "empirical_accuracy": 0.28
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "legacy_clipped_heuristic": {
+          "n": 2400,
+          "accuracy": 0.28125,
+          "brier": 0.23105844049828506,
+          "brier_ci95": [
+            0.22493675054965953,
+            0.23806129335138076
+          ],
+          "nll": 0.6574684745938295,
+          "nll_ci95": [
+            0.6443666673523551,
+            0.6721817808316672
+          ],
+          "ece10_equal_width": 0.1755884781791747,
+          "ece10_ci95": [
+            0.1585134769169812,
+            0.19428487386933393
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 46,
+              "occupancy_fraction": 0.019166666666666665,
+              "mean_confidence": 0.2858228197040074,
+              "empirical_accuracy": 0.2391304347826087
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 1596,
+              "occupancy_fraction": 0.665,
+              "mean_confidence": 0.34912382337632125,
+              "empirical_accuracy": 0.21929824561403508
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 14,
+              "occupancy_fraction": 0.005833333333333334,
+              "mean_confidence": 0.4238474272544572,
+              "empirical_accuracy": 0.14285714285714285
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 13,
+              "occupancy_fraction": 0.005416666666666667,
+              "mean_confidence": 0.5782519122638063,
+              "empirical_accuracy": 0.23076923076923078
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 545,
+              "occupancy_fraction": 0.22708333333333333,
+              "mean_confidence": 0.6860474672569645,
+              "empirical_accuracy": 0.42935779816513764
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 175,
+              "occupancy_fraction": 0.07291666666666667,
+              "mean_confidence": 0.7405285576848476,
+              "empirical_accuracy": 0.4
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 11,
+              "occupancy_fraction": 0.004583333333333333,
+              "mean_confidence": 0.8293972476491146,
+              "empirical_accuracy": 0.45454545454545453
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "calibrated": {
+          "n": 2400,
+          "accuracy": 0.28125,
+          "brier": 0.22535927350996077,
+          "brier_ci95": [
+            0.21820191737756656,
+            0.2330822351302772
+          ],
+          "nll": 0.644174516995637,
+          "nll_ci95": [
+            0.6290022318229891,
+            0.6606991905784318
+          ],
+          "ece10_equal_width": 0.14772711493840374,
+          "ece10_ci95": [
+            0.13005718285523227,
+            0.16647667682184886
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 305,
+              "occupancy_fraction": 0.12708333333333333,
+              "mean_confidence": 0.28071765456397013,
+              "empirical_accuracy": 0.2360655737704918
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 1351,
+              "occupancy_fraction": 0.5629166666666666,
+              "mean_confidence": 0.3079252814129783,
+              "empirical_accuracy": 0.2153960029607698
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 58,
+              "occupancy_fraction": 0.024166666666666666,
+              "mean_confidence": 0.6817269548326956,
+              "empirical_accuracy": 0.3103448275862069
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 686,
+              "occupancy_fraction": 0.28583333333333333,
+              "mean_confidence": 0.7119227006427523,
+              "empirical_accuracy": 0.42857142857142855
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "meets_ece10_le_0_05": false,
+        "brier_not_worse_than_base": true
+      }
+    },
+    "single_window_512": {
+      "test_id": {
+        "base_unclipped_sigmoid": {
+          "n": 2400,
+          "accuracy": 0.46041666666666664,
+          "brier": 0.3044077461634569,
+          "brier_ci95": [
+            0.2964677579057753,
+            0.3127570009693115
+          ],
+          "nll": 0.8170737592087702,
+          "nll_ci95": [
+            0.799746408730635,
+            0.835785664264649
+          ],
+          "ece10_equal_width": 0.2377192607938533,
+          "ece10_ci95": [
+            0.21877506406189304,
+            0.25838037018595683
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 117,
+              "occupancy_fraction": 0.04875,
+              "mean_confidence": 0.5067266661380596,
+              "empirical_accuracy": 0.1794871794871795
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 1595,
+              "occupancy_fraction": 0.6645833333333333,
+              "mean_confidence": 0.6930554700468413,
+              "empirical_accuracy": 0.4884012539184953
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 533,
+              "occupancy_fraction": 0.22208333333333333,
+              "mean_confidence": 0.7126411491221726,
+              "empirical_accuracy": 0.474671669793621
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 155,
+              "occupancy_fraction": 0.06458333333333334,
+              "mean_confidence": 0.8450193468404205,
+              "empirical_accuracy": 0.33548387096774196
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "legacy_clipped_heuristic": {
+          "n": 2400,
+          "accuracy": 0.46041666666666664,
+          "brier": 0.3044077461634569,
+          "brier_ci95": [
+            0.2964677579057753,
+            0.3127570009693115
+          ],
+          "nll": 0.8170737592087702,
+          "nll_ci95": [
+            0.799746408730635,
+            0.835785664264649
+          ],
+          "ece10_equal_width": 0.2377192607938533,
+          "ece10_ci95": [
+            0.21877506406189304,
+            0.25838037018595683
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 117,
+              "occupancy_fraction": 0.04875,
+              "mean_confidence": 0.5067266661380596,
+              "empirical_accuracy": 0.1794871794871795
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 1595,
+              "occupancy_fraction": 0.6645833333333333,
+              "mean_confidence": 0.6930554700468413,
+              "empirical_accuracy": 0.4884012539184953
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 533,
+              "occupancy_fraction": 0.22208333333333333,
+              "mean_confidence": 0.7126411491221726,
+              "empirical_accuracy": 0.474671669793621
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 155,
+              "occupancy_fraction": 0.06458333333333334,
+              "mean_confidence": 0.8450193468404205,
+              "empirical_accuracy": 0.33548387096774196
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "calibrated": {
+          "n": 2400,
+          "accuracy": 0.46041666666666664,
+          "brier": 0.24828939423093635,
+          "brier_ci95": [
+            0.24720740555189435,
+            0.2492958944145588
+          ],
+          "nll": 0.6897144437116354,
+          "nll_ci95": [
+            0.6875447693703128,
+            0.691731192117662
+          ],
+          "ece10_equal_width": 0.015497099935019437,
+          "ece10_ci95": [
+            0.008910157958341132,
+            0.03629270733324988
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 2245,
+              "occupancy_fraction": 0.9354166666666667,
+              "mean_confidence": 0.4738226947482722,
+              "empirical_accuracy": 0.4690423162583519
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 155,
+              "occupancy_fraction": 0.06458333333333334,
+              "mean_confidence": 0.5062005815108102,
+              "empirical_accuracy": 0.33548387096774196
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "meets_ece10_le_0_05": true,
+        "brier_not_worse_than_base": true
+      },
+      "test_shift": {
+        "base_unclipped_sigmoid": {
+          "n": 2400,
+          "accuracy": 0.29541666666666666,
+          "brier": 0.37137171145297876,
+          "brier_ci95": [
+            0.3633582628932507,
+            0.37890999349487725
+          ],
+          "nll": 0.9618305767159414,
+          "nll_ci95": [
+            0.9437877065259627,
+            0.978881086513447
+          ],
+          "ece10_equal_width": 0.39789804039263266,
+          "ece10_ci95": [
+            0.3786073768996187,
+            0.41689381877449566
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 187,
+              "occupancy_fraction": 0.07791666666666666,
+              "mean_confidence": 0.5065195467618351,
+              "empirical_accuracy": 0.2620320855614973
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 1554,
+              "occupancy_fraction": 0.6475,
+              "mean_confidence": 0.6930276491162749,
+              "empirical_accuracy": 0.31402831402831405
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 472,
+              "occupancy_fraction": 0.19666666666666666,
+              "mean_confidence": 0.7087885116439595,
+              "empirical_accuracy": 0.2627118644067797
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 187,
+              "occupancy_fraction": 0.07791666666666666,
+              "mean_confidence": 0.8434384891722738,
+              "empirical_accuracy": 0.25668449197860965
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "legacy_clipped_heuristic": {
+          "n": 2400,
+          "accuracy": 0.29541666666666666,
+          "brier": 0.37137171145297876,
+          "brier_ci95": [
+            0.3633582628932507,
+            0.37890999349487725
+          ],
+          "nll": 0.9618305767159414,
+          "nll_ci95": [
+            0.9437877065259627,
+            0.978881086513447
+          ],
+          "ece10_equal_width": 0.39789804039263266,
+          "ece10_ci95": [
+            0.3786073768996187,
+            0.41689381877449566
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 187,
+              "occupancy_fraction": 0.07791666666666666,
+              "mean_confidence": 0.5065195467618351,
+              "empirical_accuracy": 0.2620320855614973
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 1554,
+              "occupancy_fraction": 0.6475,
+              "mean_confidence": 0.6930276491162749,
+              "empirical_accuracy": 0.31402831402831405
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 472,
+              "occupancy_fraction": 0.19666666666666666,
+              "mean_confidence": 0.7087885116439595,
+              "empirical_accuracy": 0.2627118644067797
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 187,
+              "occupancy_fraction": 0.07791666666666666,
+              "mean_confidence": 0.8434384891722738,
+              "empirical_accuracy": 0.25668449197860965
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "calibrated": {
+          "n": 2400,
+          "accuracy": 0.29541666666666666,
+          "brier": 0.24073761890825537,
+          "brier_ci95": [
+            0.2396766005151754,
+            0.24180147936851099
+          ],
+          "nll": 0.6745975737392172,
+          "nll_ci95": [
+            0.6724718862183574,
+            0.6767280038126791
+          ],
+          "ece10_equal_width": 0.17983573165785693,
+          "ece10_ci95": [
+            0.16084582371328485,
+            0.1988958716544074
+          ],
+          "bins": [
+            {
+              "bin_index": 0,
+              "bin_lower": 0.0,
+              "bin_upper": 0.1,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 1,
+              "bin_lower": 0.1,
+              "bin_upper": 0.2,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 2,
+              "bin_lower": 0.2,
+              "bin_upper": 0.3,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 3,
+              "bin_lower": 0.3,
+              "bin_upper": 0.4,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 4,
+              "bin_lower": 0.4,
+              "bin_upper": 0.5,
+              "occupancy": 2213,
+              "occupancy_fraction": 0.9220833333333334,
+              "mean_confidence": 0.47267743316254385,
+              "empirical_accuracy": 0.29868956168097605
+            },
+            {
+              "bin_index": 5,
+              "bin_lower": 0.5,
+              "bin_upper": 0.6,
+              "occupancy": 187,
+              "occupancy_fraction": 0.07791666666666666,
+              "mean_confidence": 0.5057251143858134,
+              "empirical_accuracy": 0.25668449197860965
+            },
+            {
+              "bin_index": 6,
+              "bin_lower": 0.6,
+              "bin_upper": 0.7,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 7,
+              "bin_lower": 0.7,
+              "bin_upper": 0.8,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 8,
+              "bin_lower": 0.8,
+              "bin_upper": 0.9,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            },
+            {
+              "bin_index": 9,
+              "bin_lower": 0.9,
+              "bin_upper": 1.0,
+              "occupancy": 0,
+              "occupancy_fraction": 0.0,
+              "mean_confidence": null,
+              "empirical_accuracy": null
+            }
+          ]
+        },
+        "meets_ece10_le_0_05": false,
+        "brier_not_worse_than_base": true
+      }
+    }
+  }
+}

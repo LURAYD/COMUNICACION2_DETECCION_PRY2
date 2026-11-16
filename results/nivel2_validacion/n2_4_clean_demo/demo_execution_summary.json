@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-16T20:10:49.429904+00:00",
+  "python_version": "3.11.0",
+  "radioconda_path": "C:\\Users\\Luisr\\radioconda",
+  "flowgraphs_compiled": {
+    "flowgraph_headless_sim.grc": {
+      "compiled_script": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\results\\nivel2_validacion\\n2_4_clean_demo\\grc_compiled\\flowgraph_headless_sim.py",
+      "size_bytes": 5580,
+      "status": "compiled_successfully"
+    },
+    "flowgraph_tx_channel.grc": {
+      "compiled_script": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\results\\nivel2_validacion\\n2_4_clean_demo\\grc_compiled\\flowgraph_tx_channel.py",
+      "size_bytes": 16183,
+      "status": "compiled_successfully"
+    },
+    "flowgraph_rx_from_file.grc": {
+      "compiled_script": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\results\\nivel2_validacion\\n2_4_clean_demo\\grc_compiled\\flowgraph_rx_from_file.py",
+      "size_bytes": 10892,
+      "status": "compiled_successfully"
+    }
+  },
+  "gnuradio_simulation": {
+    "output_c64": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\results\\nivel2_validacion\\n2_4_clean_demo\\sim_run\\grc_sim_output.c64",
+    "num_samples": 4096,
+    "mean_power": 0.9991130232810974
+  },
+  "monitor_runs": {
+    "gnuradio_headless": {
+      "returncode": 0,
+      "json_path": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\results\\nivel2_validacion\\n2_4_clean_demo\\monitor_outputs\\gnuradio_headless.json",
+      "png_path": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\results\\nivel2_validacion\\n2_4_clean_demo\\monitor_outputs\\gnuradio_headless_psd.png",
+      "detected": true,
+      "calibration_status": "calibrated_from_noise_reference",
+      "bandwidth_99_hz": 1158.8208824188478,
+      "snr_est_db": 34.079329672440394,
+      "modulation": "BPSK",
+      "confidence": 0.6935,
+      "confidence_calibrated": false
+    },
+    "python_qpsk_15db": {
+      "returncode": 0,
+      "json_path": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\results\\nivel2_validacion\\n2_4_clean_demo\\monitor_outputs\\python_qpsk_15db.json",
+      "png_path": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\results\\nivel2_validacion\\n2_4_clean_demo\\monitor_outputs\\python_qpsk_15db_psd.png",
+      "detected": true,
+      "calibration_status": "calibrated_from_noise_reference",
+      "bandwidth_99_hz": 5668.162876098492,
+      "snr_est_db": 15.09933164716507,
+      "modulation": "QPSK",
+      "confidence": 0.7085,
+      "confidence_calibrated": true
+    }
+  }
+}

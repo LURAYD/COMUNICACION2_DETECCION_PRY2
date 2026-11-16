@@ -1,0 +1,77 @@
+{
+  "signal_id": "py_qpsk_15db",
+  "num_samples": 512,
+  "fs_hz": 8000.0,
+  "fs_source": "explicit_argument",
+  "detection": {
+    "detected": true,
+    "observed_energy": 1.677902294611711,
+    "mean_energy": 1.6628346763155024,
+    "threshold": 0.05824176118574574,
+    "threshold_per_window": 0.05738714041967497,
+    "threshold_per_file": 0.05824176118574574,
+    "normalized_statistic": 33.65662376474678,
+    "active_window_indices": [
+      0,
+      1
+    ],
+    "num_windows_evaluated": 2,
+    "pfa_file_target": 0.01,
+    "status": "signal_present",
+    "calibration_status": "calibrated_from_noise_reference",
+    "decision_rule": "file_max_energy_sidak"
+  },
+  "spectrum": {
+    "bandwidth_99": 5668.162876098492,
+    "bandwidth_type": "total_power_99_includes_noise",
+    "bandwidth_unit": "Hz",
+    "frequency_bounds": [
+      -3041.281329029268,
+      2626.8815470692243
+    ],
+    "integrated_power": 1.6633241698793977,
+    "signal_bandwidth_est": 1344.459311436142,
+    "signal_bandwidth_bounds": [
+      -701.5818514826906,
+      642.8774599534514
+    ],
+    "signal_bandwidth_status": "estimated_above_noise_floor",
+    "window_method": "periodic_hann",
+    "spectrum_file": "C:\\PROYECTO_COM2_2026\\COM2_Proyecto2\\results\\nivel2_validacion\\n2_4_clean_demo\\monitor_outputs\\python_qpsk_15db_psd.png"
+  },
+  "snr": {
+    "snr_est_db": 15.09933164716507,
+    "status": "ok_under_stationarity_assumption",
+    "reason": null,
+    "method": "independent_observed_noise_reference",
+    "observed_power": 1.6628346763155024,
+    "noise_power_estimate": 0.04985355353347144,
+    "signal_power_estimate": 1.612981122782031
+  },
+  "classification": {
+    "modulation": "QPSK",
+    "status": "classified_closed_set",
+    "confidence": 0.7085,
+    "confidence_calibrated": true,
+    "confidence_status": "calibrated_majority_vote_2x256",
+    "calibration_unit": "calibrated_file_decision_correctness_probability",
+    "model_used": "results\\fase5\\conventional_256.joblib",
+    "model_family": "svm_rbf",
+    "model_sha256": "02d70d55b912c22394e5550cc978b785f45db1e26872f5b0bef3799fe358858f",
+    "model_window_len": 256,
+    "scope": "signal_present_closed_set_6_classes",
+    "closed_set_classes": [
+      "BPSK",
+      "QPSK",
+      "8PSK",
+      "16QAM",
+      "64QAM",
+      "4PAM"
+    ],
+    "window_votes": {
+      "QPSK": 2
+    },
+    "windows_evaluated": 2
+  },
+  "warnings": []
+}

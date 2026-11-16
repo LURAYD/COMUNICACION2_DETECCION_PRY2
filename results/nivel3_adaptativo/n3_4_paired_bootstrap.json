@@ -1,0 +1,1123 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-16T20:24:40.533250+00:00",
+  "lambda_per_ms": 0.0015,
+  "metrics_by_split": {
+    "test": {
+      "always_a0_svm256": {
+        "n": 2400,
+        "accuracy": 0.4375,
+        "macro_precision": 0.439027291326954,
+        "macro_recall": 0.4375,
+        "macro_f1": 0.43734835795724364,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.5514511873350924,
+            "recall": 0.5225,
+            "f1": 0.5365853658536586,
+            "support": 400
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.41721854304635764,
+            "recall": 0.4725,
+            "f1": 0.44314185228604924,
+            "support": 400
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.3931818181818182,
+            "recall": 0.4325,
+            "f1": 0.4119047619047619,
+            "support": 400
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.3063583815028902,
+            "recall": 0.265,
+            "f1": 0.28418230563002683,
+            "support": 400
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.3713592233009709,
+            "recall": 0.3825,
+            "f1": 0.3768472906403941,
+            "support": 400
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.5945945945945946,
+            "recall": 0.55,
+            "f1": 0.5714285714285714,
+            "support": 400
+          }
+        ],
+        "acquisition_mean_ms": 32.0,
+        "compute_mean_ms": 2.2212565555555552,
+        "total_mean_ms": 34.221256555555556,
+        "utility": 0.38616811516666666,
+        "actions": {
+          "0": 2400,
+          "1": 0,
+          "2": 0
+        }
+      },
+      "always_a1_svm512": {
+        "n": 2400,
+        "accuracy": 0.46041666666666664,
+        "macro_precision": 0.459628330700997,
+        "macro_recall": 0.46041666666666664,
+        "macro_f1": 0.4593096458327535,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.5742574257425742,
+            "recall": 0.58,
+            "f1": 0.5771144278606966,
+            "support": 400
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.4495192307692308,
+            "recall": 0.4675,
+            "f1": 0.4583333333333333,
+            "support": 400
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.425629290617849,
+            "recall": 0.465,
+            "f1": 0.4444444444444444,
+            "support": 400
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.3704819277108434,
+            "recall": 0.3075,
+            "f1": 0.3360655737704918,
+            "support": 400
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.3547619047619048,
+            "recall": 0.3725,
+            "f1": 0.36341463414634145,
+            "support": 400
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.5831202046035806,
+            "recall": 0.57,
+            "f1": 0.5764854614412137,
+            "support": 400
+          }
+        ],
+        "acquisition_mean_ms": 64.0,
+        "compute_mean_ms": 3.2182711111111106,
+        "total_mean_ms": 67.2182711111111,
+        "utility": 0.35958926,
+        "actions": {
+          "0": 0,
+          "1": 2400,
+          "2": 0
+        }
+      },
+      "always_a2_multidomain": {
+        "n": 2400,
+        "accuracy": 0.5158333333333334,
+        "macro_precision": 0.6744423712453456,
+        "macro_recall": 0.5158333333333334,
+        "macro_f1": 0.5536440596868882,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.888030888030888,
+            "recall": 0.575,
+            "f1": 0.6980273141122914,
+            "support": 400
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.7489539748953975,
+            "recall": 0.4475,
+            "f1": 0.5602503912363067,
+            "support": 400
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.7286245353159851,
+            "recall": 0.49,
+            "f1": 0.585949177877429,
+            "support": 400
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.5437956204379562,
+            "recall": 0.3725,
+            "f1": 0.4421364985163205,
+            "support": 400
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.23402340234023403,
+            "recall": 0.65,
+            "f1": 0.3441429516876241,
+            "support": 400
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.9032258064516129,
+            "recall": 0.56,
+            "f1": 0.691358024691358,
+            "support": 400
+          }
+        ],
+        "acquisition_mean_ms": 32.0,
+        "compute_mean_ms": 32.54519466666667,
+        "total_mean_ms": 64.5451946666667,
+        "utility": 0.4190155413333333,
+        "actions": {
+          "0": 0,
+          "1": 0,
+          "2": 2400
+        }
+      },
+      "policy_confidence": {
+        "n": 2400,
+        "accuracy": 0.5079166666666667,
+        "macro_precision": 0.6394009363603272,
+        "macro_recall": 0.5079166666666667,
+        "macro_f1": 0.540191595290193,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.8415094339622642,
+            "recall": 0.5575,
+            "f1": 0.6706766917293233,
+            "support": 400
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.7272727272727273,
+            "recall": 0.46,
+            "f1": 0.5635528330781011,
+            "support": 400
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.6757679180887372,
+            "recall": 0.495,
+            "f1": 0.5714285714285714,
+            "support": 400
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.4965753424657534,
+            "recall": 0.3625,
+            "f1": 0.4190751445086705,
+            "support": 400
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.2386910490856593,
+            "recall": 0.62,
+            "f1": 0.344683808200139,
+            "support": 400
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.8565891472868217,
+            "recall": 0.5525,
+            "f1": 0.6717325227963525,
+            "support": 400
+          }
+        ],
+        "acquisition_mean_ms": 32.0,
+        "compute_mean_ms": 34.61449753374071,
+        "total_mean_ms": 66.61449753374072,
+        "utility": 0.4079949203660556,
+        "actions": {
+          "0": 158,
+          "1": 0,
+          "2": 2242
+        }
+      },
+      "policy_blind_snr_flatness": {
+        "n": 2400,
+        "accuracy": 0.51625,
+        "macro_precision": 0.5300832151522721,
+        "macro_recall": 0.51625,
+        "macro_f1": 0.5199937937304923,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.6657608695652174,
+            "recall": 0.6125,
+            "f1": 0.6380208333333334,
+            "support": 400
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.5444743935309974,
+            "recall": 0.505,
+            "f1": 0.5239948119325551,
+            "support": 400
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.5302325581395348,
+            "recall": 0.57,
+            "f1": 0.5493975903614458,
+            "support": 400
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.41916167664670656,
+            "recall": 0.35,
+            "f1": 0.3814713896457766,
+            "support": 400
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.34363636363636363,
+            "recall": 0.4725,
+            "f1": 0.39789473684210525,
+            "support": 400
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.6772334293948127,
+            "recall": 0.5875,
+            "f1": 0.6291834002677377,
+            "support": 400
+          }
+        ],
+        "acquisition_mean_ms": 34.76,
+        "compute_mean_ms": 18.13354036027674,
+        "total_mean_ms": 52.89354036027674,
+        "utility": 0.43690968945958486,
+        "actions": {
+          "0": 1179,
+          "1": 207,
+          "2": 1014
+        }
+      },
+      "lbap_full_a0_a1_a2": {
+        "n": 2400,
+        "accuracy": 0.5229166666666667,
+        "macro_precision": 0.5500694093673294,
+        "macro_recall": 0.5229166666666667,
+        "macro_f1": 0.529979773340293,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.7357357357357357,
+            "recall": 0.6125,
+            "f1": 0.6684856753069577,
+            "support": 400
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.6006006006006006,
+            "recall": 0.5,
+            "f1": 0.5457025920873124,
+            "support": 400
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.54739336492891,
+            "recall": 0.5775,
+            "f1": 0.5620437956204379,
+            "support": 400
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.4557377049180328,
+            "recall": 0.3475,
+            "f1": 0.3943262411347518,
+            "support": 400
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.31121642969984203,
+            "recall": 0.4925,
+            "f1": 0.3814133591481123,
+            "support": 400
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.6497326203208557,
+            "recall": 0.6075,
+            "f1": 0.627906976744186,
+            "support": 400
+          }
+        ],
+        "acquisition_mean_ms": 37.06666666666667,
+        "compute_mean_ms": 19.590848753126476,
+        "total_mean_ms": 56.65751541979315,
+        "utility": 0.43793039353697694,
+        "actions": {
+          "0": 912,
+          "1": 380,
+          "2": 1108
+        }
+      }
+    },
+    "test_shift": {
+      "always_a0_svm256": {
+        "n": 2400,
+        "accuracy": 0.30333333333333334,
+        "macro_precision": 0.3130929480486343,
+        "macro_recall": 0.30333333333333334,
+        "macro_f1": 0.30266544570448245,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.45819397993311034,
+            "recall": 0.3425,
+            "f1": 0.39198855507868385,
+            "support": 400
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.22910216718266255,
+            "recall": 0.185,
+            "f1": 0.20470262793914246,
+            "support": 400
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.24688279301745636,
+            "recall": 0.2475,
+            "f1": 0.24719101123595505,
+            "support": 400
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.228287841191067,
+            "recall": 0.23,
+            "f1": 0.22914072229140722,
+            "support": 400
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.28325508607198746,
+            "recall": 0.4525,
+            "f1": 0.3484119345524543,
+            "support": 400
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.43283582089552236,
+            "recall": 0.3625,
+            "f1": 0.3945578231292517,
+            "support": 400
+          }
+        ],
+        "acquisition_mean_ms": 32.0,
+        "compute_mean_ms": 2.2212565555555552,
+        "total_mean_ms": 34.221256555555556,
+        "utility": 0.2520014485,
+        "actions": {
+          "0": 2400,
+          "1": 0,
+          "2": 0
+        }
+      },
+      "always_a1_svm512": {
+        "n": 2400,
+        "accuracy": 0.29541666666666666,
+        "macro_precision": 0.30289420294181807,
+        "macro_recall": 0.2954166666666667,
+        "macro_f1": 0.2913619713089394,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.48881789137380194,
+            "recall": 0.3825,
+            "f1": 0.42917251051893407,
+            "support": 400
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.2289855072463768,
+            "recall": 0.1975,
+            "f1": 0.21208053691275167,
+            "support": 400
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.24770642201834864,
+            "recall": 0.2025,
+            "f1": 0.22283356258596973,
+            "support": 400
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.15406162464985995,
+            "recall": 0.1375,
+            "f1": 0.1453104359313078,
+            "support": 400
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.27785419532324623,
+            "recall": 0.505,
+            "f1": 0.35847382431233366,
+            "support": 400
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.4199395770392749,
+            "recall": 0.3475,
+            "f1": 0.3803009575923393,
+            "support": 400
+          }
+        ],
+        "acquisition_mean_ms": 64.0,
+        "compute_mean_ms": 3.2182711111111106,
+        "total_mean_ms": 67.2182711111111,
+        "utility": 0.19458926000000001,
+        "actions": {
+          "0": 0,
+          "1": 2400,
+          "2": 0
+        }
+      },
+      "always_a2_multidomain": {
+        "n": 2400,
+        "accuracy": 0.30083333333333334,
+        "macro_precision": 0.4251686495932869,
+        "macro_recall": 0.30083333333333334,
+        "macro_f1": 0.28602046507353945,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.788135593220339,
+            "recall": 0.2325,
+            "f1": 0.3590733590733591,
+            "support": 400
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.4016393442622951,
+            "recall": 0.1225,
+            "f1": 0.18773946360153257,
+            "support": 400
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.327683615819209,
+            "recall": 0.145,
+            "f1": 0.20103986135181975,
+            "support": 400
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.2185089974293059,
+            "recall": 0.2125,
+            "f1": 0.21546261089987326,
+            "support": 400
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.2276657060518732,
+            "recall": 0.79,
+            "f1": 0.3534675615212528,
+            "support": 400
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.587378640776699,
+            "recall": 0.3025,
+            "f1": 0.39933993399339934,
+            "support": 400
+          }
+        ],
+        "acquisition_mean_ms": 32.0,
+        "compute_mean_ms": 32.54519466666667,
+        "total_mean_ms": 64.5451946666667,
+        "utility": 0.20401554133333327,
+        "actions": {
+          "0": 0,
+          "1": 0,
+          "2": 2400
+        }
+      },
+      "policy_confidence": {
+        "n": 2400,
+        "accuracy": 0.3020833333333333,
+        "macro_precision": 0.4039168860885887,
+        "macro_recall": 0.3020833333333333,
+        "macro_f1": 0.2899574851667255,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.7445255474452555,
+            "recall": 0.255,
+            "f1": 0.37988826815642457,
+            "support": 400
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.3472222222222222,
+            "recall": 0.125,
+            "f1": 0.18382352941176472,
+            "support": 400
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.34615384615384615,
+            "recall": 0.1575,
+            "f1": 0.21649484536082475,
+            "support": 400
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.22084367245657568,
+            "recall": 0.2225,
+            "f1": 0.22166874221668742,
+            "support": 400
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.22935779816513763,
+            "recall": 0.75,
+            "f1": 0.351288056206089,
+            "support": 400
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.5353982300884956,
+            "recall": 0.3025,
+            "f1": 0.3865814696485623,
+            "support": 400
+          }
+        ],
+        "acquisition_mean_ms": 32.0,
+        "compute_mean_ms": 33.97549995661127,
+        "total_mean_ms": 65.97549995661129,
+        "utility": 0.20312008339841636,
+        "actions": {
+          "0": 205,
+          "1": 0,
+          "2": 2195
+        }
+      },
+      "policy_blind_snr_flatness": {
+        "n": 2400,
+        "accuracy": 0.3145833333333333,
+        "macro_precision": 0.3385208278968637,
+        "macro_recall": 0.3145833333333333,
+        "macro_f1": 0.30814899608935314,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.5577689243027888,
+            "recall": 0.35,
+            "f1": 0.43010752688172044,
+            "support": 400
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.27111111111111114,
+            "recall": 0.1525,
+            "f1": 0.1952,
+            "support": 400
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.2811594202898551,
+            "recall": 0.2425,
+            "f1": 0.26040268456375837,
+            "support": 400
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.20155038759689922,
+            "recall": 0.195,
+            "f1": 0.19822109275730623,
+            "support": 400
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.2729331823329558,
+            "recall": 0.6025,
+            "f1": 0.37568199532346064,
+            "support": 400
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.44660194174757284,
+            "recall": 0.345,
+            "f1": 0.38928067700987307,
+            "support": 400
+          }
+        ],
+        "acquisition_mean_ms": 35.52,
+        "compute_mean_ms": 18.58689554544994,
+        "total_mean_ms": 54.10689554544994,
+        "utility": 0.23342299001515843,
+        "actions": {
+          "0": 1093,
+          "1": 264,
+          "2": 1043
+        }
+      },
+      "lbap_full_a0_a1_a2": {
+        "n": 2400,
+        "accuracy": 0.30875,
+        "macro_precision": 0.3368186227678996,
+        "macro_recall": 0.30875,
+        "macro_f1": 0.3002706276642624,
+        "per_class": [
+          {
+            "modulation": "BPSK",
+            "precision": 0.5807860262008734,
+            "recall": 0.3325,
+            "f1": 0.42289348171701113,
+            "support": 400
+          },
+          {
+            "modulation": "QPSK",
+            "precision": 0.27835051546391754,
+            "recall": 0.135,
+            "f1": 0.18181818181818182,
+            "support": 400
+          },
+          {
+            "modulation": "8PSK",
+            "precision": 0.27058823529411763,
+            "recall": 0.23,
+            "f1": 0.24864864864864866,
+            "support": 400
+          },
+          {
+            "modulation": "16QAM",
+            "precision": 0.19834710743801653,
+            "recall": 0.18,
+            "f1": 0.18872870249017037,
+            "support": 400
+          },
+          {
+            "modulation": "64QAM",
+            "precision": 0.26170212765957446,
+            "recall": 0.615,
+            "f1": 0.36716417910447763,
+            "support": 400
+          },
+          {
+            "modulation": "4PAM",
+            "precision": 0.4311377245508982,
+            "recall": 0.36,
+            "f1": 0.3923705722070845,
+            "support": 400
+          }
+        ],
+        "acquisition_mean_ms": 36.57333333333333,
+        "compute_mean_ms": 20.286665951949956,
+        "total_mean_ms": 56.85999928528329,
+        "utility": 0.2234600010720751,
+        "actions": {
+          "0": 895,
+          "1": 343,
+          "2": 1162
+        }
+      }
+    }
+  },
+  "paired_bootstrap_10k": {
+    "test": {
+      "lbap_minus_always_a0_svm256": {
+        "n": 2400,
+        "replicates": 10000,
+        "seed": 2026111611,
+        "accuracy_delta": 0.08541666666666667,
+        "accuracy_ci95": [
+          0.06875,
+          0.1025
+        ],
+        "macro_f1_delta": 0.09263141538304936,
+        "macro_f1_ci95": [
+          0.07649888914918676,
+          0.10953825849541371
+        ],
+        "total_ms_delta": 22.436258864237587,
+        "total_ms_ci95": [
+          21.944821744603416,
+          22.92139771874051
+        ],
+        "utility_delta": 0.05176227837031028,
+        "utility_ci95": [
+          0.03521728077852498,
+          0.06877206159292878
+        ]
+      },
+      "lbap_minus_always_a1_svm512": {
+        "n": 2400,
+        "replicates": 10000,
+        "seed": 2026111611,
+        "accuracy_delta": 0.0625,
+        "accuracy_ci95": [
+          0.04416666666666667,
+          0.08083333333333333
+        ],
+        "macro_f1_delta": 0.07067012750753948,
+        "macro_f1_ci95": [
+          0.052597539579385524,
+          0.08868805208009427
+        ],
+        "total_ms_delta": -10.56075569131796,
+        "total_ms_ci95": [
+          -11.052192810952134,
+          -10.07561683681504
+        ],
+        "utility_delta": 0.07834113353697693,
+        "utility_ci95": [
+          0.06011963752612245,
+          0.09659984268915227
+        ]
+      },
+      "lbap_minus_always_a2_multidomain": {
+        "n": 2400,
+        "replicates": 10000,
+        "seed": 2026111611,
+        "accuracy_delta": 0.007083333333333333,
+        "accuracy_ci95": [
+          -0.00625,
+          0.02
+        ],
+        "macro_f1_delta": -0.02366428634659523,
+        "macro_f1_ci95": [
+          -0.03651192906854537,
+          -0.01113983313548861
+        ],
+        "total_ms_delta": -7.887679246873526,
+        "total_ms_ci95": [
+          -8.379116366507699,
+          -7.402540392370603
+        ],
+        "utility_delta": 0.018914852203643633,
+        "utility_ci95": [
+          0.005762722000074993,
+          0.03175283500872319
+        ]
+      },
+      "lbap_minus_policy_confidence": {
+        "n": 2400,
+        "replicates": 10000,
+        "seed": 2026111611,
+        "accuracy_delta": 0.015,
+        "accuracy_ci95": [
+          0.0016666666666666668,
+          0.028333333333333332
+        ],
+        "macro_f1_delta": -0.010211821949900002,
+        "macro_f1_ci95": [
+          -0.02321339709861202,
+          0.0027790494101172544
+        ],
+        "total_ms_delta": -9.95698211394757,
+        "total_ms_ci95": [
+          -10.536092139658425,
+          -9.372339488535065
+        ],
+        "utility_delta": 0.02993547317092135,
+        "utility_ci95": [
+          0.01652673868543981,
+          0.043126735957235894
+        ]
+      },
+      "lbap_minus_policy_blind_snr_flatness": {
+        "n": 2400,
+        "replicates": 10000,
+        "seed": 2026111611,
+        "accuracy_delta": 0.006666666666666667,
+        "accuracy_ci95": [
+          -0.005,
+          0.018333333333333333
+        ],
+        "macro_f1_delta": 0.009985979609800744,
+        "macro_f1_ci95": [
+          -0.0011604790639744456,
+          0.021449046848271917
+        ],
+        "total_ms_delta": 3.7639750595164045,
+        "total_ms_ci95": [
+          3.1071724254216044,
+          4.412603349220478
+        ],
+        "utility_delta": 0.0010207040773920614,
+        "utility_ci95": [
+          -0.010476607533047919,
+          0.012786426999413635
+        ]
+      },
+      "snr_flatness_minus_always_a2_exploratory": {
+        "n": 2400,
+        "replicates": 10000,
+        "seed": 2026111611,
+        "accuracy_delta": 0.0004166666666666667,
+        "accuracy_ci95": [
+          -0.012916666666666667,
+          0.013333333333333334
+        ],
+        "macro_f1_delta": -0.033650265956395975,
+        "macro_f1_ci95": [
+          -0.04699793147553851,
+          -0.020583614908950713
+        ],
+        "total_ms_delta": -11.651654306389931,
+        "total_ms_ci95": [
+          -12.108497409925166,
+          -11.202987965604349
+        ],
+        "utility_delta": 0.017894148126251574,
+        "utility_ci95": [
+          0.004557414086609114,
+          0.0309552115786631
+        ]
+      }
+    },
+    "test_shift": {
+      "lbap_minus_always_a0_svm256": {
+        "n": 2400,
+        "replicates": 10000,
+        "seed": 2026111611,
+        "accuracy_delta": 0.005416666666666667,
+        "accuracy_ci95": [
+          -0.012083333333333333,
+          0.022916666666666665
+        ],
+        "macro_f1_delta": -0.0023948180402200703,
+        "macro_f1_ci95": [
+          -0.020343335612342417,
+          0.015717144968330113
+        ],
+        "total_ms_delta": 22.638742729727735,
+        "total_ms_ci95": [
+          22.135693616420507,
+          23.144796477041954
+        ],
+        "utility_delta": -0.02854144742792494,
+        "utility_ci95": [
+          -0.04618862689399158,
+          -0.011014394781068053
+        ]
+      },
+      "lbap_minus_always_a1_svm512": {
+        "n": 2400,
+        "replicates": 10000,
+        "seed": 2026111611,
+        "accuracy_delta": 0.013333333333333334,
+        "accuracy_ci95": [
+          -0.005416666666666667,
+          0.03208333333333333
+        ],
+        "macro_f1_delta": 0.008908656355322953,
+        "macro_f1_ci95": [
+          -0.010612453859503516,
+          0.02877137054493587
+        ],
+        "total_ms_delta": -10.358271825827817,
+        "total_ms_ci95": [
+          -10.861320939135053,
+          -9.852218078513598
+        ],
+        "utility_delta": 0.02887074107207506,
+        "utility_ci95": [
+          0.010033868607203645,
+          0.047662247719234004
+        ]
+      },
+      "lbap_minus_always_a2_multidomain": {
+        "n": 2400,
+        "replicates": 10000,
+        "seed": 2026111611,
+        "accuracy_delta": 0.007916666666666667,
+        "accuracy_ci95": [
+          -0.005416666666666667,
+          0.021260416666666518
+        ],
+        "macro_f1_delta": 0.014250162590722926,
+        "macro_f1_ci95": [
+          -0.00033771773347895777,
+          0.029122606523161586
+        ],
+        "total_ms_delta": -7.685195381383384,
+        "total_ms_ci95": [
+          -8.188244494690615,
+          -7.179141634069163
+        ],
+        "utility_delta": 0.019444459738741753,
+        "utility_ci95": [
+          0.006155053850040833,
+          0.03309595137716252
+        ]
+      },
+      "lbap_minus_policy_confidence": {
+        "n": 2400,
+        "replicates": 10000,
+        "seed": 2026111611,
+        "accuracy_delta": 0.006666666666666667,
+        "accuracy_ci95": [
+          -0.007083333333333333,
+          0.020833333333333332
+        ],
+        "macro_f1_delta": 0.010313142497536898,
+        "macro_f1_ci95": [
+          -0.004627436784782146,
+          0.025804633934922924
+        ],
+        "total_ms_delta": -9.115500671327991,
+        "total_ms_ci95": [
+          -9.732292777302007,
+          -8.477712660744368
+        ],
+        "utility_delta": 0.02033991767365865,
+        "utility_ci95": [
+          0.006437027591318086,
+          0.03445624823409986
+        ]
+      },
+      "lbap_minus_policy_blind_snr_flatness": {
+        "n": 2400,
+        "replicates": 10000,
+        "seed": 2026111611,
+        "accuracy_delta": -0.005833333333333334,
+        "accuracy_ci95": [
+          -0.017083333333333332,
+          0.005416666666666667
+        ],
+        "macro_f1_delta": -0.007878368425090765,
+        "macro_f1_ci95": [
+          -0.01910986659078542,
+          0.0035537743388162147
+        ],
+        "total_ms_delta": 2.7531037398333447,
+        "total_ms_ci95": [
+          2.102588485028935,
+          3.422406169833623
+        ],
+        "utility_delta": -0.00996298894308335,
+        "utility_ci95": [
+          -0.020975953588875742,
+          0.001356235032037085
+        ]
+      },
+      "snr_flatness_minus_always_a2_exploratory": {
+        "n": 2400,
+        "replicates": 10000,
+        "seed": 2026111611,
+        "accuracy_delta": 0.01375,
+        "accuracy_ci95": [
+          0.0,
+          0.028333333333333332
+        ],
+        "macro_f1_delta": 0.02212853101581369,
+        "macro_f1_ci95": [
+          0.007119670963619845,
+          0.03796321898856723
+        ],
+        "total_ms_delta": -10.43829912121673,
+        "total_ms_ci95": [
+          -10.884643063267696,
+          -10.004435621748454
+        ],
+        "utility_delta": 0.029407448681825106,
+        "utility_ci95": [
+          0.01569879946151735,
+          0.04385451782314447
+        ]
+      }
+    }
+  },
+  "three_seed_dispersion": {
+    "test": {
+      "lbap_full_a0_a1_a2": {
+        "seeds": [
+          2026111611,
+          2026111612,
+          2026111613
+        ],
+        "accuracies": [
+          0.5229166666666667,
+          0.5229166666666667,
+          0.5229166666666667
+        ],
+        "accuracy_mean": 0.5229166666666667,
+        "accuracy_std": 0.0,
+        "macro_f1_mean": 0.529979773340293,
+        "macro_f1_std": 0.0,
+        "utility_mean": 0.43793039353697694,
+        "utility_std": 0.0
+      },
+      "policy_blind_snr_flatness": {
+        "seeds": [
+          2026111611,
+          2026111612,
+          2026111613
+        ],
+        "accuracies": [
+          0.51625,
+          0.5170833333333333,
+          0.5204166666666666
+        ],
+        "accuracy_mean": 0.5179166666666667,
+        "accuracy_std": 0.001800205749557729,
+        "macro_f1_mean": 0.5229480852225024,
+        "macro_f1_std": 0.0035883980399038025,
+        "utility_mean": 0.43625686303512534,
+        "utility_std": 0.0004618458388991658
+      }
+    },
+    "test_shift": {
+      "lbap_full_a0_a1_a2": {
+        "seeds": [
+          2026111611,
+          2026111612,
+          2026111613
+        ],
+        "accuracies": [
+          0.30875,
+          0.30875,
+          0.30875
+        ],
+        "accuracy_mean": 0.30875,
+        "accuracy_std": 0.0,
+        "macro_f1_mean": 0.3002706276642624,
+        "macro_f1_std": 0.0,
+        "utility_mean": 0.2234600010720751,
+        "utility_std": 0.0
+      },
+      "policy_blind_snr_flatness": {
+        "seeds": [
+          2026111611,
+          2026111612,
+          2026111613
+        ],
+        "accuracies": [
+          0.3145833333333333,
+          0.3145833333333333,
+          0.3175
+        ],
+        "accuracy_mean": 0.31555555555555553,
+        "accuracy_std": 0.0013749298523071814,
+        "macro_f1_mean": 0.3081922720085491,
+        "macro_f1_std": 0.00040781446204808056,
+        "utility_mean": 0.23264272249163864,
+        "utility_std": 0.000630617072284231
+      }
+    }
+  },
+  "formal_claim_verdicts": {
+    "primary_comparator": "always_a2_multidomain (mejor baseline fijo en validación)",
+    "greater_accuracy_vs_best_fixed_id": false,
+    "greater_utility_vs_best_fixed_id": true,
+    "lower_latency_quality_preserved_vs_best_fixed_id": false,
+    "superior_under_channel_shift_vs_best_fixed": false,
+    "superior_to_all_baselines_id": false
+  }
+}

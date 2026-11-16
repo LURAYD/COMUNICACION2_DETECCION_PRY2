@@ -1,0 +1,10 @@
+{
+  "generated_at_utc": "2026-11-16T20:52:48.414320+00:00",
+  "command": "python -m pytest -q",
+  "returncode": 0,
+  "summary_line": "278 passed in 37.96s",
+  "passed": 278,
+  "failed": 0,
+  "skipped": 0,
+  "duration_seconds": 37.96
+}

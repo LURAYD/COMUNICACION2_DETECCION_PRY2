@@ -1,102 +1,246 @@
-"""Monitor integrado de cinco salidas y procesador CLI de señales desconocidas (Fase 7).
+"""Monitor integrado de cinco salidas y procesador CLI de señales desconocidas (Nivel 1).
 
-Proporciona las cinco salidas obligatorias del proyecto:
-1. Detección de presencia (Sí / No) mediante estadística de energía y umbral calibrado.
-2. Densidad espectral de potencia (PSD) y estimación de ancho de banda ocupado al 99%.
-3. Estimación de SNR condicionada (o estado formal si no hay referencia de piso de ruido).
-4. Tipo de modulación reconocida (BPSK, QPSK, 8PSK, 16QAM, 64QAM, 4PAM).
-5. Confianza calibrada de la predicción (probabilidad empírica, no softmax crudo).
+Proporciona las cinco salidas obligatorias del proyecto bajo contrato explícito:
+1. Detección de presencia (calibrada por referencia y controlada por archivo).
+2. Densidad espectral de potencia (PSD) en Hz o ciclos/muestra y ancho de banda.
+3. Estimación de SNR condicionada a detección y referencia compatible.
+4. Tipo de modulación reconocida en alcance cerrado de seis clases.
+5. Confianza de la decisión final, calibrada solo cuando modelo/agregación coinciden.
 """
-import argparse
-import json
-from pathlib import Path
-from numbers import Real
-import numpy as np
-import joblib
+from __future__ import annotations
 
+import argparse
+import hashlib
+import json
+from numbers import Real
+from pathlib import Path
+import sys
+
+import joblib
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import numpy as np
 
-from src.detection import detect_energy, energy_statistic, calibrate_energy
+from src.conventional import CLASSES, _validate_artifact
+from src.detection import detect_energy, detect_energy_file, energy_statistic
+from src.features import FEATURE_VERSION
+from src.snr_estimation import calibrate_noise_reference, estimate_snr
 from src.spectrum import estimate_spectrum
-from src.snr_estimation import estimate_snr, calibrate_noise_reference
 
 
-# Constantes del proyecto
-CLASSES = ("BPSK", "QPSK", "8PSK", "16QAM", "64QAM", "4PAM")
 DEFAULT_SVM_MODEL = Path("results/fase5/conventional_256.joblib")
+DEFAULT_CALIBRATOR = Path("results/nivel1_monitor/monitor_calibrators.joblib")
 DEFAULT_POLICY = Path("results/adaptive/policy.joblib")
-DEFAULT_ENERGY_THRESHOLD = 1.15239  # Umbral Fase 4 E1 para Pfa=0.01
+
+SUPPORTED_EXTENSIONS = (".c64", ".bin", ".npy", ".npz", ".csv")
+EXPECTED_MODEL_FS_HZ = 8000.0
+EXPECTED_MODEL_SPS = 8
+EXPECTED_MODEL_SYMBOL_RATE_HZ = 1000.0
 
 
-def load_signal(file_path, dtype="complex64"):
-    """Carga una observación desde formatos comunes (.c64, .bin, .npy, .npz, .csv).
+def _sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
 
-    Devuelve un array 1D de números complejos finitos.
+
+def _validate_positive_real(value, name: str) -> float:
+    if isinstance(value, (bool, np.bool_)) or not isinstance(value, Real) or not np.isfinite(value) or value <= 0:
+        raise ValueError(f"{name} debe ser un número real finito y positivo.")
+    return float(value)
+
+
+def _validate_nonnegative_real(value, name: str) -> float:
+    if isinstance(value, (bool, np.bool_)) or not isinstance(value, Real) or not np.isfinite(value) or value < 0:
+        raise ValueError(f"{name} debe ser un número real finito y no negativo.")
+    return float(value)
+
+
+def _extract_iq_vector(arr: np.ndarray, source_desc: str) -> np.ndarray:
+    if not isinstance(arr, np.ndarray) or arr.size == 0:
+        raise ValueError(f"El arreglo en {source_desc} está vacío.")
+    if arr.dtype == object or not (np.issubdtype(arr.dtype, np.number)):
+        raise ValueError(f"Tipo de dato no numérico en {source_desc}: {arr.dtype}.")
+    if arr.ndim == 1:
+        if not np.iscomplexobj(arr):
+            raise ValueError(
+                f"Arreglo real 1D ambiguo sin componente Q en {source_desc}; use complejo o matriz Nx2 (I, Q)."
+            )
+        samples = arr
+    elif arr.ndim == 2:
+        if np.iscomplexobj(arr):
+            if arr.shape[0] == 1 or arr.shape[1] == 1:
+                samples = arr.reshape(-1)
+            else:
+                raise ValueError(
+                    f"Lote 2D complejo de forma {arr.shape} en {source_desc}; proporcione una sola observación."
+                )
+        else:
+            if arr.shape == (2, 2):
+                raise ValueError(
+                    f"Matriz real 2x2 ambigua en {source_desc} (ejes I/Q indistinguibles de 2 muestras)."
+                )
+            if arr.shape[1] == 2:
+                samples = arr[:, 0].astype(np.float64) + 1j * arr[:, 1].astype(np.float64)
+            elif arr.shape[0] == 2:
+                samples = arr[0, :].astype(np.float64) + 1j * arr[1, :].astype(np.float64)
+            else:
+                raise ValueError(
+                    f"Matriz real de forma {arr.shape} inválida en {source_desc}; se esperaba (N, 2) o (2, N)."
+                )
+    else:
+        raise ValueError(f"Dimensionalidad {arr.ndim}D no soportada en {source_desc}; se requiere 1D o Nx2.")
+
+    if samples.size < 2:
+        raise ValueError(f"La señal en {source_desc} tiene menos de dos muestras ({samples.size}).")
+    if not np.isfinite(samples).all():
+        raise ValueError(f"La señal en {source_desc} contiene valores infinitos o NaN.")
+    return np.asarray(samples, dtype=np.complex128)
+
+
+def _load_sidecar_metadata(path: Path) -> dict:
+    sidecar = path.with_name(path.name + ".meta.json")
+    if not sidecar.is_file():
+        return {}
+    raw = json.loads(sidecar.read_text(encoding="utf-8"))
+    if not isinstance(raw, dict):
+        raise ValueError(f"Metadatos sidecar inválidos en {sidecar}: se esperaba un objeto JSON.")
+    meta = {"metadata_source": f"sidecar:{sidecar.name}"}
+    for key in ("fs_hz", "sps", "symbol_rate_hz", "gain"):
+        if key in raw and raw[key] is not None:
+            meta[key] = _validate_positive_real(raw[key], f"sidecar.{key}")
+    return meta
+
+
+def _parse_csv_signal(path: Path) -> np.ndarray:
+    with path.open("r", encoding="utf-8") as f:
+        lines = [line.strip() for line in f if line.strip() and not line.strip().startswith("#")]
+    if not lines:
+        raise ValueError(f"Archivo CSV vacío o solo comentarios: {path}")
+
+    first_tokens = [tok.strip() for tok in lines[0].split(",")]
+    header_keywords = {"i", "q", "real", "imag", "iq", "re", "im"}
+    start_idx = 0
+    if all(tok.lower() in header_keywords for tok in first_tokens if tok):
+        if len(first_tokens) not in (1, 2):
+            raise ValueError(f"Cabecera CSV inválida en {path}: {lines[0]}")
+        start_idx = 1
+
+    data_lines = lines[start_idx:]
+    if not data_lines:
+        raise ValueError(f"Archivo CSV sin filas de datos en {path}")
+
+    rows = []
+    expected_cols = None
+    for idx, line in enumerate(data_lines, start=start_idx + 1):
+        parts = [p.strip() for p in line.split(",")]
+        if expected_cols is None:
+            if len(parts) not in (1, 2):
+                raise ValueError(f"Número de columnas inválido ({len(parts)}) en línea {idx} de {path}.")
+            expected_cols = len(parts)
+        elif len(parts) != expected_cols:
+            raise ValueError(f"Inconsistencia de columnas en línea {idx} de {path}.")
+
+        if expected_cols == 2:
+            try:
+                re_v = float(parts[0])
+                im_v = float(parts[1])
+            except ValueError as exc:
+                raise ValueError(f"Valores I/Q no numéricos en línea {idx} de {path}: {line}") from exc
+            rows.append(complex(re_v, im_v))
+        else:
+            token = parts[0].replace(" ", "")
+            try:
+                if "j" not in token.lower():
+                    raise ValueError("Falta parte imaginaria explícita 'j'.")
+                rows.append(complex(token))
+            except ValueError as exc:
+                raise ValueError(f"Complejo inválido en línea {idx} de {path}: {line}") from exc
+
+    samples = np.asarray(rows, dtype=np.complex128)
+    if samples.size < 2:
+        raise ValueError(f"La señal en {path} tiene menos de dos muestras.")
+    if not np.isfinite(samples).all():
+        raise ValueError(f"La señal en {path} contiene valores infinitos o NaN.")
+    return samples
+
+
+def load_signal(file_path, dtype="complex64", return_metadata=False):
+    """Carga una observación desde formatos documentados (.c64, .bin, .npy, .npz, .csv).
+
+    Rechaza formatos no soportados, binarios truncados, lotes 2D y valores no finitos.
     """
     path = Path(file_path)
     if not path.is_file():
         raise FileNotFoundError(f"Archivo de señal no encontrado: {path}")
 
     ext = path.suffix.lower()
+    if ext not in SUPPORTED_EXTENSIONS:
+        raise ValueError(
+            f"Extensión '{ext}' no soportada. Formatos válidos: {', '.join(SUPPORTED_EXTENSIONS)}."
+        )
+
+    metadata = _load_sidecar_metadata(path)
 
     if ext in (".c64", ".bin"):
-        dt = np.complex64 if dtype == "complex64" else np.dtype(dtype)
+        try:
+            dt = np.dtype(np.complex64 if dtype == "complex64" else dtype)
+        except Exception as exc:
+            raise ValueError(f"dtype binario inválido: {dtype}") from exc
+        if not np.issubdtype(dt, np.complexfloating):
+            raise ValueError(f"Los binarios .c64/.bin requieren dtype complejo (recibido: {dt}).")
+        file_bytes = path.stat().st_size
+        if file_bytes == 0:
+            raise ValueError(f"Archivo binario vacío: {path}")
+        if file_bytes % dt.itemsize != 0:
+            raise ValueError(
+                f"Archivo binario truncado o incompleto ({file_bytes} bytes no múltiplo de {dt.itemsize}): {path}"
+            )
         samples = np.fromfile(str(path), dtype=dt)
+        if samples.size < 2:
+            raise ValueError(f"La señal en {path} tiene menos de dos muestras.")
+        if not np.isfinite(samples).all():
+            raise ValueError(f"La señal en {path} contiene valores infinitos o NaN.")
+        samples = np.asarray(samples, dtype=np.complex128)
 
     elif ext == ".npy":
-        arr = np.load(str(path))
-        if np.iscomplexobj(arr):
-            samples = arr.ravel()
-        elif arr.ndim == 2 and arr.shape[1] == 2:
-            samples = arr[:, 0] + 1j * arr[:, 1]
-        elif arr.ndim == 2 and arr.shape[0] == 2:
-            samples = arr[0, :] + 1j * arr[1, :]
-        else:
-            samples = arr.ravel().astype(np.complex64)
+        try:
+            arr = np.load(str(path), allow_pickle=False)
+        except ValueError as exc:
+            raise ValueError(f"No se pudo cargar .npy seguro sin pickle en {path}: {exc}") from exc
+        samples = _extract_iq_vector(arr, str(path))
 
     elif ext == ".npz":
-        with np.load(str(path)) as data:
-            target_key = None
-            for key in ("iq", "iq256", "iq512", "samples", "data", "x", "y"):
-                if key in data:
-                    target_key = key
-                    break
-            if target_key is None:
-                target_key = data.files[0]
-            arr = data[target_key]
-            if np.iscomplexobj(arr):
-                samples = arr.ravel()
-            elif arr.ndim == 2 and arr.shape[1] == 2:
-                samples = arr[:, 0] + 1j * arr[:, 1]
-            else:
-                samples = arr.ravel().astype(np.complex64)
+        try:
+            with np.load(str(path), allow_pickle=False) as data:
+                candidate_keys = [k for k in data.files if k in ("iq", "iq256", "iq512", "samples")]
+                if len(candidate_keys) != 1:
+                    raise ValueError(
+                        f"El archivo .npz {path} debe contener exactamente una clave de señal "
+                        f"entre ('iq', 'iq256', 'iq512', 'samples'); encontradas: {data.files}."
+                    )
+                samples = _extract_iq_vector(data[candidate_keys[0]], f"{path}:{candidate_keys[0]}")
+                for mkey in ("fs_hz", "sps", "symbol_rate_hz", "gain"):
+                    if mkey in data and mkey not in metadata:
+                        arr_m = np.asarray(data[mkey])
+                        if arr_m.size != 1:
+                            raise ValueError(f"Metadato '{mkey}' en {path} debe ser escalar.")
+                        metadata[mkey] = _validate_positive_real(float(arr_m.reshape(-1)[0]), f"npz.{mkey}")
+                        metadata.setdefault("metadata_source", "npz_metadata")
+        except ValueError:
+            raise
+        except Exception as exc:
+            raise ValueError(f"Archivo .npz inválido en {path}: {exc}") from exc
 
     elif ext == ".csv":
-        # Puede tener columnas I, Q o una columna de texto con números complejos
-        try:
-            arr = np.genfromtxt(str(path), delimiter=",", comments="#")
-            if arr.ndim == 2 and arr.shape[1] >= 2:
-                samples = arr[:, 0] + 1j * arr[:, 1]
-            else:
-                samples = arr.ravel().astype(np.complex64)
-        except Exception:
-            # Intentar lectura como cadenas complejas
-            with open(path, "r", encoding="utf-8") as f:
-                lines = [line.strip() for line in f if line.strip() and not line.startswith("#")]
-            samples = np.array([complex(x.replace(" ", "")) for x in lines], dtype=np.complex64)
+        samples = _parse_csv_signal(path)
 
-    else:
-        # Fallback a binario complex64
-        samples = np.fromfile(str(path), dtype=np.complex64)
-
-    if samples.size < 2:
-        raise ValueError(f"La señal en {path} tiene menos de dos muestras.")
-    if not np.isfinite(samples).all():
-        raise ValueError(f"La señal en {path} contiene valores infinitos o NaN.")
-
-    return np.asarray(samples, dtype=np.complex128)
+    if return_metadata:
+        return samples, metadata
+    return samples
 
 
 def analyze(iq, fs_hz=None, detection_calibration=None, noise_reference=None, nfft=None):
@@ -113,177 +257,375 @@ def analyze(iq, fs_hz=None, detection_calibration=None, noise_reference=None, nf
     }
 
 
+def _select_eval_windows(iq: np.ndarray, model_window_len: int, active_256_indices: list[int]) -> np.ndarray:
+    num_samples = len(iq)
+    n_total = num_samples // model_window_len
+    if n_total == 0:
+        return np.empty((0, model_window_len), dtype=np.complex128)
+    all_windows = iq[: n_total * model_window_len].reshape(n_total, model_window_len)
+    if not active_256_indices:
+        return all_windows
+    if model_window_len == 256:
+        valid = [i for i in active_256_indices if i < n_total]
+        return all_windows[valid] if valid else all_windows
+    # Para 512, incluir bloques que solapan al menos una ventana activa de 256
+    active_set = set(active_256_indices)
+    valid_512 = [k for k in range(n_total) if (2 * k in active_set) or (2 * k + 1 in active_set)]
+    return all_windows[valid_512] if valid_512 else all_windows
+
+
+def _compute_calibrated_confidence(
+    mean_margin: float,
+    vote_fraction: float,
+    n_eval_windows: int,
+    model_sha256: str,
+    model_window_len: int,
+    classes: tuple[str, ...],
+    calibrator_path: Path,
+    explicit_policy_path: str | Path | None,
+) -> tuple[float, bool, str, str]:
+    agg_mode = "single_window" if n_eval_windows == 1 else "majority_vote"
+    uncal_score = float(1.0 / (1.0 + np.exp(-0.8 * mean_margin)))
+
+    if explicit_policy_path is not None:
+        p_path = Path(explicit_policy_path)
+        if not p_path.is_file():
+            return round(uncal_score, 4), False, "uncalibrated_policy_not_found", "uncalibrated_heuristic_margin_score"
+        try:
+            pol = joblib.load(p_path)
+        except Exception:
+            return round(uncal_score, 4), False, "uncalibrated_policy_unreadable", "uncalibrated_heuristic_margin_score"
+        if isinstance(pol, dict) and "calibrators" in pol:
+            cal_pkg = pol
+        else:
+            return (
+                round(uncal_score, 4),
+                False,
+                "uncalibrated_legacy_policy_not_validated_for_file_decision",
+                "uncalibrated_heuristic_margin_score",
+            )
+    else:
+        if not calibrator_path.is_file():
+            return round(uncal_score, 4), False, "uncalibrated_missing_calibrator", "uncalibrated_heuristic_margin_score"
+        cal_pkg = joblib.load(calibrator_path)
+
+    if cal_pkg.get("feature_version") != FEATURE_VERSION or tuple(cal_pkg.get("classes", ())) != tuple(classes):
+        return round(uncal_score, 4), False, "uncalibrated_incompatible_feature_or_classes", "uncalibrated_heuristic_margin_score"
+
+    matched_entry = None
+    for entry in cal_pkg.get("calibrators", {}).values():
+        if (
+            entry.get("model_sha256") == model_sha256
+            and int(entry.get("window_len", -1)) == model_window_len
+            and entry.get("aggregation_mode") == agg_mode
+            and int(entry.get("expected_n_windows", -1)) == n_eval_windows
+        ):
+            matched_entry = entry
+            break
+
+    if matched_entry is None:
+        return (
+            round(uncal_score, 4),
+            False,
+            f"uncalibrated_no_match_for_model_or_{n_eval_windows}_windows",
+            "uncalibrated_heuristic_margin_score",
+        )
+
+    feat_names = matched_entry.get("feature_names", [])
+    if feat_names == ["top2_margin"]:
+        feat_vec = [[mean_margin]]
+    elif feat_names == ["mean_top2_margin", "vote_fraction"]:
+        feat_vec = [[mean_margin, vote_fraction]]
+    else:
+        return round(uncal_score, 4), False, "uncalibrated_unknown_feature_schema", "uncalibrated_heuristic_margin_score"
+
+    prob = float(matched_entry["calibrator"].predict_proba(feat_vec)[0, 1])
+    return (
+        round(prob, 4),
+        True,
+        f"calibrated_{agg_mode}_{n_eval_windows}x{model_window_len}",
+        "calibrated_file_decision_correctness_probability",
+    )
+
+
 def analyze_complete(
     iq,
     signal_id="unknown_signal",
-    fs_hz=8000.0,
+    fs_hz=None,
     model_path=None,
     policy_path=None,
+    calibrator_path=None,
     detection_calibration=None,
     noise_reference=None,
-    default_threshold=DEFAULT_ENERGY_THRESHOLD,
+    default_threshold=None,
+    pfa_file=0.01,
+    gain=1.0,
+    signal_metadata=None,
     plot_path=None,
 ):
-    """Ejecuta el análisis completo de las cinco salidas obligatorias del proyecto."""
+    """Ejecuta el análisis completo de las cinco salidas obligatorias bajo contrato explícito."""
     warnings = []
-    num_samples = len(iq)
+    iq_arr = np.asarray(iq, dtype=np.complex128)
+    if iq_arr.ndim != 1 or iq_arr.size < 2 or not np.isfinite(iq_arr).all():
+        raise ValueError("iq debe ser un vector 1D complejo finito con al menos 2 muestras.")
+    num_samples = int(iq_arr.size)
+    gain_val = _validate_positive_real(gain, "gain")
+    signal_metadata = dict(signal_metadata or {})
 
-    if fs_hz is None:
-        warnings.append("Frecuencia de muestreo no especificada; los resultados espectrales se expresan en ciclos/muestra.")
+    if fs_hz is not None:
+        fs_for_spectrum = _validate_positive_real(fs_hz, "fs_hz")
+        fs_source = "explicit_argument"
+    elif "fs_hz" in signal_metadata and signal_metadata["fs_hz"] is not None:
+        fs_for_spectrum = _validate_positive_real(signal_metadata["fs_hz"], "signal_metadata.fs_hz")
+        fs_source = str(signal_metadata.get("metadata_source", "file_metadata"))
+    else:
         fs_for_spectrum = None
-    else:
-        fs_for_spectrum = float(fs_hz)
+        fs_source = "unspecified"
+        warnings.append(
+            "Frecuencia de muestreo no especificada; el espectro usa ciclos/muestra y el clasificador queda fuera de alcance."
+        )
 
-    # 1. Detección de presencia
-    # Analizamos por ventanas de 256 muestras para consistencia con E1
-    window_len = 256
-    if num_samples >= window_len:
-        eval_window = iq[:window_len]
-    else:
-        eval_window = iq
-        warnings.append(f"Señal corta ({num_samples} muestras < 256); detección sobre longitud real.")
-
-    power_obs = energy_statistic(eval_window)
-    if detection_calibration is not None:
-        det_res = detect_energy(eval_window, detection_calibration)
-        is_detected = det_res["detected"]
-        thresh_used = det_res["threshold"]
-    else:
-        thresh_used = float(default_threshold)
-        is_detected = bool(power_obs > thresh_used)
+    # 1. Detección de presencia multi-ventana controlada por archivo
+    det_window_len = 256
+    det_res = detect_energy_file(
+        iq_arr,
+        window_len=det_window_len,
+        calibration=detection_calibration,
+        noise_reference=noise_reference,
+        manual_threshold=default_threshold if (detection_calibration is None and noise_reference is None) else None,
+        pfa_file=pfa_file,
+        fs_hz=fs_for_spectrum,
+        gain=gain_val,
+    )
+    is_detected = det_res["detected"]
+    if is_detected is None:
+        warnings.append(f"Detección indeterminada ({det_res['calibration_status']}).")
+    elif det_res["calibration_status"] == "manual_threshold_unvalidated":
+        warnings.append("Detección ejecutada con umbral manual no calibrado sobre referencia de ruido.")
 
     detection_out = {
         "detected": is_detected,
-        "observed_energy": float(power_obs),
-        "threshold": thresh_used,
-        "status": "signal_present" if is_detected else "noise_only_or_undetected",
+        "observed_energy": det_res["observed_energy"],
+        "mean_energy": det_res["mean_energy"],
+        "threshold": det_res["threshold"],
+        "threshold_per_window": det_res["threshold_per_window"],
+        "threshold_per_file": det_res["threshold_per_file"],
+        "normalized_statistic": det_res["normalized_statistic"],
+        "active_window_indices": det_res["active_window_indices"],
+        "num_windows_evaluated": det_res["num_windows_evaluated"],
+        "pfa_file_target": det_res["pfa_file_target"],
+        "status": det_res["status"],
+        "calibration_status": det_res["calibration_status"],
+        "decision_rule": det_res["decision_rule"],
     }
 
-    # 2. Espectro y Ancho de banda (PSD)
-    # Estimamos sobre hasta 4096 muestras representativas
-    spec_window = iq[: min(num_samples, 4096)]
-    spec_res = estimate_spectrum(spec_window, fs_hz=fs_for_spectrum)
-    bw_val = float(spec_res["total_power_bandwidth"])
+    # 2. Espectro y Ancho de Banda (PSD)
+    if is_detected is True and det_res["active_window_indices"] and num_samples >= det_window_len:
+        active_iq = np.concatenate(
+            [iq_arr[idx * det_window_len : (idx + 1) * det_window_len] for idx in det_res["active_window_indices"]]
+        )
+        spec_window = active_iq[: min(len(active_iq), 4096)]
+    else:
+        active_iq = None
+        spec_window = iq_arr[: min(num_samples, 4096)]
+
+    noise_pow_for_spec = None
+    if is_detected is True and noise_reference is not None and noise_reference.get("method") == "independent_observed_noise_reference":
+        noise_pow_for_spec = noise_reference.get("noise_power_estimate")
+
+    spec_res = estimate_spectrum(spec_window, fs_hz=fs_for_spectrum, noise_power_estimate=noise_pow_for_spec)
+    bw_val = float(spec_res["total_power_bandwidth"]) if spec_res["total_power_bandwidth"] is not None else None
     bw_unit = "Hz" if fs_for_spectrum is not None else "ciclos/muestra"
-    freq_bounds = [float(spec_res["total_power_bounds"][0]), float(spec_res["total_power_bounds"][1])]
+    freq_bounds = (
+        [float(spec_res["total_power_bounds"][0]), float(spec_res["total_power_bounds"][1])]
+        if spec_res["total_power_bounds"] is not None
+        else None
+    )
 
     spectrum_out = {
         "bandwidth_99": bw_val,
+        "bandwidth_type": "total_power_99_includes_noise",
         "bandwidth_unit": bw_unit,
         "frequency_bounds": freq_bounds,
         "integrated_power": float(spec_res["integrated_power"]),
+        "signal_bandwidth_est": spec_res["signal_bandwidth_est"],
+        "signal_bandwidth_bounds": spec_res["signal_bandwidth_bounds"],
+        "signal_bandwidth_status": (
+            spec_res["signal_bandwidth_status"]
+            if is_detected is True
+            else ("requires_detected_signal" if is_detected is False else "requires_valid_detection")
+        ),
         "window_method": spec_res["window"],
         "spectrum_file": str(plot_path) if plot_path else None,
     }
 
     # 3. Estimación de SNR condicionada
-    snr_raw = estimate_snr(eval_window, reference=noise_reference, detected=is_detected)
+    snr_target_iq = active_iq if active_iq is not None else iq_arr[: min(num_samples, det_window_len)]
+
+    snr_raw = estimate_snr(
+        snr_target_iq,
+        reference=noise_reference,
+        detected=is_detected,
+        fs_hz=fs_for_spectrum,
+        gain=gain_val,
+    )
     if noise_reference is None:
         snr_out = {
             "snr_est_db": None,
             "status": "no_identificable_sin_supuestos",
-            "reason": "falta_referencia_de_piso_de_ruido",
+            "reason": snr_raw["reason"] if is_detected is not True else "falta_referencia_de_piso_de_ruido",
+            "method": None,
             "explanation": "La estimación rigurosa de SNR requiere una referencia independiente de ruido en la misma banda y ganancia.",
-            "observed_power": float(power_obs),
+            "observed_power": float(snr_raw["observed_power"]),
+            "noise_power_estimate": None,
+            "signal_power_estimate": None,
         }
         warnings.append("SNR indeterminada: se requiere referencia externa de ruido estacionario.")
     else:
         snr_out = {
             "snr_est_db": float(snr_raw["snr_db"]) if snr_raw.get("snr_db") is not None else None,
             "status": snr_raw.get("status", "indeterminada"),
+            "reason": snr_raw.get("reason"),
+            "method": snr_raw.get("method"),
+            "observed_power": float(snr_raw["observed_power"]),
             "noise_power_estimate": snr_raw.get("noise_power_estimate"),
             "signal_power_estimate": snr_raw.get("signal_power_estimate"),
         }
 
     # 4 y 5. Clasificación y Confianza
-    # Cargamos modelo convencional por defecto o especificado
     m_path = Path(model_path) if model_path else DEFAULT_SVM_MODEL
+    cal_path = Path(calibrator_path) if calibrator_path else DEFAULT_CALIBRATOR
     classification_out = {
         "modulation": None,
+        "status": "pending",
         "confidence": None,
         "confidence_calibrated": False,
+        "confidence_status": "not_evaluated",
+        "calibration_unit": None,
         "model_used": None,
-        "scope": "signal_present_closed_set",
+        "model_family": None,
+        "model_sha256": None,
+        "model_window_len": None,
+        "scope": "signal_present_closed_set_6_classes",
+        "closed_set_classes": list(CLASSES),
         "window_votes": {},
+        "windows_evaluated": 0,
     }
 
-    if not is_detected:
+    if is_detected is False:
         classification_out["modulation"] = "NO_SIGNAL"
-        classification_out["confidence"] = 0.0
+        classification_out["status"] = "no_signal_detected"
+        classification_out["confidence_status"] = "not_applicable_no_signal"
         warnings.append("Detector negativo: modulación marcada como NO_SIGNAL.")
+    elif is_detected is None:
+        classification_out["modulation"] = "INDETERMINATE_DETECTION"
+        classification_out["status"] = det_res["status"]
+        classification_out["confidence_status"] = "not_applicable_indeterminate_detection"
+        warnings.append("Detección indeterminada: clasificación omitida sin referencia ni umbral validado.")
     elif not m_path.is_file():
+        classification_out["status"] = "model_not_found"
+        classification_out["confidence_status"] = "model_not_found"
         warnings.append(f"Modelo clasificador no encontrado en {m_path}; clasificación omitida.")
     else:
-        # Cargar pipeline de SVM
         bundle = joblib.load(m_path)
+        _validate_artifact(bundle)
         pipe = bundle["pipeline"]
-        classes = list(bundle.get("classes", CLASSES))
+        classes = tuple(bundle.get("classes", CLASSES))
+        model_window_len = int(pipe.named_steps["features"].n_samples)
+        model_sha256 = _sha256_file(m_path)
+
         classification_out["model_used"] = str(m_path)
+        classification_out["model_family"] = str(bundle.get("metadata", {}).get("selected_candidate", {}).get("family", "conventional"))
+        classification_out["model_sha256"] = model_sha256
+        classification_out["model_window_len"] = model_window_len
+        classification_out["closed_set_classes"] = list(classes)
 
-        # Cargar calibrador si está disponible
-        calibrator = None
-        p_path = Path(policy_path) if policy_path else DEFAULT_POLICY
-        if p_path.is_file():
-            try:
-                pol = joblib.load(p_path)
-                calibrator = pol.get("calibrator")
-            except Exception:
-                calibrator = None
-
-        # Segmentar la señal en ventanas de 256 muestras
-        n_windows = max(1, num_samples // window_len)
-        window_preds = []
-        window_margins = []
-
-        for i in range(n_windows):
-            start = i * window_len
-            w = iq[start : start + window_len]
-            if len(w) < window_len:
-                break
-            # Predict
-            pred_idx = int(pipe.predict(w[None, :])[0])
-            window_preds.append(classes[pred_idx])
-
-            # Margen entre los dos mejores puntajes
-            if hasattr(pipe, "decision_function"):
-                scores = pipe.decision_function(w[None, :])[0]
-                s_sorted = np.sort(scores)[::-1]
-                margin = float(s_sorted[0] - s_sorted[1])
-                window_margins.append(margin)
-
-        # Votación mayoritaria
-        if window_preds:
-            unique_classes, counts = np.unique(window_preds, return_counts=True)
-            best_class = unique_classes[np.argmax(counts)]
-            vote_dict = {cls: int(cnt) for cls, cnt in zip(unique_classes, counts)}
-            classification_out["modulation"] = str(best_class)
-            classification_out["window_votes"] = vote_dict
-
-            # Calibración de confianza
-            if window_margins:
-                mean_margin = float(np.mean(window_margins))
-                if calibrator is not None:
-                    # Usar regresión logística ajustada en val_cal (Fase Adaptativa)
-                    prob_cal = float(calibrator.predict_proba([[mean_margin]])[0, 1])
-                    # Escalar al rango de confianza multinomial
-                    confidence_val = min(0.99, max(0.20, prob_cal * (counts.max() / len(window_preds))))
-                    classification_out["confidence"] = round(confidence_val, 4)
-                    classification_out["confidence_calibrated"] = True
-                else:
-                    # Sigmoide empírica sobre margen
-                    confidence_val = float(1.0 / (1.0 + np.exp(-0.8 * mean_margin)))
-                    classification_out["confidence"] = round(min(0.99, max(0.20, confidence_val)), 4)
-                    classification_out["confidence_calibrated"] = False
+        meta_sps = signal_metadata.get("sps")
+        meta_rs = signal_metadata.get("symbol_rate_hz")
+        if num_samples < model_window_len:
+            classification_out["modulation"] = "OUT_OF_SCOPE_SHORT_SIGNAL"
+            classification_out["status"] = "insufficient_samples_for_model"
+            classification_out["confidence_status"] = "out_of_scope_short_signal"
+            warnings.append(
+                f"Señal de {num_samples} muestras menor que la ventana del modelo ({model_window_len}); no se rellena con ceros."
+            )
+        elif fs_for_spectrum is None:
+            classification_out["modulation"] = "OUT_OF_SCOPE_MISSING_FS"
+            classification_out["status"] = "out_of_scope_missing_fs_metadata"
+            classification_out["confidence_status"] = "out_of_scope_missing_fs"
+            warnings.append("No se clasifica sin frecuencia de muestreo verificable compatible con el modelo (8000 Hz).")
+        elif (
+            not np.isclose(fs_for_spectrum, EXPECTED_MODEL_FS_HZ, rtol=1e-9, atol=0.0)
+            or (meta_sps is not None and not np.isclose(float(meta_sps), EXPECTED_MODEL_SPS, rtol=1e-9, atol=0.0))
+            or (meta_rs is not None and not np.isclose(float(meta_rs), EXPECTED_MODEL_SYMBOL_RATE_HZ, rtol=1e-9, atol=0.0))
+        ):
+            classification_out["modulation"] = "OUT_OF_SCOPE_INCOMPATIBLE_SAMPLING"
+            classification_out["status"] = "out_of_scope_incompatible_fs_or_sps"
+            classification_out["confidence_status"] = "out_of_scope_incompatible_sampling"
+            warnings.append(
+                f"Muestreo incompatible con el clasificador entrenado (esperado fs={EXPECTED_MODEL_FS_HZ} Hz, sps={EXPECTED_MODEL_SPS})."
+            )
         else:
-            classification_out["modulation"] = "INDETERMINATE"
-            classification_out["confidence"] = 0.0
+            eval_windows = _select_eval_windows(iq_arr, model_window_len, det_res["active_window_indices"])
+            n_eval = int(len(eval_windows))
+            preds_idx = pipe.predict(eval_windows).astype(int)
+            window_preds = [classes[i] for i in preds_idx]
+
+            if hasattr(pipe, "decision_function"):
+                scores = pipe.decision_function(eval_windows)
+                if scores.ndim == 1:
+                    scores = scores[None, :]
+                sorted_scores = np.sort(scores, axis=1)[:, ::-1]
+                margins = sorted_scores[:, 0] - sorted_scores[:, 1]
+                mean_margin = float(np.mean(margins))
+                summed_scores = np.sum(scores, axis=0)
+            else:
+                margins = None
+                mean_margin = None
+                summed_scores = None
+
+            vote_counts = {cls: int(np.sum(preds_idx == idx)) for idx, cls in enumerate(classes) if np.any(preds_idx == idx)}
+            max_votes = max(vote_counts.values())
+            tied_indices = [idx for idx, cls in enumerate(classes) if vote_counts.get(cls, 0) == max_votes]
+            if len(tied_indices) == 1 or summed_scores is None:
+                best_idx = tied_indices[0]
+            else:
+                best_idx = max(tied_indices, key=lambda idx: float(summed_scores[idx]))
+
+            best_class = classes[best_idx]
+            vote_fraction = float(max_votes / n_eval)
+            classification_out["modulation"] = str(best_class)
+            classification_out["status"] = "classified_closed_set"
+            classification_out["window_votes"] = vote_counts
+            classification_out["windows_evaluated"] = n_eval
+
+            if mean_margin is not None:
+                conf_val, conf_cal, conf_status, cal_unit = _compute_calibrated_confidence(
+                    mean_margin=mean_margin,
+                    vote_fraction=vote_fraction,
+                    n_eval_windows=n_eval,
+                    model_sha256=model_sha256,
+                    model_window_len=model_window_len,
+                    classes=classes,
+                    calibrator_path=cal_path,
+                    explicit_policy_path=policy_path,
+                )
+                classification_out["confidence"] = conf_val
+                classification_out["confidence_calibrated"] = conf_cal
+                classification_out["confidence_status"] = conf_status
+                classification_out["calibration_unit"] = cal_unit
+            else:
+                classification_out["confidence"] = round(vote_fraction, 4)
+                classification_out["confidence_calibrated"] = False
+                classification_out["confidence_status"] = "uncalibrated_vote_fraction_no_margin"
+                classification_out["calibration_unit"] = "vote_fraction"
 
     # 6. Generación del gráfico si fue solicitado
     if plot_path:
         plot_p = Path(plot_path)
         plot_p.parent.mkdir(parents=True, exist_ok=True)
         generate_report_plot(
-            iq=iq,
+            iq=iq_arr,
             spec_res=spec_res,
             output_png=plot_p,
             fs_hz=fs_for_spectrum,
@@ -293,7 +635,8 @@ def analyze_complete(
     return {
         "signal_id": signal_id,
         "num_samples": num_samples,
-        "fs_hz": fs_hz,
+        "fs_hz": fs_for_spectrum,
+        "fs_source": fs_source,
         "detection": detection_out,
         "spectrum": spectrum_out,
         "snr": snr_out,
@@ -302,32 +645,32 @@ def analyze_complete(
     }
 
 
-def generate_report_plot(iq, spec_res, output_png, fs_hz=8000.0, title=None):
+def generate_report_plot(iq, spec_res, output_png, fs_hz=None, title=None):
     """Genera gráfico de reporte en PNG con densidad espectral (PSD) y constelación."""
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
-    # Panel izquierdo: Densidad espectral de potencia (PSD)
     freqs = spec_res["frequency"]
     psd_db = 10 * np.log10(np.maximum(spec_res["psd"], 1e-12))
     axes[0].plot(freqs, psd_db, color="royalblue", lw=1.5, label="PSD Observada")
 
-    # Sombrear banda al 99%
-    b_min, b_max = spec_res["total_power_bounds"]
-    mask = (freqs >= b_min) & (freqs <= b_max)
-    axes[0].fill_between(freqs[mask], psd_db[mask], -100, color="lightblue", alpha=0.5, label="Banda 99%")
-
-    axes[0].axvline(b_min, color="crimson", linestyle="--", alpha=0.7, label=f"Límite: {b_min:.1f}")
-    axes[0].axvline(b_max, color="crimson", linestyle="--", alpha=0.7, label=f"Límite: {b_max:.1f}")
-
     x_unit = "Hz" if fs_hz is not None else "ciclos/muestra"
+    if spec_res["total_power_bounds"] is not None:
+        b_min, b_max = spec_res["total_power_bounds"]
+        mask = (freqs >= b_min) & (freqs <= b_max)
+        axes[0].fill_between(freqs[mask], psd_db[mask], -100, color="lightblue", alpha=0.5, label="Banda 99% (total)")
+        axes[0].axvline(b_min, color="crimson", linestyle="--", alpha=0.7, label=f"Límite: {b_min:.3g}")
+        axes[0].axvline(b_max, color="crimson", linestyle="--", alpha=0.7, label=f"Límite: {b_max:.3g}")
+        bw_str = f"{spec_res['total_power_bandwidth']:.3g}"
+    else:
+        bw_str = "N/A"
+
     axes[0].set_xlabel(f"Frecuencia ({x_unit})")
-    axes[0].set_ylabel("PSD (dB/Hz)")
-    axes[0].set_title(f"Densidad Espectral (BW 99% = {spec_res['total_power_bandwidth']:.1f} {x_unit})")
+    axes[0].set_ylabel(f"PSD (dB/{'Hz' if fs_hz is not None else 'ciclo'})")
+    axes[0].set_title(f"Densidad Espectral (BW 99% total = {bw_str} {x_unit})")
     axes[0].set_ylim([max(-90, float(psd_db.min()) - 5), max(10, float(psd_db.max()) + 5)])
     axes[0].grid(True, linestyle="--", alpha=0.6)
     axes[0].legend(loc="upper right", fontsize=8)
 
-    # Panel derecho: Diagrama de constelación
     sub_iq = iq[: min(len(iq), 1024)]
     axes[1].scatter(np.real(sub_iq), np.imag(sub_iq), alpha=0.5, color="darkorange", s=14, edgecolors="none")
     axes[1].set_xlabel("En-Fase (I)")
@@ -353,63 +696,91 @@ def main():
         description="Monitor Integrado de Cinco Salidas para Señales Desconocidas (COM2)"
     )
     parser.add_argument("--input", "-i", required=True, help="Ruta al archivo de señal (.c64, .bin, .npy, .npz, .csv)")
-    parser.add_argument("--fs-hz", type=float, default=8000.0, help="Frecuencia de muestreo en Hz (por defecto 8000)")
+    parser.add_argument("--fs-hz", type=float, default=None, help="Frecuencia de muestreo en Hz (opcional; si falta se usa ciclos/muestra)")
     parser.add_argument("--dtype", default="complex64", help="Tipo de dato binario (por defecto complex64)")
     parser.add_argument("--model", "-m", default=str(DEFAULT_SVM_MODEL), help="Ruta al modelo clasificador .joblib")
-    parser.add_argument("--policy", default=str(DEFAULT_POLICY), help="Ruta al calibrador / política .joblib")
+    parser.add_argument("--calibrator", default=str(DEFAULT_CALIBRATOR), help="Ruta al paquete de calibración validado .joblib")
+    parser.add_argument("--policy", default=None, help="Ruta opcional a política externa (no validada salvo esquema compatible)")
     parser.add_argument("--output", "-o", default=None, help="Ruta al archivo JSON de resultados")
     parser.add_argument("--plot", "-p", default=None, help="Ruta a la figura PNG de espectro y constelación")
-    parser.add_argument("--noise-ref", default=None, help="Ruta a archivo de ruido de referencia para estimar SNR")
-    parser.add_argument("--threshold", type=float, default=DEFAULT_ENERGY_THRESHOLD, help="Umbral de energía del detector")
+    parser.add_argument("--noise-ref", default=None, help="Ruta a archivo de ruido de referencia para calibrar detección y SNR")
+    parser.add_argument("--threshold", type=float, default=None, help="Umbral manual opcional de energía (sin calibración estadística)")
+    parser.add_argument("--gain", type=float, default=1.0, help="Ganancia declarada de captura para verificar compatibilidad con referencia")
 
     args = parser.parse_args()
 
-    input_path = Path(args.input)
-    signal_id = input_path.stem
+    try:
+        input_path = Path(args.input)
+        signal_id = input_path.stem
 
-    # Determinar rutas de salida por defecto si no fueron dadas
-    results_dir = Path("results/monitor")
-    results_dir.mkdir(parents=True, exist_ok=True)
-    out_json = Path(args.output) if args.output else results_dir / f"{signal_id}.json"
-    out_plot = Path(args.plot) if args.plot else results_dir / f"{signal_id}_psd.png"
+        results_dir = Path("results/monitor")
+        out_json = Path(args.output) if args.output else results_dir / f"{signal_id}.json"
+        out_plot = Path(args.plot) if args.plot else results_dir / f"{signal_id}_psd.png"
+        out_json.parent.mkdir(parents=True, exist_ok=True)
+        out_plot.parent.mkdir(parents=True, exist_ok=True)
 
-    # Cargar referencia de ruido si existe
-    noise_ref = None
-    if args.noise_ref:
-        noise_samples = load_signal(args.noise_ref, dtype=args.dtype)
-        noise_ref = calibrate_noise_reference(noise_samples)
+        iq, sig_meta = load_signal(input_path, dtype=args.dtype, return_metadata=True)
 
-    # Cargar señal
-    iq = load_signal(input_path, dtype=args.dtype)
+        effective_fs = args.fs_hz if args.fs_hz is not None else sig_meta.get("fs_hz")
+        if effective_fs is not None:
+            effective_fs = _validate_positive_real(effective_fs, "fs_hz")
+        gain_val = _validate_positive_real(args.gain, "gain")
 
-    # Ejecutar análisis
-    res = analyze_complete(
-        iq=iq,
-        signal_id=signal_id,
-        fs_hz=args.fs_hz,
-        model_path=args.model,
-        policy_path=args.policy,
-        noise_reference=noise_ref,
-        default_threshold=args.threshold,
-        plot_path=out_plot,
-    )
+        noise_ref = None
+        if args.noise_ref:
+            noise_samples, noise_meta = load_signal(args.noise_ref, dtype=args.dtype, return_metadata=True)
+            noise_fs = noise_meta.get("fs_hz", effective_fs)
+            noise_gain = noise_meta.get("gain", gain_val)
+            noise_ref = calibrate_noise_reference(noise_samples, fs_hz=noise_fs, gain=noise_gain)
 
-    # Guardar JSON
+        res = analyze_complete(
+            iq=iq,
+            signal_id=signal_id,
+            fs_hz=args.fs_hz,
+            model_path=args.model,
+            policy_path=args.policy,
+            calibrator_path=args.calibrator,
+            noise_reference=noise_ref,
+            default_threshold=args.threshold,
+            gain=gain_val,
+            signal_metadata=sig_meta,
+            plot_path=out_plot,
+        )
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        sys.exit(2)
+
     with open(out_json, "w", encoding="utf-8") as f:
         json.dump(res, f, indent=2, ensure_ascii=False)
+
+    det = res["detection"]
+    det_str = (
+        "SÍ (Señal presente)"
+        if det["detected"] is True
+        else ("NO (Solo ruido / no detectada)" if det["detected"] is False else f"INDETERMINADA ({det['status']})")
+    )
+    thresh_str = f"{det['threshold']:.4g}" if det["threshold"] is not None else "N/A"
+    fs_str = f"{res['fs_hz']} Hz ({res['fs_source']})" if res["fs_hz"] is not None else "No especificada (ciclos/muestra)"
+    bw_str = f"{res['spectrum']['bandwidth_99']:.4g}" if res["spectrum"]["bandwidth_99"] is not None else "N/A"
+    bounds = res["spectrum"]["frequency_bounds"]
+    bounds_str = f"[{bounds[0]:.4g}, {bounds[1]:.4g}]" if bounds is not None else "N/A"
+    snr_val = res["snr"]["snr_est_db"]
+    snr_str = f"{snr_val:.2f} dB" if snr_val is not None else "null"
+    conf_val = res["classification"]["confidence"]
+    conf_str = f"{conf_val * 100:.1f}%" if conf_val is not None else "null"
 
     print("\n" + "=" * 60)
     print(f" MONITOR INTEGRADO COM2 - REPORTE DE SEÑAL [{signal_id}]")
     print("=" * 60)
     print(f"  Muestras totales   : {res['num_samples']}")
-    print(f"  Frecuencia muestreo: {res['fs_hz']} Hz")
-    print(f"  1. Detección       : {'SÍ (Señal presente)' if res['detection']['detected'] else 'NO (Solo ruido)'}")
-    print(f"     Energía observad: {res['detection']['observed_energy']:.4f} (Umbral: {res['detection']['threshold']:.4f})")
-    print(f"  2. Ancho de Banda  : {res['spectrum']['bandwidth_99']:.2f} {res['spectrum']['bandwidth_unit']} (99% potencia)")
-    print(f"     Banda ocupada   : [{res['spectrum']['frequency_bounds'][0]:.1f}, {res['spectrum']['frequency_bounds'][1]:.1f}]")
-    print(f"  3. SNR Estimada    : {res['snr']['snr_est_db']} dB ({res['snr']['status']})")
-    print(f"  4. Modulación      : {res['classification']['modulation']}")
-    print(f"  5. Confianza       : {res['classification']['confidence'] * 100:.1f}% (Calibrada: {res['classification']['confidence_calibrated']})")
+    print(f"  Frecuencia muestreo: {fs_str}")
+    print(f"  1. Detección       : {det_str}")
+    print(f"     Energía máx/umbral: {det['observed_energy']:.4g} (Umbral: {thresh_str})")
+    print(f"  2. Ancho de Banda  : {bw_str} {res['spectrum']['bandwidth_unit']} (99% potencia total)")
+    print(f"     Banda ocupada   : {bounds_str}")
+    print(f"  3. SNR Estimada    : {snr_str} ({res['snr']['status']})")
+    print(f"  4. Modulación      : {res['classification']['modulation']} ({res['classification']['status']})")
+    print(f"  5. Confianza       : {conf_str} (Calibrada: {res['classification']['confidence_calibrated']})")
     print("-" * 60)
     print(f"  Archivo JSON       : {out_json}")
     print(f"  Gráfico PSD / Const: {out_plot}")

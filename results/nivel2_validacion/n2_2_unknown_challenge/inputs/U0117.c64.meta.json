@@ -1,0 +1,7 @@
+{
+  "fs_hz": 8000.0,
+  "sps": 8,
+  "symbol_rate_hz": 1000.0,
+  "gain": 0.5,
+  "single_modulation_assumption": true
+}

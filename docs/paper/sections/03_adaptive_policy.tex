@@ -60,7 +60,7 @@ Let $r[n]$ denote the complex baseband received signal sampled at rate $f_s$. Th
 \end{figure}
 
 \begin{table}[t]
-\caption{Operational Characteristics of the Tripartite Action Set $\mathcal{A}$}
+\caption{Operational Characteristics of the Tripartite Action Set $\mathcal{A}$ (Full-Route Synced Profiling, 3 Sessions $\times$ 300 Calls)}
 \label{tab:action_characteristics}
 \centering
 \renewcommand{\arraystretch}{1.2}
@@ -68,11 +68,11 @@ Let $r[n]$ denote the complex baseband received signal sampled at rate $f_s$. Th
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{lccccc}
 \hline
-\textbf{Action} & \textbf{Model} & \textbf{Horizon} & $T_{\mathrm{acq}}$ ($f_s=8\mathrm{k}$) & $T_{\mathrm{comp}}$ (Batch=1) & \textbf{Dominant Resilience} \\
+\textbf{Action} & \textbf{Model} & \textbf{Horizon} & $T_{\mathrm{acq}}$ ($f_s=8\mathrm{k}$) & $T_{\mathrm{comp}}$ (Batch=1, Sync) & \textbf{Dominant Resilience} \\
 \hline
-$a_0$ & $\mathrm{SVM}_{256}$ & $N_0 = 256$ & $32.00\,\mathrm{ms}$ & $2.03\,\mathrm{ms}$ (CPU) & High SNR, benign AWGN \\
-$a_1$ & $\mathrm{SVM}_{512}$ & $N_1 = 512$ & $64.00\,\mathrm{ms}$ & $2.27\,\mathrm{ms}$ (CPU) & Finite-sample moment jitter \\
-$a_2$ & MultiDomain & $N_0 = 256$ & $32.00\,\mathrm{ms}$ & $24.15\,\mathrm{ms}$ (GPU) & Mid-SNR, CFO, multipath, ISI \\
+$a_0$ & $\mathrm{SVM}_{256}$ & $N_0 = 256$ & $32.00\,\mathrm{ms}$ & $2.22\,\mathrm{ms}$ (CPU) & High SNR, benign AWGN \\
+$a_1$ & $\mathrm{SVM}_{512}$ & $N_1 = 512$ & $64.00\,\mathrm{ms}$ & $3.22\,\mathrm{ms}$ (CPU) & Finite-sample moment jitter \\
+$a_2$ & MultiDomain & $N_0 = 256$ & $32.00\,\mathrm{ms}$ & $32.55\,\mathrm{ms}$ (GPU) & Mid-SNR, CFO, multipath, ISI \\
 \hline
 \end{tabular}%
 }
@@ -104,7 +104,7 @@ In real-time firmware, computing the gating vector $\mathbf{g}$ requires first e
 \end{align}
 where $T_{\mathrm{base}, 1}$ represents the feature extraction and classification time of $\mathrm{SVM}_{512}$, and $T_{\mathrm{base}, 2}$ is the forward-pass execution time of $\mathrm{MultiDomainAMCNet}$.
 
-\textbf{Measurement Protocol:} Computation latencies are profiled using high-precision hardware timers ($\mathtt{time.perf\_counter\_ns()}$) in batch-size $B=1$ execution on dedicated cores under threadpool contention controls ($\mathtt{threadpool\_limits(limits=1)}$). To eliminate transient runtime compilation jitter and cache misses, all models undergo eight complete warm-up passes before recording inference statistics across $96$ independent channel realizations over three repetitions ($288$ recorded evaluations per classifier). As summarized in Table~\ref{tab:action_characteristics}, empirical execution times average $T_{\mathrm{base}, 0} = 2.03\,\mathrm{ms}$ (CPU), $T_{\mathrm{base}, 1} = 2.27\,\mathrm{ms}$ (CPU), and $T_{\mathrm{base}, 2} = 24.15\,\mathrm{ms}$ (NVIDIA RTX 4060 Laptop GPU, end-to-end single-sample transfer plus FP32 DSP and TF32 neural forward pass). The Fast LBAP gating overhead measures $T_{\mathrm{gate}} = 0.035\,\mathrm{ms}$, consuming $1.7\%$ of the baseline SVM compute time and under $0.07\%$ of mean routed total latency ($52.56\,\mathrm{ms}$ at $f_s = 8\,\mathrm{kHz}$).
+\textbf{Measurement Protocol (N3.3 Full-Route Synchronization):} Computation latencies are profiled in true single-sample streaming mode ($\text{batch}=1$) under explicit CUDA synchronization ($\mathtt{torch.cuda.synchronize()}$) and single-thread contention controls ($\mathtt{torch.set\_num\_threads(1)}$, $\mathtt{threadpool\_limits(limits=1)}$) across three randomized sessions of $300$ independent waveforms ($900$ measured calls per policy). Unlike unrouted kernel timings ($2.03\text{--}24.15\,\mathrm{ms}$ in preliminary profiling), full-route execution includes the prefix extractor and selector overhead whenever routing occurs: standalone baselines average $T_{\mathrm{base}, 0} = 2.221\,\mathrm{ms}$ ($\mathrm{SVM}_{256}$), $T_{\mathrm{base}, 1} = 3.218\,\mathrm{ms}$ ($\mathrm{SVM}_{512}$), and $T_{\mathrm{base}, 2} = 32.545\,\mathrm{ms}$ ($\mathrm{MultiDomainAMCNet}$ on RTX 4060 Laptop GPU, median $28.29\,\mathrm{ms}$, P95 $58.25\,\mathrm{ms}$). Under full-route conditional branching, routed Fast LBAP compute averages $18.688\,\mathrm{ms}$ overall (median $6.555\,\mathrm{ms}$, P95 $46.639\,\mathrm{ms}$), cutting compute time by $13.857\,\mathrm{ms}$ vs.\ standalone $a_2$ ($95\%$ CI $[-15.348, -12.317]\,\mathrm{ms}$), with realized per-branch compute costs of $4.133\,\mathrm{ms}$ ($a_0$ exit), $6.621\,\mathrm{ms}$ ($a_1$ exit), and $36.763\,\mathrm{ms}$ ($a_2$ exit).
 
 % -------------------------------------------------------------------------
 \subsection{Net Utility Formulation: Recoverability vs. Irrecuperability}
@@ -326,12 +326,12 @@ The optimal temperature $T^*$ is identified by minimizing the multiclass Negativ
 \end{equation}
 solved via the quasi-Newton L-BFGS optimizer. Crucially, because the transformation $\mathbf{z} / T$ is strictly monotonic for any $T > 0$, temperature scaling preserves the classification output $\arg\max_k z_k$ and the top-1 accuracy identically, while calibrating the output probabilities to align with empirical accuracy.
 
-Calibration quality is quantified via the Expected Calibration Error ($\mathrm{ECE}_{10}$) across $K=10$ equal-frequency bins:
+Calibration quality for top-1 confidence reliability is quantified via the Expected Calibration Error ($\mathrm{ECE}_{10}$) over $K=10$ uniform equal-width bins in $[0, 1]$:
 \begin{equation}
     \mathrm{ECE}_{10} = \sum_{b=1}^{10} \frac{|B_b|}{N_{\mathrm{val}}} \left| \mathrm{acc}(B_b) - \mathrm{conf}(B_b) \right|,
     \label{eq:ece_def}
 \end{equation}
-alongside the mean Brier score $\mathrm{BS} = \frac{1}{N} \sum_{i=1}^N \sum_{c=1}^6 (\hat{p}_{ic} - \mathbb{I}(y_i = c))^2$. As quantified in Section~\ref{sec:results_discussion}, post-hoc calibration aligns the confidence scores of both the baseline SVM and the deep expert with empirical accuracy, ensuring that utility predictions reflect calibrated posterior probabilities rather than network overconfidence.
+together with binary top-1 correctness Brier score $\mathrm{BS}_{\mathrm{bin}} = \frac{1}{N} \sum_{i=1}^N (\hat{p}_{i,\max} - z_i)^2$ and binary Negative Log-Likelihood $\mathrm{NLL}_{\mathrm{bin}} = -\frac{1}{N}\sum_{i=1}^N [z_i \ln \hat{p}_{i,\max} + (1 - z_i)\ln(1 - \hat{p}_{i,\max})]$, where $z_i = \mathbb{I}(\hat{y}_i = y_i)$ and $\hat{p}_{i,\max} = \max_c \hat{p}_{ic}$ (allowing unified scalar reliability comparison across both the binary Platt margin of $a_0$ and the maximum calibrated probability of $a_2$). Note that $T^*$ is nevertheless optimized via multiclass NLL~\eqref{eq:temp_nll_opt}. As quantified in Section~\ref{sec:results_discussion}, post-hoc calibration aligns the in-distribution confidence scores of both the baseline SVM and the deep expert with empirical accuracy, while revealing overconfidence degradation under severe OOD shift.
 
 % -------------------------------------------------------------------------
 \subsection{Pareto Optimality across Latency Regimes and Sampling Frequencies}
@@ -365,13 +365,13 @@ A fundamental advantage of the proposed net utility formulation is its adaptabil
     \filldraw[gray!80!black] (Oracle) circle (2pt) node[below, font=\scriptsize] {Oracle Bound (Descriptive)};
 
     % Grid lines
-    \draw[dotted, gray] (A0) -- (1.8,0) node[below, font=\tiny] {$34.03\,\mathrm{ms}$};
-    \draw[dotted, gray] (LBAP_opt) -- (4.1,0) node[below, font=\tiny] {$52.56\,\mathrm{ms}$};
-    \draw[dotted, gray] (A2) -- (5.4,0) node[below, font=\tiny] {$56.15\,\mathrm{ms}$};
-    \draw[dotted, gray] (A1) -- (6.7,0) node[below, font=\tiny] {$66.27\,\mathrm{ms}$};
+    \draw[dotted, gray] (A0) -- (1.8,0) node[below, font=\tiny] {$34.22\,\mathrm{ms}$};
+    \draw[dotted, gray] (LBAP_opt) -- (4.1,0) node[below, font=\tiny] {$56.66\,\mathrm{ms}$};
+    \draw[dotted, gray] (A2) -- (5.4,0) node[below, font=\tiny] {$64.55\,\mathrm{ms}$};
+    \draw[dotted, gray] (A1) -- (6.7,0) node[below, font=\tiny] {$67.22\,\mathrm{ms}$};
 \end{tikzpicture}%
 }
-\caption{Conceptual Risk--Latency Pareto frontier at $f_s = 8\,\mathrm{kHz}$. At low sampling rates, the physical waiting penalty of $a_1$ ($+32\,\mathrm{ms}$) exceeds the isolated neural pass $T_{\mathrm{base}, 2} = 24.15\,\mathrm{ms}$ ($66.27\,\mathrm{ms}$ vs. $56.15\,\mathrm{ms}$ total); Fast LBAP routes across $\{a_0,a_1,a_2\}$ to achieve lower mean latency ($52.56\,\mathrm{ms}$) than standalone $a_2$ at slightly higher accuracy.}
+\caption{Conceptual Risk--Latency Pareto frontier at $f_s = 8\,\mathrm{kHz}$ using synced full-route latency profiling (\texttt{N3.3}). At low sampling rates, the physical waiting penalty of $a_1$ ($+32\,\mathrm{ms}$) makes standalone $a_1$ ($67.22\,\mathrm{ms}$) slower than standalone $a_2$ ($64.55\,\mathrm{ms}$); deployable Fast LBAP routes across $\{a_0,a_1,a_2\}$ to achieve lower mean latency ($56.66\,\mathrm{ms}$) and higher utility ($0.4379$) than standalone $a_2$ ($0.4190$).}
 \label{fig:pareto_conceptual}
 \end{figure}
 
@@ -380,7 +380,7 @@ The parameter $\lambda \ge 0$ represents the exchange rate between classificatio
 \begin{itemize}
     \item \textbf{Accuracy-Centric Regime ($\lambda \to 0$):} Latency is unpenalized. The policy collapses to an accuracy oracle, selecting $\arg\max_{a \in \mathcal{A}} \mathbb{P}(\hat{y}(a) = y \mid \mathbf{g})$. Difficult frames are routed aggressively to the most accurate models ($a_2$ or $a_1$).
     \item \textbf{Latency-Constrained Regime ($\lambda \ge 0.005\,\mathrm{ms}^{-1}$):} An additional $32\,\mathrm{ms}$ acquisition delay penalizes net utility by $\Delta U = -0.160$. Under high latency pressure, the policy restricts escalation to high-recoverability prefixes and shifts substantially back toward immediate $a_0$ termination.
-    \item \textbf{Balanced Operational Regime ($\lambda = 0.0015\,\mathrm{ms}^{-1}$):} Our nominal operating point values $10\,\mathrm{ms}$ of reception delay at $0.015$ accuracy points ($32\,\mathrm{ms}$ at $0.048$ points), balancing neural recovery against both acquisition wait ($a_1$) and single-sample inference time ($a_2$). Under this nominal trade-off, Fast LBAP improves classification accuracy over both fixed-window SVM baselines while remaining strictly faster on average than either standalone $a_1$ or standalone $a_2$.
+    \item \textbf{Balanced Operational Regime ($\lambda = 0.0015\,\mathrm{ms}^{-1}$):} Our nominal operating point values $10\,\mathrm{ms}$ of reception delay at $0.015$ accuracy points ($32\,\mathrm{ms}$ at $0.048$ points), balancing neural recovery against both acquisition wait ($a_1$) and single-sample inference time ($a_2$). Under this nominal trade-off with full-route synced costs, Fast LBAP improves net utility over all fixed standalone baselines in-distribution while remaining faster on average than either standalone $a_1$ or standalone $a_2$.
 \end{itemize}
 
 \subsubsection{Asymptotic Inversion with Sampling Rate $f_s$}
@@ -390,6 +390,6 @@ The relative economic advantage between action $a_1$ (more observation) and acti
     \lim_{f_s \to 0} \frac{T_{\mathrm{acq}}(a_1)}{T_{\mathrm{comp}}(a_2)} &= \infty. \label{eq:limit_fs_zero}
 \end{align}
 
-In low-rate sensor and IoT networks ($f_s \approx 8\,\mathrm{kHz}$, symbol rate $R_s = 1000\,\mathrm{Bd}$), physical acquisition dominates: waiting for $256$ additional samples adds $T_{\mathrm{acq}}(a_1) - T_{\mathrm{acq}}(a_0) = 32.0\,\mathrm{ms}$ ($66.27\,\mathrm{ms}$ total for $a_1$), whereas deep neural inference requires $T_{\mathrm{base}, 2} = 24.15\,\mathrm{ms}$ ($56.15\,\mathrm{ms}$ total for $a_2$). In this narrowband regime, computational escalation ($a_2$) on the short $256$-sample prefix is both faster and more accurate than waiting for extended reception ($a_1$).
+In low-rate sensor and IoT networks ($f_s \approx 8\,\mathrm{kHz}$, symbol rate $R_s = 1000\,\mathrm{Bd}$), physical acquisition dominates: waiting for $256$ additional samples adds $T_{\mathrm{acq}}(a_1) - T_{\mathrm{acq}}(a_0) = 32.0\,\mathrm{ms}$ ($67.22\,\mathrm{ms}$ synced total for standalone $a_1$), whereas deep neural inference requires $T_{\mathrm{base}, 2} = 32.55\,\mathrm{ms}$ ($64.55\,\mathrm{ms}$ synced total for standalone $a_2$). In this narrowband regime, computational escalation ($a_2$) on the short $256$-sample prefix remains competitive in wall-clock delay and far more accurate in mid-SNR than extending $a_1$.
 
 Conversely, in wideband software-defined radios and cellular transceivers ($f_s \ge 1\,\mathrm{MHz}$), physical acquisition time collapses ($T_{\mathrm{acq}}(a_1) = 512 / 10^6 = 0.512\,\mathrm{ms}$). Here, acquisition latency is negligible compared to computation, and the trade-off inverts: acquiring additional physical symbols ($a_1$) becomes virtually free, whereas arithmetic complexity ($a_2$) becomes the primary latency bottleneck. As validated by the two-dimensional Pareto sweeps in Section~\ref{sec:results_discussion}, the Fast LBAP policy autonomously adapts its action distribution across orders of magnitude in $f_s$, demonstrating true universal applicability across heterogeneous hardware constraints.

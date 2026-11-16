@@ -1,0 +1,842 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-16T20:52:10.755230+00:00",
+  "scope": "N5.1 diagnóstico controlado de un factor con modelos congelados (sin reentrenamiento ni uso en selección)",
+  "h1_channel_shift_factorial": {
+    "n_parents_per_scenario": 720,
+    "scenarios": {
+      "id": {
+        "svm256": {
+          "accuracy": 0.5569444444444445,
+          "macro_f1": 0.5609096628289296
+        },
+        "svm512": {
+          "accuracy": 0.6208333333333333,
+          "macro_f1": 0.6214871065952137
+        },
+        "cnn_original": {
+          "accuracy": 0.5333333333333333,
+          "macro_f1": 0.5351574324629631
+        },
+        "cnn_phase": {
+          "accuracy": 0.5444444444444444,
+          "macro_f1": 0.5351126053830448
+        },
+        "multidomain_a2": {
+          "accuracy": 0.6763888888888889,
+          "macro_f1": 0.6853544151173243
+        }
+      },
+      "cfo_zero": {
+        "svm256": {
+          "accuracy": 0.5569444444444445,
+          "macro_f1": 0.5553417057392332
+        },
+        "svm512": {
+          "accuracy": 0.5972222222222222,
+          "macro_f1": 0.5958815005856235
+        },
+        "cnn_original": {
+          "accuracy": 0.55,
+          "macro_f1": 0.5491067135055508
+        },
+        "cnn_phase": {
+          "accuracy": 0.5597222222222222,
+          "macro_f1": 0.5516014859574384
+        },
+        "multidomain_a2": {
+          "accuracy": 0.6916666666666667,
+          "macro_f1": 0.6978183696075678
+        }
+      },
+      "cfo_shift": {
+        "svm256": {
+          "accuracy": 0.5597222222222222,
+          "macro_f1": 0.5589900952071845
+        },
+        "svm512": {
+          "accuracy": 0.5930555555555556,
+          "macro_f1": 0.5953950973521086
+        },
+        "cnn_original": {
+          "accuracy": 0.2777777777777778,
+          "macro_f1": 0.2316460918675982
+        },
+        "cnn_phase": {
+          "accuracy": 0.2875,
+          "macro_f1": 0.23028831556890714
+        },
+        "multidomain_a2": {
+          "accuracy": 0.6402777777777777,
+          "macro_f1": 0.6528414831233585
+        }
+      },
+      "multipath_shift": {
+        "svm256": {
+          "accuracy": 0.3277777777777778,
+          "macro_f1": 0.333101671039585
+        },
+        "svm512": {
+          "accuracy": 0.36666666666666664,
+          "macro_f1": 0.3624780730641925
+        },
+        "cnn_original": {
+          "accuracy": 0.35555555555555557,
+          "macro_f1": 0.36305776111395277
+        },
+        "cnn_phase": {
+          "accuracy": 0.35,
+          "macro_f1": 0.34505596248754783
+        },
+        "multidomain_a2": {
+          "accuracy": 0.36944444444444446,
+          "macro_f1": 0.3778586759543438
+        }
+      },
+      "both_shift": {
+        "svm256": {
+          "accuracy": 0.33055555555555555,
+          "macro_f1": 0.3290209834411398
+        },
+        "svm512": {
+          "accuracy": 0.32916666666666666,
+          "macro_f1": 0.32931056979111745
+        },
+        "cnn_original": {
+          "accuracy": 0.22361111111111112,
+          "macro_f1": 0.17240433656685838
+        },
+        "cnn_phase": {
+          "accuracy": 0.21944444444444444,
+          "macro_f1": 0.1643280030620868
+        },
+        "multidomain_a2": {
+          "accuracy": 0.3402777777777778,
+          "macro_f1": 0.34429596838259546
+        }
+      }
+    },
+    "paired_effects_vs_id": {
+      "svm256": {
+        "cfo_zero_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": 0.0,
+          "accuracy_ci95": [
+            -0.0375,
+            0.03888888888888889
+          ],
+          "macro_f1_delta": -0.005567957089696374,
+          "macro_f1_ci95": [
+            -0.04330587535788068,
+            0.03277603406669615
+          ]
+        },
+        "cfo_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": 0.002777777777777778,
+          "accuracy_ci95": [
+            -0.034722222222222224,
+            0.04027777777777778
+          ],
+          "macro_f1_delta": -0.0019195676217451663,
+          "macro_f1_ci95": [
+            -0.039129603505079255,
+            0.034853839951492945
+          ]
+        },
+        "multipath_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.22916666666666666,
+          "accuracy_ci95": [
+            -0.26805555555555555,
+            -0.19166666666666668
+          ],
+          "macro_f1_delta": -0.22780799178934463,
+          "macro_f1_ci95": [
+            -0.26627039906563454,
+            -0.19006386505254416
+          ]
+        },
+        "both_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.2263888888888889,
+          "accuracy_ci95": [
+            -0.26805555555555555,
+            -0.18472222222222223
+          ],
+          "macro_f1_delta": -0.23188867938778984,
+          "macro_f1_ci95": [
+            -0.2732750860655811,
+            -0.1907699649477635
+          ]
+        }
+      },
+      "svm512": {
+        "cfo_zero_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.02361111111111111,
+          "accuracy_ci95": [
+            -0.059722222222222225,
+            0.011111111111111112
+          ],
+          "macro_f1_delta": -0.025605606009590165,
+          "macro_f1_ci95": [
+            -0.061643600024685524,
+            0.009722558005110127
+          ]
+        },
+        "cfo_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.027777777777777776,
+          "accuracy_ci95": [
+            -0.06388888888888888,
+            0.008333333333333333
+          ],
+          "macro_f1_delta": -0.026092009243105063,
+          "macro_f1_ci95": [
+            -0.061723968604601366,
+            0.009411215574762957
+          ]
+        },
+        "multipath_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.25416666666666665,
+          "accuracy_ci95": [
+            -0.2902777777777778,
+            -0.21944444444444444
+          ],
+          "macro_f1_delta": -0.25900903353102117,
+          "macro_f1_ci95": [
+            -0.29641010356099307,
+            -0.2234587823244722
+          ]
+        },
+        "both_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.2916666666666667,
+          "accuracy_ci95": [
+            -0.33055555555555555,
+            -0.25277777777777777
+          ],
+          "macro_f1_delta": -0.2921765368040962,
+          "macro_f1_ci95": [
+            -0.33204806878123844,
+            -0.25290162768610897
+          ]
+        }
+      },
+      "cnn_original": {
+        "cfo_zero_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": 0.016666666666666666,
+          "accuracy_ci95": [
+            -0.025,
+            0.05694444444444444
+          ],
+          "macro_f1_delta": 0.013949281042587747,
+          "macro_f1_ci95": [
+            -0.026972376757741657,
+            0.05349678891577924
+          ]
+        },
+        "cfo_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.25555555555555554,
+          "accuracy_ci95": [
+            -0.29583333333333334,
+            -0.2152777777777778
+          ],
+          "macro_f1_delta": -0.3035113405953649,
+          "macro_f1_ci95": [
+            -0.34184170246244816,
+            -0.2659199929301587
+          ]
+        },
+        "multipath_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.17777777777777778,
+          "accuracy_ci95": [
+            -0.21666666666666667,
+            -0.1388888888888889
+          ],
+          "macro_f1_delta": -0.17209967134901033,
+          "macro_f1_ci95": [
+            -0.21125422267759358,
+            -0.1336563783694146
+          ]
+        },
+        "both_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.30972222222222223,
+          "accuracy_ci95": [
+            -0.3486111111111111,
+            -0.2708333333333333
+          ],
+          "macro_f1_delta": -0.3627530958961047,
+          "macro_f1_ci95": [
+            -0.39911694605732195,
+            -0.3259856456402444
+          ]
+        }
+      },
+      "cnn_phase": {
+        "cfo_zero_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": 0.015277777777777777,
+          "accuracy_ci95": [
+            -0.020833333333333332,
+            0.05138888888888889
+          ],
+          "macro_f1_delta": 0.016488880574393572,
+          "macro_f1_ci95": [
+            -0.021287945322222206,
+            0.054209098332069806
+          ]
+        },
+        "cfo_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.2569444444444444,
+          "accuracy_ci95": [
+            -0.29305555555555557,
+            -0.2207986111111116
+          ],
+          "macro_f1_delta": -0.30482428981413767,
+          "macro_f1_ci95": [
+            -0.3428061819706169,
+            -0.2670284648773504
+          ]
+        },
+        "multipath_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.19444444444444445,
+          "accuracy_ci95": [
+            -0.23055555555555557,
+            -0.15694444444444444
+          ],
+          "macro_f1_delta": -0.190056642895497,
+          "macro_f1_ci95": [
+            -0.2286810042440205,
+            -0.15159833969739026
+          ]
+        },
+        "both_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.325,
+          "accuracy_ci95": [
+            -0.3597222222222222,
+            -0.2875
+          ],
+          "macro_f1_delta": -0.370784602320958,
+          "macro_f1_ci95": [
+            -0.4060192209456583,
+            -0.33503216609249825
+          ]
+        }
+      },
+      "multidomain_a2": {
+        "cfo_zero_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": 0.015277777777777777,
+          "accuracy_ci95": [
+            -0.020833333333333332,
+            0.05138888888888889
+          ],
+          "macro_f1_delta": 0.012463954490243512,
+          "macro_f1_ci95": [
+            -0.0225496488831544,
+            0.047050274286925195
+          ]
+        },
+        "cfo_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.03611111111111111,
+          "accuracy_ci95": [
+            -0.07361111111111111,
+            0.001388888888888889
+          ],
+          "macro_f1_delta": -0.032512931993965766,
+          "macro_f1_ci95": [
+            -0.06818019684154857,
+            0.003583073524623575
+          ]
+        },
+        "multipath_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.30694444444444446,
+          "accuracy_ci95": [
+            -0.3458333333333333,
+            -0.26805555555555555
+          ],
+          "macro_f1_delta": -0.3074957391629805,
+          "macro_f1_ci95": [
+            -0.3482554554639358,
+            -0.2681658442960831
+          ]
+        },
+        "both_shift_minus_id": {
+          "n": 720,
+          "replicates": 10000,
+          "accuracy_delta": -0.33611111111111114,
+          "accuracy_ci95": [
+            -0.375,
+            -0.29583333333333334
+          ],
+          "macro_f1_delta": -0.34105844673472885,
+          "macro_f1_ci95": [
+            -0.3821323893702439,
+            -0.3009442827804884
+          ]
+        }
+      }
+    },
+    "verdict": {
+      "h1_statement": "En OOD, SmallCNN cae principalmente por CFO fuera de rango; SVM cae por multipath; MultiDomainAMCNet atenúa multipath respecto a SVM en ID pero también degrada bajo CFO/multipath extremos.",
+      "cfo_shift_drops": {
+        "svm256": 0.0028,
+        "svm512": -0.0278,
+        "cnn_original": -0.2556,
+        "cnn_phase": -0.2569,
+        "multidomain_a2": -0.0361
+      },
+      "multipath_shift_drops": {
+        "svm256": -0.2292,
+        "svm512": -0.2542,
+        "cnn_original": -0.1778,
+        "cnn_phase": -0.1944,
+        "multidomain_a2": -0.3069
+      },
+      "multidomain_a2_id_to_both_shift_drop": -0.3361,
+      "verdict": "Aceptada para diferenciación CFO vs multipath en CNN/SVM; documentada degradación conjunta en MultiDomainAMCNet bajo multipath y CFO extremos."
+    }
+  },
+  "h2_qam16_qam64_confusion": {
+    "n_parents_per_factor": 240,
+    "snr_levels_db": [
+      10,
+      20
+    ],
+    "by_factor": {
+      "awgn_cfo0_no_mp": {
+        "svm256": {
+          "factor": "awgn_cfo0_no_mp",
+          "model": "svm256",
+          "n_16qam": 120,
+          "acc_16qam": 0.5167,
+          "16qam_pred_64qam_count": 54,
+          "n_64qam": 120,
+          "acc_64qam": 0.45,
+          "64qam_pred_16qam_count": 64,
+          "joint_16_64_accuracy": 0.4833
+        },
+        "svm512": {
+          "factor": "awgn_cfo0_no_mp",
+          "model": "svm512",
+          "n_16qam": 120,
+          "acc_16qam": 0.6667,
+          "16qam_pred_64qam_count": 37,
+          "n_64qam": 120,
+          "acc_64qam": 0.5417,
+          "64qam_pred_16qam_count": 55,
+          "joint_16_64_accuracy": 0.6042
+        },
+        "cnn_original": {
+          "factor": "awgn_cfo0_no_mp",
+          "model": "cnn_original",
+          "n_16qam": 120,
+          "acc_16qam": 0.5167,
+          "16qam_pred_64qam_count": 57,
+          "n_64qam": 120,
+          "acc_64qam": 0.4917,
+          "64qam_pred_16qam_count": 54,
+          "joint_16_64_accuracy": 0.5042
+        },
+        "multidomain_a2": {
+          "factor": "awgn_cfo0_no_mp",
+          "model": "multidomain_a2",
+          "n_16qam": 120,
+          "acc_16qam": 0.8417,
+          "16qam_pred_64qam_count": 18,
+          "n_64qam": 120,
+          "acc_64qam": 0.2917,
+          "64qam_pred_16qam_count": 83,
+          "joint_16_64_accuracy": 0.5667
+        }
+      },
+      "cfo_only_id": {
+        "svm256": {
+          "factor": "cfo_only_id",
+          "model": "svm256",
+          "n_16qam": 120,
+          "acc_16qam": 0.5083,
+          "16qam_pred_64qam_count": 52,
+          "n_64qam": 120,
+          "acc_64qam": 0.5833,
+          "64qam_pred_16qam_count": 47,
+          "joint_16_64_accuracy": 0.5458
+        },
+        "svm512": {
+          "factor": "cfo_only_id",
+          "model": "svm512",
+          "n_16qam": 120,
+          "acc_16qam": 0.7083,
+          "16qam_pred_64qam_count": 35,
+          "n_64qam": 120,
+          "acc_64qam": 0.5667,
+          "64qam_pred_16qam_count": 51,
+          "joint_16_64_accuracy": 0.6375
+        },
+        "cnn_original": {
+          "factor": "cfo_only_id",
+          "model": "cnn_original",
+          "n_16qam": 120,
+          "acc_16qam": 0.5,
+          "16qam_pred_64qam_count": 56,
+          "n_64qam": 120,
+          "acc_64qam": 0.45,
+          "64qam_pred_16qam_count": 60,
+          "joint_16_64_accuracy": 0.475
+        },
+        "multidomain_a2": {
+          "factor": "cfo_only_id",
+          "model": "multidomain_a2",
+          "n_16qam": 120,
+          "acc_16qam": 0.8667,
+          "16qam_pred_64qam_count": 15,
+          "n_64qam": 120,
+          "acc_64qam": 0.325,
+          "64qam_pred_16qam_count": 77,
+          "joint_16_64_accuracy": 0.5958
+        }
+      },
+      "mp_only_id": {
+        "svm256": {
+          "factor": "mp_only_id",
+          "model": "svm256",
+          "n_16qam": 120,
+          "acc_16qam": 0.5167,
+          "16qam_pred_64qam_count": 54,
+          "n_64qam": 120,
+          "acc_64qam": 0.4583,
+          "64qam_pred_16qam_count": 62,
+          "joint_16_64_accuracy": 0.4875
+        },
+        "svm512": {
+          "factor": "mp_only_id",
+          "model": "svm512",
+          "n_16qam": 120,
+          "acc_16qam": 0.6,
+          "16qam_pred_64qam_count": 47,
+          "n_64qam": 120,
+          "acc_64qam": 0.6,
+          "64qam_pred_16qam_count": 47,
+          "joint_16_64_accuracy": 0.6
+        },
+        "cnn_original": {
+          "factor": "mp_only_id",
+          "model": "cnn_original",
+          "n_16qam": 120,
+          "acc_16qam": 0.5083,
+          "16qam_pred_64qam_count": 56,
+          "n_64qam": 120,
+          "acc_64qam": 0.4917,
+          "64qam_pred_16qam_count": 54,
+          "joint_16_64_accuracy": 0.5
+        },
+        "multidomain_a2": {
+          "factor": "mp_only_id",
+          "model": "multidomain_a2",
+          "n_16qam": 120,
+          "acc_16qam": 0.7667,
+          "16qam_pred_64qam_count": 27,
+          "n_64qam": 120,
+          "acc_64qam": 0.325,
+          "64qam_pred_16qam_count": 79,
+          "joint_16_64_accuracy": 0.5458
+        }
+      },
+      "id_full": {
+        "svm256": {
+          "factor": "id_full",
+          "model": "svm256",
+          "n_16qam": 120,
+          "acc_16qam": 0.5083,
+          "16qam_pred_64qam_count": 56,
+          "n_64qam": 120,
+          "acc_64qam": 0.6,
+          "64qam_pred_16qam_count": 45,
+          "joint_16_64_accuracy": 0.5542
+        },
+        "svm512": {
+          "factor": "id_full",
+          "model": "svm512",
+          "n_16qam": 120,
+          "acc_16qam": 0.6083,
+          "16qam_pred_64qam_count": 47,
+          "n_64qam": 120,
+          "acc_64qam": 0.625,
+          "64qam_pred_16qam_count": 43,
+          "joint_16_64_accuracy": 0.6167
+        },
+        "cnn_original": {
+          "factor": "id_full",
+          "model": "cnn_original",
+          "n_16qam": 120,
+          "acc_16qam": 0.45,
+          "16qam_pred_64qam_count": 64,
+          "n_64qam": 120,
+          "acc_64qam": 0.4583,
+          "64qam_pred_16qam_count": 59,
+          "joint_16_64_accuracy": 0.4542
+        },
+        "multidomain_a2": {
+          "factor": "id_full",
+          "model": "multidomain_a2",
+          "n_16qam": 120,
+          "acc_16qam": 0.75,
+          "16qam_pred_64qam_count": 27,
+          "n_64qam": 120,
+          "acc_64qam": 0.2667,
+          "64qam_pred_16qam_count": 85,
+          "joint_16_64_accuracy": 0.5083
+        }
+      },
+      "mp_shift_cfo0": {
+        "svm256": {
+          "factor": "mp_shift_cfo0",
+          "model": "svm256",
+          "n_16qam": 120,
+          "acc_16qam": 0.275,
+          "16qam_pred_64qam_count": 81,
+          "n_64qam": 120,
+          "acc_64qam": 0.6583,
+          "64qam_pred_16qam_count": 36,
+          "joint_16_64_accuracy": 0.4667
+        },
+        "svm512": {
+          "factor": "mp_shift_cfo0",
+          "model": "svm512",
+          "n_16qam": 120,
+          "acc_16qam": 0.1083,
+          "16qam_pred_64qam_count": 105,
+          "n_64qam": 120,
+          "acc_64qam": 0.8583,
+          "64qam_pred_16qam_count": 14,
+          "joint_16_64_accuracy": 0.4833
+        },
+        "cnn_original": {
+          "factor": "mp_shift_cfo0",
+          "model": "cnn_original",
+          "n_16qam": 120,
+          "acc_16qam": 0.4333,
+          "16qam_pred_64qam_count": 65,
+          "n_64qam": 120,
+          "acc_64qam": 0.6083,
+          "64qam_pred_16qam_count": 47,
+          "joint_16_64_accuracy": 0.5208
+        },
+        "multidomain_a2": {
+          "factor": "mp_shift_cfo0",
+          "model": "multidomain_a2",
+          "n_16qam": 120,
+          "acc_16qam": 0.4583,
+          "16qam_pred_64qam_count": 65,
+          "n_64qam": 120,
+          "acc_64qam": 0.5917,
+          "64qam_pred_16qam_count": 47,
+          "joint_16_64_accuracy": 0.525
+        }
+      }
+    },
+    "verdict": {
+      "h2_statement": "Se observan dos mecanismos opuestos a SNR >= 10 dB: (1) En AWGN limpio e ID (incluso sin multipath ni CFO), MultiDomainAMCNet acierta 16QAM (84.2% AWGN, 75.0% ID) pero confunde sistemáticamente 64QAM como 16QAM (83/120 AWGN, 85/120 ID, solo 26.7%-29.2% Acc en 64QAM) debido a que 32 símbolos (N=256) submuestrean el retículo 8x8 y sesgan la frontera hacia 16QAM; (2) Bajo multipath_shift (ecos 9-13 muestras), el ISI dispersa los cumulantes y colapsa 16QAM en SVM512 (66.7% AWGN -> 10.8% MP_shift, 105/120 predichas como 64QAM) y SVM256 (51.7% -> 27.5%, 81/120 predichas como 64QAM).",
+      "verdict": "Aceptada: cuantificados ambos sesgos direccionales opuestos por factor aislado (N=256/MultiDomain: 64QAM->16QAM intrínseco; Multipath Shift/SVM: 16QAM->64QAM por dispersión ISI)."
+    }
+  },
+  "h3_gnuradio_qpsk_anomaly": {
+    "file_tested": "results\\nivel2_validacion\\n2_4_clean_demo\\sim_run\\grc_sim_output.c64",
+    "total_windows_256": 16,
+    "conditions": {
+      "svm256_raw_cfo0_all16": {
+        "qpsk_hits": 4,
+        "bpsk_hits": 12,
+        "predictions": [
+          "BPSK",
+          "BPSK",
+          "BPSK",
+          "BPSK",
+          "BPSK",
+          "QPSK",
+          "BPSK",
+          "BPSK",
+          "BPSK",
+          "BPSK",
+          "QPSK",
+          "BPSK",
+          "QPSK",
+          "BPSK",
+          "BPSK",
+          "QPSK"
+        ]
+      },
+      "svm256_steady_windows_1_to_15_cfo0": {
+        "qpsk_hits": 4,
+        "bpsk_hits": 11,
+        "effect_of_removing_fir_startup_only": "Insuficiente por sí solo: persiste mayoría BPSK cuando CFO=0."
+      },
+      "svm512_raw_cfo0_8_windows": {
+        "qpsk_hits": 3,
+        "bpsk_hits": 5,
+        "predictions": [
+          "QPSK",
+          "BPSK",
+          "BPSK",
+          "BPSK",
+          "BPSK",
+          "BPSK",
+          "QPSK",
+          "QPSK"
+        ]
+      },
+      "multidomain_a2_raw_all16": {
+        "qpsk_hits": 15,
+        "window0_prediction": "16QAM",
+        "steady_1_to_15_qpsk_hits": 15,
+        "predictions": [
+          "16QAM",
+          "QPSK",
+          "QPSK",
+          "QPSK",
+          "QPSK",
+          "QPSK",
+          "QPSK",
+          "QPSK",
+          "QPSK",
+          "QPSK",
+          "QPSK",
+          "QPSK",
+          "QPSK",
+          "QPSK",
+          "QPSK",
+          "QPSK"
+        ]
+      }
+    },
+    "cfo_injection_sweep_same_grc_signal": [
+      {
+        "cfo_hz": 0.0,
+        "svm256_qpsk_hits": 4,
+        "svm256_bpsk_hits": 12,
+        "svm256_qpsk_rate": 0.25,
+        "svm256_steady_qpsk_hits_of_15": 4
+      },
+      {
+        "cfo_hz": 5.0,
+        "svm256_qpsk_hits": 14,
+        "svm256_bpsk_hits": 2,
+        "svm256_qpsk_rate": 0.875,
+        "svm256_steady_qpsk_hits_of_15": 13
+      },
+      {
+        "cfo_hz": 15.0,
+        "svm256_qpsk_hits": 15,
+        "svm256_bpsk_hits": 1,
+        "svm256_qpsk_rate": 0.9375,
+        "svm256_steady_qpsk_hits_of_15": 14
+      },
+      {
+        "cfo_hz": 35.0,
+        "svm256_qpsk_hits": 15,
+        "svm256_bpsk_hits": 1,
+        "svm256_qpsk_rate": 0.9375,
+        "svm256_steady_qpsk_hits_of_15": 14
+      },
+      {
+        "cfo_hz": 75.0,
+        "svm256_qpsk_hits": 14,
+        "svm256_bpsk_hits": 2,
+        "svm256_qpsk_rate": 0.875,
+        "svm256_steady_qpsk_hits_of_15": 13
+      },
+      {
+        "cfo_hz": 150.0,
+        "svm256_qpsk_hits": 15,
+        "svm256_bpsk_hits": 1,
+        "svm256_qpsk_rate": 0.9375,
+        "svm256_steady_qpsk_hits_of_15": 14
+      },
+      {
+        "cfo_hz": 250.0,
+        "svm256_qpsk_hits": 14,
+        "svm256_bpsk_hits": 2,
+        "svm256_qpsk_rate": 0.875,
+        "svm256_steady_qpsk_hits_of_15": 13
+      }
+    ],
+    "feature_shift_diagnostics": {
+      "c40_abs": {
+        "grc_raw_cfo0_win1": 0.8231,
+        "py_qpsk_15db_cfo_nonzero": 0.2715,
+        "abs_diff": 0.5516
+      },
+      "phase_resultant_4": {
+        "grc_raw_cfo0_win1": 0.4982,
+        "py_qpsk_15db_cfo_nonzero": 0.0272,
+        "abs_diff": 0.471
+      },
+      "block64_c40_abs_mean": {
+        "grc_raw_cfo0_win1": 0.8155,
+        "py_qpsk_15db_cfo_nonzero": 0.4023,
+        "abs_diff": 0.4131
+      },
+      "derotated_c40_abs": {
+        "grc_raw_cfo0_win1": 0.2516,
+        "py_qpsk_15db_cfo_nonzero": 0.178,
+        "abs_diff": 0.0735
+      },
+      "spectral_bw99": {
+        "grc_raw_cfo0_win1": 0.1484,
+        "py_qpsk_15db_cfo_nonzero": 0.6562,
+        "abs_diff": 0.5078
+      },
+      "moment_abs8": {
+        "grc_raw_cfo0_win1": 2.4177,
+        "py_qpsk_15db_cfo_nonzero": 3.0982,
+        "abs_diff": 0.6805
+      }
+    },
+    "verdict": "Aceptada: la causa dominante en SVM256 es la condición paradójica CFO=0 Hz en GNU Radio frente a descriptores no desrotados (c40_abs=0.8231, phase_resultant_4=0.4982), ausentes en entrenamiento ID (CFO uniforme en [-100,100] Hz). Al inyectar CFO=35 Hz sin cambiar símbolos ni SNR, SVM256 pasa de 4/16 (25%) a 15/16 (93.75%) aciertos QPSK. Complementariamente, el transitorio FIR inicial explica la única confusión de ventana 0 (16QAM) en MultiDomainAMCNet (15/15 QPSK en régimen permanente)."
+  },
+  "intervention_proposals_for_optional_n5_2": [
+    {
+      "id": "P1_gnuradio_cfo0_feature_invariance",
+      "target": "SVM256/512 (convencional)",
+      "cause_identified": "Descriptores c40_abs y phase_resultant_4 crudos cambian fuertemente entre CFO=0 Hz exacto y CFO aleatorio ID [-100,100] Hz.",
+      "proposed_change": "Usar únicamente variantes desrotadas (derotated_*) o descartar ventanas con energía de transitorio inicial L_f-1 antes de clasificar flujos GNU Radio."
+    },
+    {
+      "id": "P2_multipath_and_qam_resolution",
+      "target": "SVM512 y MultiDomainAMCNet (a2)",
+      "cause_identified": "El multipath OOD explica la caída dominante en MultiDomainAMCNet (-30.69 pp) y SVM (-22.92 a -25.42 pp), invirtiendo 16QAM->64QAM en SVM512 (66.7% -> 10.8%), mientras en AWGN/ID N=256 MultiDomainAMCNet sesga 64QAM->16QAM (83-85 de 120).",
+      "proposed_change": "Evaluar en N5.2 opcional un bloque único controlado de ecualización ciega lineal / CMA corto para retardos > sps=8, o calibración de margen geométrico QAM sobre ventana extendida para 64QAM."
+    }
+  ]
+}

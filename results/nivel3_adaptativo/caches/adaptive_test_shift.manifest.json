@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "cache_name": "adaptive_test_shift",
+  "dataset_root": "data\\adaptive_dataset",
+  "split": "test_shift",
+  "n_rows": 2400,
+  "dataset_config_sha256": "d3749c0f8b27630bc20d30ab22ac102f751fc360fee5238436bb24056805051a",
+  "supervision_csv_sha256": "4bc74275bb4edd136b5b1889e5685bb600948af94db3de9f5926e10d36cc1d62",
+  "observations_npz_sha256": "8269190aa836d19e0cafc68381f7bb07943895f4a08ca1f987a0ca239ee3a5bc",
+  "row_order_sha256": "4c2a24c5e5584c1127d49e68b6bb3e3dc7cff403e4cad391d35ec66118ef7f0f",
+  "model_hashes": {
+    "a0_svm256": "02d70d55b912c22394e5550cc978b785f45db1e26872f5b0bef3799fe358858f",
+    "a1_svm512": "3c71dfa378c526f9dbce0732475a721b13c7f8587d47e3b6d7c50c380d04d45c",
+    "a2_multidomain": "7396bb515a4be6341acd2505938dd552c6f9579df834f1924e8984561a0135e1"
+  },
+  "feature_version": "observable_v1",
+  "code_sha256": "241a1b051071021b7413ca02aeffa57cae4ea19b79bd274d89b999e3a0f4d92e",
+  "cache_npz_sha256": "d857da52cf6bdeeae9b82ee12ddcab361e3fd5049d2fcf89152d64fc2608679f"
+}

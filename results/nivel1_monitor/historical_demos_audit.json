@@ -1,0 +1,18 @@
+{
+  "py_qpsk_15db": {
+    "file": "results\\gnuradio\\py_qpsk_15db.c64",
+    "detected": null,
+    "detection_status": "indeterminate_uncalibrated",
+    "calibration_status": "missing_calibration",
+    "modulation": "INDETERMINATE_DETECTION",
+    "confidence": null
+  },
+  "grc_sim_output": {
+    "file": "results\\gnuradio\\sim_run\\grc_sim_output.c64",
+    "detected": null,
+    "detection_status": "indeterminate_uncalibrated",
+    "calibration_status": "missing_calibration",
+    "modulation": "INDETERMINATE_DETECTION",
+    "confidence": null
+  }
+}

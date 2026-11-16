@@ -1,0 +1,78 @@
+{
+  "signal_id": "U0058",
+  "num_samples": 512,
+  "fs_hz": 8000.0,
+  "fs_source": "sidecar:U0058.c64.meta.json",
+  "detection": {
+    "detected": true,
+    "observed_energy": 4.030275954210293,
+    "mean_energy": 4.011913753297879,
+    "threshold": 0.0018552194651019257,
+    "threshold_per_window": 0.0018279965747185413,
+    "threshold_per_file": 0.0018552194651019257,
+    "normalized_statistic": 2537.9196619063196,
+    "active_window_indices": [
+      0,
+      1
+    ],
+    "num_windows_evaluated": 2,
+    "pfa_file_target": 0.01,
+    "status": "signal_present",
+    "calibration_status": "calibrated_from_noise_reference",
+    "decision_rule": "file_max_energy_sidak"
+  },
+  "spectrum": {
+    "bandwidth_99": 1155.2461314217253,
+    "bandwidth_type": "total_power_99_includes_noise",
+    "bandwidth_unit": "Hz",
+    "frequency_bounds": [
+      -587.565419267028,
+      567.6807121546972
+    ],
+    "integrated_power": 4.020849698306698,
+    "signal_bandwidth_est": 1152.8229806190034,
+    "signal_bandwidth_bounds": [
+      -585.8898558917209,
+      566.9331247272825
+    ],
+    "signal_bandwidth_status": "estimated_above_noise_floor",
+    "window_method": "periodic_hann",
+    "spectrum_file": null
+  },
+  "snr": {
+    "snr_est_db": 34.023227355708066,
+    "status": "ok_under_stationarity_assumption",
+    "reason": null,
+    "method": "independent_observed_noise_reference",
+    "observed_power": 4.011913753297879,
+    "noise_power_estimate": 0.0015880234566538693,
+    "signal_power_estimate": 4.010325729841226
+  },
+  "classification": {
+    "modulation": "BPSK",
+    "status": "classified_closed_set",
+    "confidence": 0.3018,
+    "confidence_calibrated": true,
+    "confidence_status": "calibrated_majority_vote_2x256",
+    "calibration_unit": "calibrated_file_decision_correctness_probability",
+    "model_used": "results\\fase5\\conventional_256.joblib",
+    "model_family": "svm_rbf",
+    "model_sha256": "02d70d55b912c22394e5550cc978b785f45db1e26872f5b0bef3799fe358858f",
+    "model_window_len": 256,
+    "scope": "signal_present_closed_set_6_classes",
+    "closed_set_classes": [
+      "BPSK",
+      "QPSK",
+      "8PSK",
+      "16QAM",
+      "64QAM",
+      "4PAM"
+    ],
+    "window_votes": {
+      "BPSK": 1,
+      "QPSK": 1
+    },
+    "windows_evaluated": 2
+  },
+  "warnings": []
+}

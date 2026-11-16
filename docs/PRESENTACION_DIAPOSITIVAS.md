@@ -48,41 +48,46 @@
 
 ## Diapositiva 5: Experimento E1 — Detección y Caracterización Espectral
 * **Detección de energía:**
-  * Umbral calibrado sobre 5000 ventanas de solo ruido: $\gamma = 1.1524$ para $P_{fa} = 1.0\%$.
-  * Resultados: Detección perfecta ($P_D = 100\%$) para $\text{SNR} \ge 0\text{ dB}$; caída progresiva por debajo de $-10\text{ dB}$.
-* **Ancho de banda ocupado al 99%:**
-  * Medido en señales sintetizadas: $\approx 1140 - 1170\text{ Hz}$, demostrando coherencia física con el pulso RRC.
+  * Umbral calibrado por referencia de ruido para $P_{fa}$ nominal $\le 1.0\%$; verificación en banco controlado (`N2.1`, $n=5000$): $P_{fa} = 0.96\%$ por ventana (`IC95% Wilson [0.72\%, 1.27\%]`) y $0.88\%$ por archivo $2\times 256$ con corrección de Šidák (`[0.66\%, 1.18\%]`), invariante a escalado de ganancia (`6427/6427` en factores $0.5\times, 1\times, 2\times$).
+  * Resultados: $P_D = 100\%$ en celdas $\text{SNR} \ge 0\text{ dB}$ (`mín. IC95% inferior = 96.30%`), $P_D \approx 20.5\%$ a $-10\text{ dB}$, y colapso explícito de umbral estático ante deriva térmica $\times 2$ sin recalibración ($P_{fa}=100\%$).
+* **Ancho de banda ocupado al 99% vs. señal útil:**
+  * Se separa explícitamente el **ancho de banda de potencia total al 99%** (`total_power_99_includes_noise`: `5292–5668 Hz` cuando el ruido ocupa toda la banda Nyquist de `8000 Hz`) del **ancho de banda útil estimado tras sustracción de piso de ruido** (`signal_bandwidth_est`: `~1679 Hz` con referencia de ruido vs. `1350 Hz` teórico RRC y `1159 Hz` en captura GNU Radio de alta SNR).
 * **Estimación de SNR:**
-  * Enfoque riguroso: Se documenta que una estimación no-oracular exige una referencia de piso de ruido en la misma banda y ganancia; no se inventan valores ficticios.
+  * Enfoque riguroso: una estimación no-oracular exige una referencia de solo ruido en la misma banda y ganancia (`MAE = 0.3388 dB` y cobertura `100%` en $\text{SNR} \ge 0\text{ dB}$ en `N2.1`); sin referencia se reporta `no_identificable_sin_supuestos` y no se inventan cifras.
 
 ---
 
-## Diapositiva 6: Experimento E2 a E6 — Comparación Convencional (SVM) vs Avanzado (CNN)
-* **Modelos enfrentados:**
-  * **Convencional:** SVM RBF en CPU con 65 características analíticas (estadística de orden superior y espectrales).
-  * **Avanzado:** CNN 1D profunda (94k parámetros) entrenada en GPU RTX 4060 con PyTorch.
-* **Tabla de resultados pareados en Holdout Ciego (Semilla 2026110609):**
-  * **SVM 256:** $43.27\%$ (ID) $\rightarrow$ $26.81\%$ (Shift)
-  * **SVM 512:** $47.21\%$ (ID) $\rightarrow$ $29.06\%$ (Shift)
-  * **CNN 256:** $40.75\%$ (ID) $\rightarrow$ $19.02\%$ (Shift)
+## Diapositiva 6: Experimento E2 a E6 — Clasificación Convencional vs. Avanzada (Sin Mezclar Benchmarks)
+* **Modelos enfrentados (alcance cerrado de 6 clases):**
+  * **Convencional (`a0` / `a1`):** SVM RBF en CPU sobre 65 características analíticas (HOC + espectrales) con ventanas $N \in \{256, 512\}$.
+  * **Avanzado Fase 6 (`SmallCNN`, época 46):** CNN 1D de `94k` parámetros en GPU RTX 4060 (sin ajuste de fase vs. aumentación de fase).
+  * **Experto Multi-Dominio (`MultiDomainAMCNet`, `a2`):** arquitectura multi-rama de `8.10M` parámetros con banco RRC adaptado y autoatención polifásica (`GroupNorm`/`LayerNorm`, sin fuga entre muestras).
+* **Evaluación unificada en `fase6_holdout_sellado` ($n=4800$ por split, `N2.3`):**
+  * **SVM 256 / SVM 512:** `43.27% / 47.21%` (ID) $\rightarrow$ `26.81% / 29.06%` (Shift)
+  * **SmallCNN Orig / Phase-Aug:** `40.75% / 41.54%` (ID) $\rightarrow$ `19.02% / 19.48%` (Shift)
+  * **MultiDomainAMCNet (`a2`):** `50.19%` (ID) $\rightarrow$ `27.77%` (Shift)
+* **Evaluación en `adaptive_dataset` ($n=2400$ por split, `N2.3`):**
+  * **SVM 256 / SVM 512:** `43.75% / 46.04%` (ID) $\rightarrow$ `30.33% / 29.54%` (Shift)
+  * **SmallCNN Orig / Phase-Aug:** `42.46% / 41.17%` (ID) $\rightarrow$ `18.67% / 19.00%` (Shift)
+  * **MultiDomainAMCNet (`a2`):** `51.58%` (ID, Macro-F1 `55.36%`) $\rightarrow$ `30.08%` (Shift)
 * **Conclusión crítica para el docente:**
-  * El SVM convencional superó a la CNN en precisión y robustez ante canal no visto.
-  * La CNN demostró ser más rápida en inferencia pura ($\approx 1.9\text{ ms}$ vs $6.2\text{ ms}$).
+  * La `SmallCNN` 1D básica queda por debajo del SVM convencional en ID y colapsa ante CFO/multitrayecto OOD (`~19%`); `MultiDomainAMCNet` supera al SVM en ID (`+5.54 pp` sobre `SVM512` en `adaptive_dataset`), aunque bajo desplazamiento extremo (`test_shift`) todos los modelos caen a `~29.5–30.3%`.
 
 ---
 
-## Diapositiva 7: Diagnóstico de Canal (CFO vs Multipath)
-* **¿Por qué fallan los modelos?**
-  * **Efecto del CFO:** Degrada agresivamente a la CNN 1D (la rotación rápida rompe los patrones convolucionales en el plano complejo).
-  * **Efecto del Multipath:** Degrada principalmente al SVM (la interferencia intersímbolo colapsa las distribuciones de curtosis y momentos).
-* **Existe complementariedad:** El diagnóstico demostró que un clasificador híbrido o adaptativo tiene fundamento físico.
+## Diapositiva 7: Diagnóstico de Canal (`exp09` y `N5.1`)
+* **¿Por qué fallan los modelos ante cambio de canal?** (`720` realizaciones pareadas):
+  * **Efecto del CFO OOD ($200\text{--}300\text{ Hz}$):** Colapsa a `SmallCNN` (`-25.56 pp`), mientras que `MultiDomainAMCNet` (`a2`) solo cae `-3.61 pp` gracias a su seguidor espectral de CFO.
+  * **Efecto del Multipath OOD (ecos $9\text{ y }13$ muestras):** Colapsa tanto a los SVM (`-22.92` / `-25.42 pp`) como a `MultiDomainAMCNet` (`-30.69 pp`), al superar retardos $> \text{sps}=8$ sin ecualizador ciego.
+  * **Confusión `16QAM` $\leftrightarrow$ `64QAM` (`SNR >= 10 dB`, `N5.1`):** `MultiDomainAMCNet` sesga `64QAM -> 16QAM` en `N=256` incluso en AWGN limpio (`29.2%` en `64QAM`), mientras que el multipath OOD invierte al `SVM512` colapsando `16QAM` de `66.7%` a `10.8%` (`105/120` predichas como `64QAM`).
 
 ---
 
 ## Diapositiva 8: Fase 8 — Demostración en GNU Radio Companion (GRC)
 * **Integración sin hardware:**
-  * Flowgraph interactivo en Qt GUI (`flowgraph_tx_channel.grc`): permite en vivo modificar SNR, CFO y multitrayecto mediante deslizadores, mostrando constelación, FFT y osciloscopio.
-  * Interoperabilidad binaria `complex64`: las muestras sintetizadas en GNU Radio fueron analizadas y clasificadas con éxito por el monitor en Python.
+  * Flowgraphs en Qt GUI (`flowgraph_tx_channel.grc`, `flowgraph_rx_from_file.grc`) y simulación headless compilable con `grcc` (`flowgraph_headless_sim.grc`, `4096` muestras).
+  * Interoperabilidad binaria `complex64`: `6/6` capturas GNU Radio QPSK detectadas por el monitor en Python (`SNR ~34 dB`, `BW ~1159 Hz`).
+  * **Diagnóstico `N5.1` de `QPSK -> BPSK` en GNU Radio:** `SVM256` clasificó erróneamente como `BPSK` las tramas GRC por tener `CFO = 0 Hz` exacto (`c40_abs = 0.8231`, `phase_resultant_4 = 0.4982`); al inyectar `35 Hz` de CFO sin cambiar símbolos ni ruido, `SVM256` sube de `4/16` (`25%`) a `15/16` (`93.75%`) aciertos `QPSK`, y `MultiDomainAMCNet` alcanza `15/15` en régimen permanente ([n5_1_diagnostic_summary.png](file:///C:/PROYECTO_COM2_2026/COM2_Proyecto2/results/nivel5_diagnostico/n5_1_diagnostic_summary.png)).
 * **Mostrar en vivo o con captura:** Gráfica comparativa [gnuradio_constellation_comparison.png](file:///C:/PROYECTO_COM2_2026/COM2_Proyecto2/results/gnuradio/gnuradio_constellation_comparison.png).
 
 ---
@@ -103,8 +108,8 @@
 ---
 
 ## Diapositiva 10: Conclusiones y Preguntas
-* **Logros alcanzados:**
-  * Cumplimiento del 100% de la guía académica y experimental.
-  * Suite de 221 pruebas automáticas pasando en menos de 30 segundos (`pytest`).
-  * Código limpio, modular y completamente documentado.
+* **Logros alcanzados y límites declarados:**
+  * Entrega completa de los cinco bloques obligatorios, experimentos E1–E6, monitor CLI de cinco salidas, interoperabilidad con GNU Radio y paquete adaptativo desplegable, preservando la honestidad científica ante resultados mixtos o negativos (clasificación GRC QPSK por SVM256, diferencia inconclusa LBAP vs. proxy 2D en `test`, y entrenamiento mixto ADC a 4 bits).
+  * Suite verificada de 278 pruebas automáticas aprobadas sin fallos ni omisiones (`pytest`).
+  * Código modular, manifiestos SHA-256 e informe/artículo sincronizados.
 * **Agradecimientos y ronda de preguntas con el docente.**

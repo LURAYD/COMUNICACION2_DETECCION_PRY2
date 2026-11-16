@@ -89,6 +89,8 @@ Se completó la lectura metodológica integral de los **15 artículos IEEE** del
 
 ## Literatura Externa Adicional Verificada en Línea (DOIs para Descarga Manual)
 
+> **Nota metodológica de distinción (`N4.2`):** Ningún porcentaje publicado en artículos externos se copia como resultado experimental propio; las métricas citadas de los 15 PDFs corresponden exclusivamente a sus autores en sus propios benchmarks (RML16/RML18/RML22/CSPB.ML.2018). Los 5 artículos adicionales listados abajo no forman parte de los PDFs locales de `references/`, por lo que su comparación en este proyecto es estrictamente **conceptual y taxonómica** (verificada por título, revista/conferencia, volumen/páginas y DOI), no una reproducción experimental directa.
+
 | Ref / Año | Autores y Título | Revista / Conferencia | DOI Verificado | Comparación con Nuestra Propuesta |
 |---|---|---|---|---|
 | **Verbruggen et al. (2025)** | *Deep Learning With Width-Wise Early Exiting and Rejection for Computational Efficient and Trustworthy Modulation Classification* (D. Verbruggen, H. Sallouha, S. Pollin) | *IEEE Trans. Machine Learning in Communications and Networking*, vol. 3, pp. 1143–1159 | `10.1109/TMLCN.2025.3619447` (Preprint arXiv:2405.03222) | Propone *width-wise early exiting* acumulando segmentos I/Q y rechazando muestras de baja confianza por entropía/umbral. **Diferencia clave:** no usa predictor de recuperabilidad ni cambia de paradigma/representación entre ramas, y el propio *BEACON* demostró que entropía/confianza simple confunde errores irrecuperables ($C_{00}$) con recuperables ($C_{01}$). |

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "fixed_full_scale_vfs": 2.5,
+  "same_parents_across_resolutions": true,
+  "calibration_metric_definition": "Brier y NLL binarios de acierto/error sobre confianza escalar máxima; ECE10 con 10 intervalos de igual anchura en [0, 1].",
+  "degradation_interpretation": "A 4 bits la tasa de clipping es 5.12% en componentes I/Q; por tanto la pérdida refleja degradación conjunta de cuantización uniforme y saturación del ADC simulado.",
+  "test_nominal_4bit_results": {
+    "SVM256_ref": {
+      "accuracy": 0.24083333333333334,
+      "macro_f1": 0.21040848828868888,
+      "sqnr_db": 7.873023588511511,
+      "clipping_rate_iq": 0.0512158203125,
+      "ece10": null,
+      "brier": null,
+      "nll": null
+    },
+    "SVM512_ref": {
+      "accuracy": 0.23458333333333334,
+      "macro_f1": 0.2052621350849448,
+      "sqnr_db": 7.873023588511511,
+      "clipping_rate_iq": 0.0512158203125,
+      "ece10": null,
+      "brier": null,
+      "nll": null
+    },
+    "ExpA_clean_ref": {
+      "accuracy": 0.46291666666666664,
+      "macro_f1": 0.4880411053998855,
+      "sqnr_db": 7.873023588511511,
+      "clipping_rate_iq": 0.0512158203125,
+      "ece10": 0.0384874215722084,
+      "brier": 0.1619493251385364,
+      "nll": 0.49685179389683376
+    },
+    "ExpB_quant8": {
+      "accuracy": 0.465,
+      "macro_f1": 0.4909084721744071,
+      "sqnr_db": 7.873023588511511,
+      "clipping_rate_iq": 0.0512158203125,
+      "ece10": 0.035526683293283,
+      "brier": 0.15891908222863896,
+      "nll": 0.4853578674071468
+    },
+    "ExpB_quant6": {
+      "accuracy": 0.4533333333333333,
+      "macro_f1": 0.4746867521105383,
+      "sqnr_db": 7.873023588511511,
+      "clipping_rate_iq": 0.0512158203125,
+      "ece10": 0.040174821279942985,
+      "brier": 0.16456508517040788,
+      "nll": 0.5099968331096655
+    },
+    "ExpC_mixed_inf_8_6": {
+      "accuracy": 0.44958333333333333,
+      "macro_f1": 0.46615188052314904,
+      "sqnr_db": 7.873023588511511,
+      "clipping_rate_iq": 0.0512158203125,
+      "ece10": 0.041614333658168724,
+      "brier": 0.1575107890695875,
+      "nll": 0.48280572281451895
+    },
+    "LBAP_with_ExpA": {
+      "accuracy": 0.40875,
+      "macro_f1": 0.4067067250231419,
+      "sqnr_db": 7.873023588511511,
+      "clipping_rate_iq": 0.0512158203125,
+      "ece10": null,
+      "brier": null,
+      "nll": null
+    },
+    "LBAP_with_ExpC_mixed": {
+      "accuracy": 0.3983333333333333,
+      "macro_f1": 0.3942029520099036,
+      "sqnr_db": 7.873023588511511,
+      "clipping_rate_iq": 0.0512158203125,
+      "ece10": null,
+      "brier": null,
+      "nll": null
+    }
+  },
+  "mixed_training_hypothesis_verdict_at_4bit": {
+    "clean_train_4bit_acc": 0.46291666666666664,
+    "mixed_train_4bit_acc": 0.44958333333333333,
+    "delta_mixed_minus_clean": -0.013333333333333308,
+    "verdict": "Resultado negativo: el entrenamiento mixto (44.96%) obtuvo menor exactitud que el modelo limpio (46.29%) a 4 bits en los datos históricos."
+  },
+  "calibration_comparison_source": {
+    "test": {
+      "a0_logistic_margin": {
+        "brier": 0.2460974474255452,
+        "nll": 0.68531635246205,
+        "ece10": 0.008270474524622928
+      },
+      "a2_multidomain_uncalibrated_max_softmax": {
+        "brier": 0.13871063581964058,
+        "nll": 0.4236265902038819,
+        "ece10": 0.029043640730281654
+      },
+      "a2_multidomain_temperature_scaled": {
+        "brier": 0.13844594571053961,
+        "nll": 0.4216019109622963,
+        "ece10": 0.024235149888942622,
+        "temperature": 0.917102575302124
+      }
+    },
+    "test_shift": {
+      "a0_logistic_margin": {
+        "brier": 0.22721857494145184,
+        "nll": 0.6473034313850405,
+        "ece10": 0.12599085401171595
+      },
+      "a2_multidomain_uncalibrated_max_softmax": {
+        "brier": 0.20869535008111653,
+        "nll": 0.6120012157328892,
+        "ece10": 0.12384920267388226
+      },
+      "a2_multidomain_temperature_scaled": {
+        "brier": 0.21284543007362966,
+        "nll": 0.6257117606555888,
+        "ece10": 0.1381647635065019,
+        "temperature": 0.917102575302124
+      }
+    }
+  }
+}

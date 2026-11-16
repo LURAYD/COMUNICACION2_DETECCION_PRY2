@@ -1,117 +1,66 @@
-# Reporte de Fase 7 — Monitor Integrado y CLI de Señales Desconocidas
+# Reporte de Fase 7 y Corrección Nivel 1 — Monitor Integrado y CLI de Señales Desconocidas
 
-**Fecha:** 10 de noviembre de 2026  
-**Requisitos cubiertos:** Fase 7 de `GUIA_MAESTRA_COMII_PARA_CODEX.md` (interfaz CLI para evaluación sobre archivos ciegos/desconocidos y consolidación de las 5 salidas obligatorias).
-
----
-
-## 1. Resumen ejecutivo
-
-Se completó e integró la herramienta de línea de comandos **Monitor Integrado (`src.monitor`)**, diseñada para que el docente o evaluador pueda alimentar cualquier archivo de señal desconocido y obtener de forma automática, reproducible y fundamentada las **cinco salidas obligatorias** del proyecto:
-
-1. **Detección de presencia (Sí / No):** Estadística de energía con umbral calibrado bajo tasa de falsa alarma controlada ($P_{fa} = 1\%$).
-2. **Espectro y ocupación espectral:** Estimación de densidad espectral de potencia (PSD con ventana periódica Hann) y ancho de banda ocupado al 99% de la potencia total.
-3. **Estimación de SNR:** Estimación no-oracular si se suministra una referencia de ruido externo en la misma banda y ganancia; en su ausencia, el monitor documenta formalmente su indeterminación sin forzar aproximaciones arbitrarias.
-4. **Tipo de modulación:** Clasificación automática entre las seis clases del curso (`BPSK`, `QPSK`, `8PSK`, `16QAM`, `64QAM`, `4PAM`) mediante el clasificador entrenado del proyecto (por defecto SVM256 con pipeline de características normalizadas).
-5. **Confianza calibrada:** Estimación probabilística empírica (calibrada mediante regresión logística sobre el margen de decisión en validación independiente), evitando el uso de valores crudos o pseudo-probabilidades no calibradas.
+**Fecha de actualización:** 16 de noviembre de 2026  
+**Requisitos cubiertos:** Fase 7 de `GUIA_MAESTRA_COMII_PARA_CODEX.md` y Nivel 1 (`N1.1`–`N1.6`) de `docs/PLAN_MODIFICACIONES_Y_CRITERIOS_DE_ACEPTACION.md`.
 
 ---
 
-## 2. Formatos de entrada soportados
+## 1. Contrato operativo del Monitor Integrado (`src/monitor.py`)
 
-El monitor detecta y procesa automáticamente los siguientes formatos:
-- `.c64` / `.bin`: Archivos binarios de muestras complejas estándar (interleaved float32 Real + float32 Imag, formato nativo de GNU Radio y SDRs).
-- `.npy`: Arrays de NumPy (1D complejo, o 2D con dos columnas correspondientes a componentes I y Q).
-- `.npz`: Archivos comprimidos de NumPy (busca claves comunes `iq`, `samples`, `data` o toma el primer array).
-- `.csv`: Archivos de texto delimitados por comas con dos columnas I/Q o una columna de números complejos.
+El monitor procesa una observación I/Q individual y entrega cinco salidas con estados explícitos:
+
+1. **Detección de presencia (`N1.1`):**
+   - Evalúa todas las ventanas completas de 256 muestras del archivo (`detect_energy_file`) con corrección de Šidák para controlar la falsa alarma **por archivo** (`pfa_file = 0.01`).
+   - Calibración invariante a escala desde `--noise-ref` (preferido) o `detection_calibration`.
+   - Si no se suministra referencia de ruido ni umbral manual explícito (`--threshold`), la detección devuelve `detected: null` y estado `indeterminate_uncalibrated` (nunca se presenta como «solo ruido» con un umbral silencioso unitario).
+2. **Espectro y ancho de banda (`N1.2`, `N1.6`):**
+   - Si no se especifica `--fs-hz` ni metadatos verificables (`fs_hz`), el espectro y el ancho de banda se expresan en `ciclos/muestra` sin inventar `8000 Hz`.
+   - `bandwidth_99` se etiqueta explícitamente como `total_power_99_includes_noise` (incluye ruido y DC); cuando hay referencia de ruido y señal detectada se informa además `signal_bandwidth_est` tras restar el piso espectral plano estimado.
+3. **Estimación de SNR (`N1.3`):**
+   - Requiere señal detectada (`detected = True`) y referencia independiente compatible en frecuencia de muestreo y ganancia (`--noise-ref`).
+   - En ausencia de referencia o ante resta no positiva / detección negativa o indeterminada, devuelve `snr_est_db: null` y motivo explícito (`status`, `reason`).
+4. **Tipo de modulación (`N1.2`, `N1.5`, `N1.6`):**
+   - Clasificador de alcance cerrado sobre 6 clases (`BPSK`, `QPSK`, `8PSK`, `16QAM`, `64QAM`, `4PAM`) identificando modelo, SHA-256 y longitud de ventana (`256` o `512`).
+   - Distingue explícitamente `NO_SIGNAL`, `INDETERMINATE_DETECTION`, `OUT_OF_SCOPE_SHORT_SIGNAL` (no rellena señales de < 256 muestras), `OUT_OF_SCOPE_MISSING_FS` y `OUT_OF_SCOPE_INCOMPATIBLE_SAMPLING` (rechaza frecuencias o `sps` incompatibles con el modelo entrenado a `8000 Hz`, `sps=8`).
+   - Evalúa únicamente las ventanas activas detectadas para no diluir transmisiones posteriores al primer prefijo.
+5. **Confianza de la decisión final (`N1.4`):**
+   - Sin recorte artificial a `[0.20, 0.99]`.
+   - Marca `confidence_calibrated: true` únicamente cuando el paquete `results/nivel1_monitor/monitor_calibrators.joblib` coincide exactamente con el `model_sha256`, `feature_version`, `window_len`, modo de agregación (`single_window` o `majority_vote`) y número de ventanas evaluadas (`1` o `2` ventanas para `SVM256`, `1` ventana para `SVM512`). En cualquier otra combinación reporta la puntuación sin calibrar con `confidence_calibrated: false`.
 
 ---
 
-## 3. Ejemplo de uso por línea de comandos (CLI)
+## 2. Formatos de entrada soportados y validación (`N1.5`)
 
-### Comando básico (formato por defecto)
-```powershell
-.\.venv\Scripts\python.exe -m src.monitor --input ruta/a/archivo_desconocido.c64
-```
+`load_signal` admite únicamente extensiones documentadas y rechaza entradas ambiguas o corruptas (código de salida `2` en CLI):
+- `.c64` / `.bin`: muestras complejas intercaladas (`complex64` por defecto); rechaza archivos vacíos o cuyo tamaño en bytes no sea múltiplo exacto de `dtype.itemsize`.
+- `.npy`: array 1D complejo (o 2D `(1, N)` / `(N, 1)`), o matriz real 2D `(N, 2)` / `(2, N)` ($N > 2$); rechaza lotes 2D complejos `(M, N)` y arrays 1D reales.
+- `.npz`: exige exactamente una clave de señal entre `('iq', 'iq256', 'iq512', 'samples')` y admite metadatos escalares opcionales (`fs_hz`, `sps`, `symbol_rate_hz`, `gain`).
+- `.csv`: exige 2 columnas `I,Q` numéricas (con cabecera opcional `I,Q`/`real,imag`) o 1 columna compleja explícita; rechaza filas inconsistentes o valores no finitos.
+- Metadatos sidecar opcionales: `<archivo>.meta.json`.
 
-### Comando con opciones avanzadas
+---
+
+## 3. Ejemplos de uso por línea de comandos (CLI)
+
+### Con referencia de ruido independiente y frecuencia verificable
 ```powershell
 .\.venv\Scripts\python.exe -m src.monitor `
-    --input data/unknown/X01.c64 `
+    --input results\nivel1_monitor\demos\demo_py_qpsk_15db.c64 `
+    --noise-ref results\nivel1_monitor\demos\demo_py_noise_ref.c64 `
     --fs-hz 8000 `
-    --threshold 0.5 `
-    --output results/monitor/X01.json `
-    --plot results/monitor/X01_psd.png
+    --output results\nivel1_monitor\demos\demo_py_qpsk_15db.json `
+    --plot results\nivel1_monitor\demos\demo_py_qpsk_15db_psd.png
 ```
 
-### Parámetros CLI disponibles:
-* `--input`, `-i`: Ruta obligatoria al archivo de señal.
-* `--fs-hz`: Frecuencia de muestreo en Hz (por defecto 8000 Hz; si se omite o es None, el espectro se reporta en ciclos/muestra).
-* `--dtype`: Tipo de dato binario para archivos raw (por defecto `complex64`).
-* `--model`, `-m`: Ruta al pipeline clasificador `.joblib` (por defecto `results/fase5/conventional_256.joblib`).
-* `--policy`: Ruta al calibrador logístico (por defecto `results/adaptive/policy.joblib`).
-* `--output`, `-o`: Ruta destino del reporte JSON (por defecto `results/monitor/<signal_id>.json`).
-* `--plot`, `-p`: Ruta destino de la figura PNG (por defecto `results/monitor/<signal_id>_psd.png`).
-* `--threshold`: Umbral de energía para la decisión de presencia de señal.
-* `--noise-ref`: Ruta opcional a un archivo de solo ruido para estimar la SNR numéricamente.
+### Sin frecuencia conocida (modo espectral seguro)
+```powershell
+.\.venv\Scripts\python.exe -m src.monitor --input senal.c64 --noise-ref ruido.c64
+```
+Reporta espectro en `ciclos/muestra` y marca clasificación como `OUT_OF_SCOPE_MISSING_FS`.
 
 ---
 
-## 4. Estructura del reporte generado
+## 4. Validación y pruebas automáticas
 
-### 1. Salida JSON estructurada (`results/monitor/<id>.json`)
-```json
-{
-  "signal_id": "X01",
-  "num_samples": 4096,
-  "fs_hz": 8000.0,
-  "detection": {
-    "detected": true,
-    "observed_energy": 0.9994,
-    "threshold": 0.5,
-    "status": "signal_present"
-  },
-  "spectrum": {
-    "bandwidth_99": 1134.48,
-    "bandwidth_unit": "Hz",
-    "frequency_bounds": [-589.3, 584.9],
-    "integrated_power": 1.0129,
-    "window_method": "periodic_hann",
-    "spectrum_file": "results/monitor/X01_psd.png"
-  },
-  "snr": {
-    "snr_est_db": null,
-    "status": "no_identificable_sin_supuestos",
-    "reason": "falta_referencia_de_piso_de_ruido",
-    "explanation": "La estimación rigurosa de SNR requiere una referencia independiente de ruido en la misma banda y ganancia."
-  },
-  "classification": {
-    "modulation": "QPSK",
-    "confidence": 0.8542,
-    "confidence_calibrated": true,
-    "model_used": "results/fase5/conventional_256.joblib",
-    "scope": "signal_present_closed_set",
-    "window_votes": {
-      "QPSK": 14,
-      "BPSK": 2
-    }
-  },
-  "warnings": []
-}
-```
-
-### 2. Figura gráfica PNG (`results/monitor/<id>_psd.png`)
-Genera un panel doble de alta resolución:
-* **Panel izquierdo:** Densidad espectral de potencia (PSD en dB/Hz) con la banda del 99% sombreada y límites marcados con líneas verticales discontinuas.
-* **Panel derecho:** Diagrama de constelación I/Q de las muestras recibidas.
-
----
-
-## 5. Pruebas automáticas
-
-Las pruebas automáticas se ubican en `tests/test_monitor_cli.py`:
-- `test_load_signal_various_formats`: Comprueba la lectura exacta y conversión en `.c64`, `.npy`, `.npz` y `.csv`.
-- `test_monitor_complete_five_outputs`: Valida la entrega completa y coherente de las 5 salidas sobre una señal sintética.
-- `test_monitor_with_noise_reference`: Valida el cálculo numérico de SNR cuando se proporciona una referencia de ruido.
-
-Todas las pruebas pasan al 100% en conjunto con `tests/test_fase4_integration.py`.
+- Calibración (`N1.4`) y SNR (`N1.3`): ejecutadas y guardadas en `results/nivel1_monitor/` mediante `experiments/eval_n1_monitor_validation.py`.
+- Pruebas automáticas: `tests/test_monitor_cli.py`, `tests/test_nivel0_nivel1_acceptance.py` y `tests/test_fase4_integration.py`.

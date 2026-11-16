@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "seed": 2026111602,
+  "fs_hz": 8000.0,
+  "symbol_rate_hz": 1000,
+  "sps": 8,
+  "span": 10,
+  "symbols_per_parent": 128,
+  "window_len": 256,
+  "file_windows": 2,
+  "pfa_target": 0.01,
+  "base_noise_power": 1.0,
+  "gains": [0.5, 1.0, 2.0],
+  "n_noise_calibration": 5000,
+  "n_noise_evaluation": 5000,
+  "trials_per_class_snr_regime": 100,
+  "drift_noise_power_factor": 2.0,
+  "drift_trials_per_class_snr": 100,
+  "drift_snr_db": [0, 5, 10, 20],
+  "snr_db": [-20, -15, -10, -5, 0, 5, 10, 20],
+  "betas": [0.25, 0.35, 0.5],
+  "id_cfo_range_hz": [-100, 100],
+  "shift_cfo_abs_range_hz": [200, 300],
+  "id_channels": [
+    [[1, 0]],
+    [[1, 0], [0, 0], [0, 0.35]],
+    [[1, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0.15, -0.15]]
+  ],
+  "shift_channels": [
+    [[1, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0.45]],
+    [[1, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0.3, -0.2]]
+  ]
+}

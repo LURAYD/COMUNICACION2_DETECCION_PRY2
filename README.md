@@ -30,7 +30,7 @@ Los diagnósticos generan PNG y métricas JSON en `results/fase1/` y `results/fa
 
 Se usan imports `from src.signals import qpsk_modulation` y `from src.waveform import pulse_shape`. Las funciones RRC también siguen disponibles en `src.signals` por compatibilidad. Ejecuta módulos con `python -m`; la ejecución directa `python src/test_signal.py` ya no es el contrato documentado.
 
-Consulta [las tablas de bits y símbolos](docs/MAPPING_MODULACIONES.md) y [el modelo de señal](docs/MODELO_DE_SENAL.md) para interpretar energía, muestras y retardo. Los originales de Fase 0 se conservan en `results/fase1/antes/`; el proyecto todavía no tiene historial Git.
+Consulta [las tablas de bits y símbolos](docs/MAPPING_MODULACIONES.md) y [el modelo de señal](docs/MODELO_DE_SENAL.md) para interpretar energía, muestras y retardo. Los originales de Fase 0 se conservan en `results/fase1/antes/`; el proyecto cuenta con repositorio Git local (commit base `7e81d0df`) y manifiesto SHA-256 en [Nivel 0 Evidencia](docs/NIVEL0_EVIDENCIA_Y_PROTOCOLO.md).
 
 Los [canales y sus unidades](docs/CANALES.md) se importan desde `src.channels`: `add_awgn`, `apply_carrier_impairments` y `apply_multipath`. El canal se aplica a la trama completa antes de segmentar; `sample_offset` permite mantener continuidad de fase/CFO si se procesan porciones. La copia de `channels.py` previa a Fase 2 está en `results/fase2/antes/`.
 
@@ -93,22 +93,22 @@ Para repetir E2 en una carpeta nueva:
 
 El dataset `data/e2_dataset` conserva 19 456 padres y prefijos exactos. Los mismos padres permiten la comparación posterior con el modelo avanzado. La configuración y las dependencias están en [configs/exp02_conventional.json](configs/exp02_conventional.json) y [requirements-fase5.txt](requirements-fase5.txt).
 
-## Clasificación Avanzada (Fase 6 · CNN 1D en GPU)
+## Clasificación Avanzada (`SmallCNN` Fase 6 y `MultiDomainAMCNet` Exp 12)
 
-Se implementó una red convolucional 1D (`SmallCNN`, 94 726 parámetros) entrenada en GPU (RTX 4060) mediante PyTorch con checkpoints atómicos reproducibles:
-- **E3 y E4:** Comparación con el modelo convencional bajo idénticas condiciones. Exactitud de 40,94% en test y 18,60% bajo condiciones de canal desplazadas (*shift*).
-- **Holdout ciego independiente:** Evaluado sobre semilla reservada `2026110609`.
+Se evaluaron dos arquitecturas neuronales en GPU (RTX 4060) sobre conjuntos separados (que no deben mezclarse en una única comparación):
+- **`SmallCNN` (Fase 6, 94 726 parámetros, `data/e2_dataset` y `data/fase6_holdout_sellado`):** En E3 (`e2_dataset/test`) obtuvo 40,94% y 18,60% bajo *shift*; en el holdout (`data/fase6_holdout_sellado`, semilla `2026110609`) obtuvo 40,75% en `test` y 19,02% en `test_shift` (frente a 43,27% / 26,81% de SVM256 y 47,21% / 29,06% de SVM512).
+- **`MultiDomainAMCNet` (Exp 12 / artículo, `data/adaptive_dataset`):** Entrenada con síntesis física en GPU; en `adaptive_dataset/test` ($n=2400$) obtuvo 51,5833% nominal y 30,0833% en `test_shift` (frente a 43,75% / 30,33% de SVM256 y 46,04% / 29,54% de SVM512).
 - **Diagnóstico de canal:** Aislamiento del impacto de CFO vs multitrayecto en `docs/DIAGNOSTICO_CANAL_RESULTADOS.md`. [Reporte Fase 6](docs/FASE6_VALIDACION.md) · [Holdout](docs/FASE6_HOLDOUT_VALIDACION.md)
 
-## Monitor Integrado CLI para Archivos Desconocidos (Fase 7)
+## Monitor Integrado CLI para Archivos Desconocidos (Fase 7 · Corregido Nivel 1)
 
-Herramienta para evaluar cualquier señal desconocida entregada por el docente, generando las cinco salidas obligatorias del proyecto:
+Herramienta para evaluar una señal desconocida generando las cinco salidas del proyecto bajo contrato explícito:
 
 ```powershell
-.\.venv\Scripts\python.exe -m src.monitor --input data/unknown/X01.c64
+.\.venv\Scripts\python.exe -m src.monitor --input ruta/a/senal.c64 --noise-ref ruta/a/ruido.c64 --fs-hz 8000
 ```
 
-Soporta formatos `.c64`, `.bin`, `.npy`, `.npz` y `.csv`. Genera automáticamente un archivo JSON con los resultados y una figura PNG con la densidad espectral (PSD) y el diagrama de constelación. [Documentación Fase 7](docs/FASE7_MONITOR.md)
+Soporta formatos `.c64`, `.bin`, `.npy`, `.npz` y `.csv` (rechaza lotes 2D, binarios truncados o valores no finitos con código `2`). Sin `--noise-ref` ni `--threshold` manual reporta detección indeterminada (`indeterminate_uncalibrated`); sin `--fs-hz` expresa el espectro en `ciclos/muestra` y marca la clasificación como `OUT_OF_SCOPE_MISSING_FS`. Genera JSON y figura PNG de PSD/constelación. [Documentación Monitor](docs/FASE7_MONITOR.md) · [Validación Nivel 2](results/nivel2_validacion/)
 
 ## Interoperabilidad con GNU Radio Companion (Fase 8)
 
@@ -128,9 +128,9 @@ Para ejecutar la prueba de interoperabilidad automática:
 ```
 [Reporte Fase 8](docs/FASE8_GNURADIO.md)
 
-## Investigación Adaptativa (Exp 10)
+## Investigación Adaptativa (Exp 10 y Exp 12)
 
-Evaluación de la hipótesis de selección dinámica de acciones (terminar con SVM256, pedir más muestras para SVM512 o procesar con CNN) guiada por riesgo y latencia de adquisición/cómputo. [Protocolo Adaptativo](docs/ADAPTATIVO_PROTOCOLO.md)
+Evaluación experimental de la hipótesis de selección dinámica de acciones (`SVM256`, `SVM512`, red neuronal) guiada por riesgo y latencia. En `results/paper_research/ablation_and_policy_metrics.json` (`data/adaptive_dataset/test`), Fast LBAP alcanzó 51,625% nominal frente a 51,5833% de `MultiDomainAMCNet` sola; la validación completa de paquete desplegable, latencia integral y contrastes pareados corresponde al Nivel 3 del plan de trabajo ([Plan y Criterios](docs/PLAN_MODIFICACIONES_Y_CRITERIOS_DE_ACEPTACION.md)). [Protocolo Adaptativo](docs/ADAPTATIVO_PROTOCOLO.md)
 
 ## Estructura del Directorio
 ```text

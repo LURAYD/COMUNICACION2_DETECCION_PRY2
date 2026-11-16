@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-16T20:02:26.639986+00:00",
+  "shared_parents_count": 0,
+  "all_prefixes_exact": true,
+  "all_internal_splits_disjoint": true,
+  "all_cross_datasets_disjoint": true,
+  "datasets": {
+    "e2_dataset": {
+      "dataset": "e2_dataset",
+      "seed": 2026110502,
+      "total_parents": 19456,
+      "index_count": 19456,
+      "split_parent_counts": {
+        "train": 4864,
+        "val": 4864,
+        "test": 4864,
+        "test_shift": 4864
+      },
+      "internal_parent_overlaps": {
+        "train__val": 0,
+        "train__test": 0,
+        "train__test_shift": 0,
+        "val__test": 0,
+        "val__test_shift": 0,
+        "test__test_shift": 0
+      },
+      "all_internal_splits_disjoint": true,
+      "prefixes_exact_iq256_in_iq512": true,
+      "prefixes_by_split": {
+        "train": true,
+        "val": true,
+        "test": true,
+        "test_shift": true
+      },
+      "unique_iq512_waveforms": true,
+      "supervision_matches_oracle": {
+        "train": true,
+        "val": true,
+        "test": true,
+        "test_shift": true
+      }
+    },
+    "adaptive_dataset": {
+      "dataset": "adaptive_dataset",
+      "seed": 2026110613,
+      "total_parents": 9856,
+      "index_count": 9856,
+      "split_parent_counts": {
+        "train": 2464,
+        "val": 2464,
+        "test": 2464,
+        "test_shift": 2464
+      },
+      "internal_parent_overlaps": {
+        "train__val": 0,
+        "train__test": 0,
+        "train__test_shift": 0,
+        "val__test": 0,
+        "val__test_shift": 0,
+        "test__test_shift": 0
+      },
+      "all_internal_splits_disjoint": true,
+      "prefixes_exact_iq256_in_iq512": true,
+      "prefixes_by_split": {
+        "train": true,
+        "val": true,
+        "test": true,
+        "test_shift": true
+      },
+      "unique_iq512_waveforms": true,
+      "supervision_matches_oracle": {
+        "train": true,
+        "val": true,
+        "test": true,
+        "test_shift": true
+      }
+    },
+    "fase6_holdout_sellado": {
+      "dataset": "fase6_holdout_sellado",
+      "seed": 2026110609,
+      "total_parents": 19456,
+      "index_count": 19456,
+      "split_parent_counts": {
+        "train": 4864,
+        "val": 4864,
+        "test": 4864,
+        "test_shift": 4864
+      },
+      "internal_parent_overlaps": {
+        "train__val": 0,
+        "train__test": 0,
+        "train__test_shift": 0,
+        "val__test": 0,
+        "val__test_shift": 0,
+        "test__test_shift": 0
+      },
+      "all_internal_splits_disjoint": true,
+      "prefixes_exact_iq256_in_iq512": true,
+      "prefixes_by_split": {
+        "train": true,
+        "val": true,
+        "test": true,
+        "test_shift": true
+      },
+      "unique_iq512_waveforms": true,
+      "supervision_matches_oracle": {
+        "train": true,
+        "val": true,
+        "test": true,
+        "test_shift": true
+      }
+    },
+    "fase3_smoke": {
+      "dataset": "fase3_smoke",
+      "seed": 2026,
+      "total_parents": 224,
+      "index_count": 224,
+      "split_parent_counts": {
+        "train": 56,
+        "val": 56,
+        "test": 56,
+        "test_shift": 56
+      },
+      "internal_parent_overlaps": {
+        "train__val": 0,
+        "train__test": 0,
+        "train__test_shift": 0,
+        "val__test": 0,
+        "val__test_shift": 0,
+        "test__test_shift": 0
+      },
+      "all_internal_splits_disjoint": true,
+      "prefixes_exact_iq256_in_iq512": true,
+      "prefixes_by_split": {
+        "train": true,
+        "val": true,
+        "test": true,
+        "test_shift": true
+      },
+      "unique_iq512_waveforms": true,
+      "supervision_matches_oracle": {}
+    }
+  },
+  "cross_dataset_overlaps": {
+    "e2_dataset__adaptive_dataset": {
+      "shared_parents": 0,
+      "shared_records": 0,
+      "shared_iq512_hashes": 0
+    },
+    "e2_dataset__fase6_holdout_sellado": {
+      "shared_parents": 0,
+      "shared_records": 0,
+      "shared_iq512_hashes": 0
+    },
+    "e2_dataset__fase3_smoke": {
+      "shared_parents": 0,
+      "shared_records": 0,
+      "shared_iq512_hashes": 0
+    },
+    "adaptive_dataset__fase6_holdout_sellado": {
+      "shared_parents": 0,
+      "shared_records": 0,
+      "shared_iq512_hashes": 0
+    },
+    "adaptive_dataset__fase3_smoke": {
+      "shared_parents": 0,
+      "shared_records": 0,
+      "shared_iq512_hashes": 0
+    },
+    "fase6_holdout_sellado__fase3_smoke": {
+      "shared_parents": 0,
+      "shared_records": 0,
+      "shared_iq512_hashes": 0
+    }
+  },
+  "adaptive_development_partitions_audit": {
+    "train_count": 2400,
+    "val_cal_count": 1200,
+    "val_select_count": 1200,
+    "overlap_train_val_cal": 0,
+    "overlap_train_val_select": 0,
+    "overlap_val_cal_val_select": 0,
+    "overlap_val_cal_test": 0,
+    "overlap_val_cal_test_shift": 0,
+    "val_cal_plus_select_equals_adaptive_val_signals": true,
+    "train_equals_adaptive_train_signals": true
+  },
+  "paper_research_cache_audit": {
+    "train": {
+      "files": [
+        "gate",
+        "initial",
+        "margin",
+        "flatness",
+        "predictions",
+        "logits_a2",
+        "probs_a2",
+        "snr_blind",
+        "truth"
+      ],
+      "n_rows": 2400,
+      "expected_signal_parents": 2400
+    },
+    "val": {
+      "files": [
+        "gate",
+        "initial",
+        "margin",
+        "flatness",
+        "predictions",
+        "logits_a2",
+        "probs_a2",
+        "snr_blind",
+        "truth"
+      ],
+      "n_rows": 2400,
+      "expected_signal_parents": 2400
+    },
+    "test": {
+      "files": [
+        "gate",
+        "initial",
+        "margin",
+        "flatness",
+        "predictions",
+        "logits_a2",
+        "probs_a2",
+        "snr_blind",
+        "truth"
+      ],
+      "n_rows": 2400,
+      "expected_signal_parents": 2400
+    },
+    "test_shift": {
+      "files": [
+        "gate",
+        "initial",
+        "margin",
+        "flatness",
+        "predictions",
+        "logits_a2",
+        "probs_a2",
+        "snr_blind",
+        "truth"
+      ],
+      "n_rows": 2400,
+      "expected_signal_parents": 2400
+    }
+  },
+  "known_limitation_n3_2_deferred": "En el experimento histórico exp12_paper_research, el selector LBAP se entrenó sobre predicciones in-sample de train (riesgo de optimismo en recuperabilidad); ese ajuste queda aislado como histórico para corregirse en N3.2."
+}

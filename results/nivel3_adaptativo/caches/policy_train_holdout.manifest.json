@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "cache_name": "policy_train_holdout",
+  "dataset_root": "data\\fase6_holdout_sellado",
+  "split": "train",
+  "n_rows": 4800,
+  "dataset_config_sha256": "c4558b029b121f1007d498863147e1843ab6fe75ac1f4c0d5abe2a32907d56e3",
+  "supervision_csv_sha256": "3c02127fd2f0aea70dac7c4b0a667f55d1de4e9c15a97814377382cbf5de38a3",
+  "observations_npz_sha256": "2da3a597bc0035c205faf535b14db3c91e913ddcb13dac27b5b4753a7fa0751b",
+  "row_order_sha256": "678cd30e3544091e613a022ca865b215c6d819339d0ebc70e812d386793ff8c9",
+  "model_hashes": {
+    "a0_svm256": "02d70d55b912c22394e5550cc978b785f45db1e26872f5b0bef3799fe358858f",
+    "a1_svm512": "3c71dfa378c526f9dbce0732475a721b13c7f8587d47e3b6d7c50c380d04d45c",
+    "a2_multidomain": "7396bb515a4be6341acd2505938dd552c6f9579df834f1924e8984561a0135e1"
+  },
+  "feature_version": "observable_v1",
+  "code_sha256": "241a1b051071021b7413ca02aeffa57cae4ea19b79bd274d89b999e3a0f4d92e",
+  "cache_npz_sha256": "94df5d4207c3cadd9ccd54abe84802ab00588352351af0e0f28664c3dd4a8bac"
+}

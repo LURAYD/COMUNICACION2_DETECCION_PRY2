@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "frozen_date": "2026-11-16",
+  "purpose": "Protocolo congelado de particiones, modelos candidatos, métricas primarias y criterios internos de aceptación (Nivel 0 - N0.2).",
+  "historical_datasets_inspected": {
+    "data/e2_dataset": {
+      "seed": 2026110502,
+      "role": "Entrenamiento y evaluación histórica E2/E3 (SVM256, SVM512, CNN Fase 6)",
+      "status": "Evaluación histórica ya inspeccionada"
+    },
+    "data/fase6_holdout_sellado": {
+      "seed": 2026110699,
+      "role": "Holdout histórico Fase 6 (SVM256, SVM512, CNN original vs phase aug)",
+      "status": "Evaluación histórica ya inspeccionada"
+    },
+    "data/adaptive_dataset": {
+      "seed": 2026110613,
+      "role": "Desarrollo y evaluación histórica Fase 7 adaptativa y exp12 (calibración en val_cal, selección en val_select, test y test_shift)",
+      "status": "val_cal/val_select para calibración y desarrollo del monitor; test/test_shift para evaluación N1.3/N1.4 sobre SVM256/SVM512 entrenados en e2_dataset; cualquier nueva selección adaptativa requiere partición/test final nuevo"
+    }
+  },
+  "reserved_new_seeds": {
+    "nivel1_monitor_demos": 2026111601,
+    "nivel2_bank_e1_independent": 2026111602,
+    "nivel2_e2e_challenge_unknown_files": 2026111603,
+    "nivel3_new_adaptive_final_test": 2026111604
+  },
+  "partition_roles": {
+    "expert_training": "Solo train de su dataset designado; nunca val_cal, val_select ni test/test_shift",
+    "calibration_monitor_n1_4": "adaptive_dataset/val_cal (1.200 padres independientes de e2_dataset)",
+    "policy_selection_and_thresholds": "val_select únicamente",
+    "final_evaluation_new": "Semillas reservadas nuevas; nunca participa en ajuste, selección de umbrales ni hiperparámetros"
+  },
+  "evaluation_distinction": {
+    "conditioned_on_signal_present": "Clasificación AMC sobre observaciones con señal confirmada presente (E2-E6)",
+    "joint_detection_and_classification": "Monitor completo sobre archivos desconocidos incluyendo ruido puro, omisiones y fuera de alcance (N1/N2.2)"
+  },
+  "candidate_models_monitor": [
+    "results/fase5/conventional_256.joblib",
+    "results/fase5/conventional_512.joblib"
+  ],
+  "acceptance_criteria_internal": {
+    "detection_n1_1_n2_1": {
+      "pfa_target": 0.01,
+      "pfa_wilson95_upper_max": 0.02,
+      "pd_wilson95_lower_min_id_snr_ge_0db": 0.95,
+      "scale_invariance_rtol": 1e-9
+    },
+    "spectrum_n1_6": {
+      "tone_peak_max_bin_error": 1,
+      "parseval_rtol_double": 1e-6
+    },
+    "snr_n1_3": {
+      "valid_coverage_min_id_snr_ge_0db": 0.9,
+      "mae_db_max_id_snr_ge_0db": 3.0
+    },
+    "confidence_calibration_n1_4": {
+      "min_calibration_units": 1200,
+      "min_test_units": 2400,
+      "ece_bins": 10,
+      "ece_scheme": "equal_width",
+      "ece_max_nominal_id": 0.05,
+      "require_brier_not_worse_than_base": true,
+      "forbid_artificial_clipping": true
+    },
+    "negative_results_policy": "Si una hipótesis no supera la regla estadística prefijada, se conserva el resultado como 'Cumplido con resultado negativo' y no se reajusta sobre el test."
+  }
+}

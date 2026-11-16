@@ -1,0 +1,71 @@
+{
+  "signal_id": "U0144",
+  "num_samples": 512,
+  "fs_hz": 8000.0,
+  "fs_source": "sidecar:U0144.c64.meta.json",
+  "detection": {
+    "detected": false,
+    "observed_energy": 0.09965897776442098,
+    "mean_energy": 0.09714061532653083,
+    "threshold": 0.11680814372478528,
+    "threshold_per_window": 0.11509413880390022,
+    "threshold_per_file": 0.11680814372478528,
+    "normalized_statistic": 0.9967395360111038,
+    "active_window_indices": [],
+    "num_windows_evaluated": 2,
+    "pfa_file_target": 0.01,
+    "status": "noise_only_or_undetected",
+    "calibration_status": "calibrated_from_noise_reference",
+    "decision_rule": "file_max_energy_sidak"
+  },
+  "spectrum": {
+    "bandwidth_99": 7854.634745847923,
+    "bandwidth_type": "total_power_99_includes_noise",
+    "bandwidth_unit": "Hz",
+    "frequency_bounds": [
+      -3900.104450723717,
+      3954.530295124206
+    ],
+    "integrated_power": 0.10983171368758786,
+    "signal_bandwidth_est": null,
+    "signal_bandwidth_bounds": null,
+    "signal_bandwidth_status": "requires_detected_signal",
+    "window_method": "periodic_hann",
+    "spectrum_file": null
+  },
+  "snr": {
+    "snr_est_db": null,
+    "status": "no_signal",
+    "reason": "detector_negative",
+    "method": null,
+    "observed_power": 0.09965897776442098,
+    "noise_power_estimate": null,
+    "signal_power_estimate": null
+  },
+  "classification": {
+    "modulation": "NO_SIGNAL",
+    "status": "no_signal_detected",
+    "confidence": null,
+    "confidence_calibrated": false,
+    "confidence_status": "not_applicable_no_signal",
+    "calibration_unit": null,
+    "model_used": null,
+    "model_family": null,
+    "model_sha256": null,
+    "model_window_len": null,
+    "scope": "signal_present_closed_set_6_classes",
+    "closed_set_classes": [
+      "BPSK",
+      "QPSK",
+      "8PSK",
+      "16QAM",
+      "64QAM",
+      "4PAM"
+    ],
+    "window_votes": {},
+    "windows_evaluated": 0
+  },
+  "warnings": [
+    "Detector negativo: modulación marcada como NO_SIGNAL."
+  ]
+}

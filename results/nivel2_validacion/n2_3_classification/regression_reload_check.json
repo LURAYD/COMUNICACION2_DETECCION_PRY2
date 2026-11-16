@@ -1,0 +1,46 @@
+{
+  "fase5_e2_test_reload": {
+    "checked": {
+      "256": 4800,
+      "512": 4800
+    },
+    "mismatches": {
+      "256": 0,
+      "512": 0
+    },
+    "zero_mismatches": true
+  },
+  "fase6_holdout_reload": {
+    "checked": 38400,
+    "mismatches": 0,
+    "zero_mismatches": true,
+    "precision_note": "SmallCNN reproducido en FP32 estricto ('highest'); al activar TF32 ('high') se observaron 4/38400 (0.0104%) cambios de borde."
+  },
+  "adaptive_paper_research_reload": {
+    "test": {
+      "n": 2400,
+      "svm256_class_mismatches": 0,
+      "svm512_class_mismatches": 0,
+      "multidomain_a2_class_mismatches": 0,
+      "multidomain_a2_max_abs_logit_diff": 0.0009703636169433594,
+      "multidomain_a2_mean_abs_logit_diff": 4.143064870731905e-05,
+      "logit_tolerance": 0.002,
+      "within_logit_tolerance": true
+    },
+    "test_shift": {
+      "n": 2400,
+      "svm256_class_mismatches": 0,
+      "svm512_class_mismatches": 0,
+      "multidomain_a2_class_mismatches": 0,
+      "multidomain_a2_max_abs_logit_diff": 0.0009473562240600586,
+      "multidomain_a2_mean_abs_logit_diff": 4.815551801584661e-05,
+      "logit_tolerance": 0.002,
+      "within_logit_tolerance": true
+    }
+  },
+  "monitor_interface_vs_svm256_direct": {
+    "checked": 200,
+    "mismatches": 0,
+    "zero_mismatches": true
+  }
+}

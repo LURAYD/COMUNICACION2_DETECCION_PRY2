@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "scope_note": "Las comparaciones entre sistemas finales entrenados no atribuyen la mejora exclusivamente a la arquitectura sin igualar volumen de datos y síntesis.",
+  "models": [
+    {
+      "model": "SVM256 (conventional_256.joblib)",
+      "real_parents_train": 4800,
+      "dataset_source": "data/e2_dataset/train",
+      "synthetic_batches_on_fly": 0,
+      "total_training_presentations": 4800,
+      "snr_distribution": "Uniforme discreta {-20,-15,-10,-5,0,5,10,20} dB",
+      "channel_distribution": "ID (|CFO|<=100 Hz, 3 canales FIR)",
+      "selection_criterion": "val macro-F1 (e2_dataset/val, 4800 padres)",
+      "training_duration_note": "CPU ajuste único determinista (~segundos)"
+    },
+    {
+      "model": "SVM512 (conventional_512.joblib)",
+      "real_parents_train": 4800,
+      "dataset_source": "data/e2_dataset/train",
+      "synthetic_batches_on_fly": 0,
+      "total_training_presentations": 4800,
+      "snr_distribution": "Uniforme discreta {-20,-15,-10,-5,0,5,10,20} dB",
+      "channel_distribution": "ID (|CFO|<=100 Hz, 3 canales FIR)",
+      "selection_criterion": "val macro-F1 (e2_dataset/val, 4800 padres)",
+      "training_duration_note": "CPU ajuste único determinista (~segundos)"
+    },
+    {
+      "model": "SmallCNN (results/fase6/best.pt)",
+      "real_parents_train": 4800,
+      "dataset_source": "data/e2_dataset/train",
+      "synthetic_batches_on_fly": 0,
+      "epochs_max_and_selected": "Parada época 61, mejor época 46",
+      "total_training_presentations": 292800,
+      "snr_distribution": "Uniforme discreta {-20..20} dB",
+      "channel_distribution": "ID únicamente",
+      "selection_criterion": "val macro-F1 (e2_dataset/val, 4800 padres)",
+      "training_duration_seconds": 16.34
+    },
+    {
+      "model": "MultiDomainAMCNet (multidomain_clean_a2_best.pt)",
+      "real_parents_train": 7200,
+      "dataset_source": "data/adaptive_dataset/train (2400) + data/e2_dataset/train (4800)",
+      "synthetic_batches_on_fly": "24 lotes x 1024/época (24.576 muestras sintéticas/época)",
+      "epochs": 90,
+      "total_training_presentations": 2859840,
+      "snr_distribution": "Discreta en reales + continua [-20, 20] dB en síntesis GPU",
+      "channel_distribution": "ID (|CFO|<=100 Hz, max_echo_delay=5) + augmentación física",
+      "selection_criterion": "val_cal macro-F1 (adaptive_dataset, 1200 padres)",
+      "training_duration_seconds": 989.55
+    }
+  ]
+}

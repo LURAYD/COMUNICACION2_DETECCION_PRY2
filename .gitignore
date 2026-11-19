@@ -22,7 +22,7 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Datos regenerables y artefactos binarios pesados; conservar configs, código y evidencia resumida.
+# Datos regenerables y artefactos binarios pesados; conservar configs, código, modelos clave y evidencia resumida.
 data/
 tmp/
 .pytest_cache/
@@ -30,3 +30,14 @@ tmp/
 *.joblib
 *.npz
 *.c64
+
+# Excepciones: modelos entrenados, calibradores y paquetes desplegables esenciales (~36.7 MB en total)
+!results/fase5/conventional_256.joblib
+!results/fase5/conventional_512.joblib
+!results/fase6/best.pt
+!results/fase6_phase_aug/best.pt
+!results/nivel1_monitor/monitor_calibrators.joblib
+!results/nivel3_adaptativo/lbap_deployable_package.joblib
+!results/nivel3_adaptativo/snr_flatness_deployable_package.joblib
+!results/nivel3_adaptativo/confidence_deployable_package.joblib
+!results/paper_research/multidomain_clean_a2_best.pt
